@@ -1,0 +1,486 @@
+% pageborder.sty nhằm mục đích đóng khung bìa và tiêu đề chương
+% Nguyễn Hữu Điển, Khoa Toán Cơ Tin học
+%ĐHKHTN, ĐHQG HN
+% 334, Nguyễn Trãi, Thanh Xuân, Hà Nội
+%DĐ: 0989061951
+% Phiên bản 1.0  ngày 10/1/2011
+%Gói lệnh đòi hỏi umrand.sty
+
+\ProvidesPackage{pageborder}[2011/01/10 v1.0 Make Core Title pages]
+
+\RequirePackage{umrand}
+% \RequirePackage{ifthen}
+
+\def\C{\char'}
+\font\umranda=umranda
+\font\umrandatwo=umranda at 20pt
+\font\umrandathree=umranda at 30pt
+\font\umrandb=umrandb
+\font\umrandbtwo=umrandb at 20pt
+\font\umrandbthree=umrandb at 30pt
+%\fussy
+
+\newcommand{\@titlename}
+{
+ĐẠI HỌC KHOA HỌC TỰ NHIÊN HÀ NỘI
+}
+
+
+%%%%%%%%%%%
+\newenvironment{@borderpage}[2]{
+\RandBox{
+\begin{minipage}{\textwidth}
+#1
+\end{minipage}
+}
+#2
+}{ }
+%%%%%%%%%%%
+\newenvironment{@borderp}[2]{
+\EinfachRand{
+\begin{minipage}{\textwidth}
+#1
+\end{minipage}
+}
+#2
+}{ }
+%\ProcessOptions
+
+\newcommand{\pagecontent}[1]{\renewcommand{\@titlename}{#1}}
+
+\newcommand{\pageborder}[1]{
+\begin{@borderpage}
+\@titlename
+{#1}
+\end{@borderpage}
+}
+
+\newcommand{\pborder}[1]{
+\begin{@borderp}
+\@titlename
+{#1}
+\end{@borderp}
+}
+%%%%%%%%%%%%%%
+\newcommand{\UAborderA}{
+\begin{@borderpage}
+\@titlename
+{
+     font {\umrandatwo} [0pt]
+         () ([\C75\\\C77]\C75) ()
+         (\C76[\C100\\\C76])
+         ([\C100\\\C76]\C100)
+         () (\C77[\C75\\\C77]) ()
+}
+\end{@borderpage}
+}
+
+\newcommand{\UAborderB}{
+\begin{@borderpage}
+\@titlename
+{
+font {\umrandatwo} [-0.3em]
+         (\C113)  ([\C65]) (\C113)
+         ([\C67])          ([\C67])
+         (\C113)  ([\C65]) (\C113)
+}
+\end{@borderpage}
+}
+
+\newcommand{\UBborderA}{
+\begin{@borderpage}
+\@titlename
+{
+  font {\umrandbthree} [0pt]
+         (\C5) ([\C1]) (\C4)
+         ([\C2]) ([\C0])
+         (\C6) ([\C3]) (\C7)
+}
+\end{@borderpage}
+}
+
+
+%%%%%%%%%%%%%%%%%%%
+
+
+%\ProcessOptions
+%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\chapterborder}[1]{ 
+\def\@makechapterhead##1{%
+  {
+\hspace*{-2em}\RandBox{ 
+\begin{minipage}{0.9\textwidth}
+\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+      \if@mainmatter
+        \huge\bfseries \@chapapp\space \thechapter
+        %\par\nobreak
+        \vskip 20\p@
+      \fi
+    \fi
+     \interlinepenalty\@M
+\huge \bfseries
+##1
+\end{minipage}
+  }
+#1
+}
+ \par\nobreak
+    \vskip 40\p@
+}
+%%%%%%%%%Tiêu đề sao
+\def\@makeschapterhead##1{%
+{
+  \vspace*{50\p@}%
+\hspace*{-2em}\RandBox{ 
+\begin{minipage}{0.9\textwidth}
+  \parindent \z@ \raggedright
+    \normalfont
+    \interlinepenalty\@M
+    \Huge \bfseries  ##1
+\end{minipage}
+  }
+#1
+}
+ \par\nobreak
+    \vskip 40\p@
+  }
+
+}
+%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\cborder}[1]{ 
+\def\@makechapterhead##1{%
+  {
+\hspace*{-1cm}\EinfachRand{ 
+\begin{minipage}{0.9\textwidth}
+\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+      \if@mainmatter
+        \huge\bfseries \@chapapp\space \thechapter
+        %\par\nobreak
+        \vskip 20\p@
+      \fi
+    \fi
+     \interlinepenalty\@M
+\huge \bfseries
+##1
+\end{minipage}
+  }
+#1
+}
+    \vskip 40\p@
+}
+%%%%%%%%%Tiêu đề sao
+\def\@makeschapterhead##1{%
+{
+  \vspace*{50\p@}%
+\hspace*{-2em}\EinfachRand{ 
+\begin{minipage}{0.9\textwidth}
+  \parindent \z@ \raggedright
+    \normalfont
+    \interlinepenalty\@M
+    \Huge \bfseries  ##1
+\end{minipage}
+  }
+#1
+}
+ \par\nobreak
+    \vskip 40\p@
+  }
+
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\titleborder}[1]{ 
+\def\@makechapterhead##1{%
+  {
+\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+      \if@mainmatter
+        \huge\bfseries \@chapapp\space \thechapter
+        %\par\nobreak
+        \vskip 20\p@
+      \fi
+    \fi
+\RandBox{ 
+\begin{minipage}{0.8\textwidth}
+     \interlinepenalty\@M
+\huge \bfseries
+##1
+\end{minipage}
+  }
+#1
+}
+    \vskip 40\p@
+}
+%%%%%%%%%Tiêu đề sao
+\def\@makeschapterhead##1{%
+{
+  \vspace*{50\p@}%
+\hspace*{-2em}\RandBox{ 
+\begin{minipage}{0.9\textwidth}
+  \parindent \z@ \raggedright
+    \normalfont
+    \interlinepenalty\@M
+    \Huge \bfseries  ##1
+\end{minipage}
+  }
+#1
+}
+ \par\nobreak
+    \vskip 40\p@
+  }
+
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\tborder}[1]{ 
+\def\@makechapterhead##1{%
+  {
+
+\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+      \if@mainmatter
+        \huge\bfseries \@chapapp\space \thechapter
+        %\par\nobreak
+        \vskip 20\p@
+      \fi
+    \fi
+\RandBox{ 
+\begin{minipage}{0.8\textwidth}
+     \interlinepenalty\@M
+\huge \bfseries
+##1
+\end{minipage}
+  }
+#1
+}
+    \vskip 40\p@
+}
+%%%%%%%%%Tiêu đề sao
+\def\@makeschapterhead##1{%
+{
+  \vspace*{50\p@}%
+\hspace*{-1cm}\RandBox{ 
+\begin{minipage}{0.9\textwidth}
+  \parindent \z@ \raggedright
+    \normalfont
+    \interlinepenalty\@M
+    \Huge \bfseries  ##1
+\end{minipage}
+  }
+#1
+}
+ \par\nobreak
+    \vskip 40\p@
+  }
+
+}
+
+%%%%%%%%%%%%%%%%%
+\def\sectionborder#1#2{
+\vspace*{0.5em}
+\noindent\RandBox{ 
+\hspace*{-1cm}\begin{minipage}[b]{0.9\textwidth}
+\vspace*{-0.5em}
+#2
+\vspace*{-1.5em}
+\end{minipage}
+}
+#1
+\vspace*{1.0em}
+}
+
+%%%%%%%%%%%%%%%%%%
+\def\underborder #1 font #2 char #3 [#4] {%
+    \RandBox {#1} font {#2} [#4]
+             () ([]) ()
+             ([]) ([])
+             (#3) ([#3]) (#3) }
+
+\def\leftborder #1 font #2 char #3 [#4] {%
+    \RandBox {#1} font {#2} [#4]
+             (#3) ([]) ()
+             ([#3]) ([])
+             (#3) ([]) () }
+
+\def\rightborder #1 font #2 char #3 [#4] {%
+    \RandBox {#1} font {#2} [#4]
+             () ([]) (#3)
+             ([]) ([#3])
+             () ([]) (#3) }
+
+\def\overborder #1 font #2 char #3 [#4] {%
+    \RandBox {#1} font {#2} [#4]
+             (#3) ([#3]) (#3)
+             ([]) ([])
+             () ([]) () }
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\lcborder}[1]{ 
+\def\@makechapterhead##1{%
+  {
+\hspace*{-1cm}\leftborder{ 
+\begin{minipage}{0.9\textwidth}
+\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+      \if@mainmatter
+        \huge\bfseries \@chapapp\space \thechapter
+        %\par\nobreak
+        \vskip 20\p@
+      \fi
+    \fi
+     \interlinepenalty\@M
+\huge \bfseries
+##1
+\end{minipage}
+  }
+#1
+}
+    \vskip 40\p@
+}
+}
+%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\rcborder}[1]{ 
+\def\@makechapterhead##1{%
+  {
+\hspace*{-1cm}\rightborder{ 
+\begin{minipage}{0.9\textwidth}
+\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+      \if@mainmatter
+        \huge\bfseries \@chapapp\space \thechapter
+        %\par\nobreak
+        \vskip 20\p@
+      \fi
+    \fi
+     \interlinepenalty\@M
+\huge \bfseries
+##1
+\end{minipage}
+  }
+#1
+}
+    \vskip 40\p@
+}
+}
+%%%%%%%%%%%%%%%
+\newcommand{\ucborder}[1]{ 
+\def\@makechapterhead##1{%
+  {
+\hspace*{-1cm}\underborder{ 
+\begin{minipage}{0.9\textwidth}
+\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+      \if@mainmatter
+        \huge\bfseries \@chapapp\space \thechapter
+        %\par\nobreak
+        \vskip 20\p@
+      \fi
+    \fi
+     \interlinepenalty\@M
+\huge \bfseries
+##1
+\end{minipage}
+  }
+#1
+}
+    \vskip 40\p@
+}
+}
+%%%%%%%%%%%%%%%
+\newcommand{\ocborder}[1]{ 
+\def\@makechapterhead##1{%
+  {
+\hspace*{-1cm}\overborder{ 
+\begin{minipage}{0.9\textwidth}
+\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+      \if@mainmatter
+        \huge\bfseries \@chapapp\space \thechapter
+        %\par\nobreak
+        \vskip 20\p@
+      \fi
+    \fi
+     \interlinepenalty\@M
+\huge \bfseries
+##1
+\end{minipage}
+  }
+#1
+}
+    \vskip 40\p@
+}
+}
+%%%%%%%%%%%%%%%
+\newcommand{\mcborder}[1]{ 
+\def\@makechapterhead##1{%
+  {
+\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+      \if@mainmatter
+        \huge\bfseries \@chapapp\space \thechapter
+        %\par\nobreak
+        \vskip 20\p@
+      \fi
+    \fi
+\overborder{\hspace*{-1cm}
+\begin{minipage}{0.9\textwidth}
+     \interlinepenalty\@M
+\huge \bfseries
+##1
+\end{minipage}
+  }
+#1
+}
+    \vskip 40\p@
+}
+}
+%%%%%%%%%%%%%%
+\def\undersborder#1#2{
+\vspace*{1em}
+\noindent\underborder{ 
+\hspace*{-0.8cm}\begin{minipage}[b]{0.9\textwidth}
+\vspace*{-0.5em}
+#2
+\vspace*{-1em}
+\end{minipage}
+}
+#1
+\vspace*{1em}\par
+}
+
+\def\oversborder#1#2{
+\par\vspace*{1em}
+\noindent\overborder { 
+\hspace*{-1cm}\begin{minipage}[b]{0.9\textwidth}
+\vspace*{-0.5em}
+#2
+\vspace*{-1.5em}
+\end{minipage}
+}
+#1
+\vspace*{1em}\par
+}
+
+\newcommand{\setbodero}[2][{font {\umranda} char \C45 [0.3em]}]{
+\noindent\overborder{ 
+\hspace*{-1cm}\begin{minipage}[b]{0.9\textwidth}
+\vspace*{-0.5em}
+#2
+\vspace*{-1.5em}
+\end{minipage}
+}
+#1
+}
+
+\newcommand{\setboderu}[2][{font {\umranda} char \C45 [0.3em]}]{
+\noindent\underborder{ 
+\hspace*{-1cm}\begin{minipage}[b]{0.9\textwidth}
+\vspace*{-0.5em}
+#2
+\vspace*{-1.5em}
+\end{minipage}
+}
+#1
+}
+\endinput 

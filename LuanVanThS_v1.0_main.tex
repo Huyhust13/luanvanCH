@@ -1,0 +1,79 @@
+\documentclass[a4paper,oneside]{book}
+\usepackage[utf8]{vietnam}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{subfig} % gói lệnh cho vẽ nhiều hình trong 1 hình
+\usepackage{wrapfig} % gói lệnh vẽ chèn hình vào giữa văn bản
+\usepackage{array}  % gói lệnh kẻ bảng với kích thước cố định
+\usepackage{tabu}
+\usepackage{color}
+\usepackage{enumerate} % gói lệnh danh sách
+\usepackage[unicode]{hyperref} % gói lệnh tạo liên kết
+\usepackage{indentfirst} % Thụt vào đầu mỗi đoạn
+\usepackage{pageborder}
+\usepackage{comment} %comment khoi lenh
+\usepackage{fancybox} 
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage[left=3.5cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{scrextend}
+\changefontsizes{13pt} % đặt phông chữ kích thước 13
+\linespread{1.2}  % line space multiple 1.2
+ \usepackage{fancyhdr}
+ \pagestyle{fancy}
+ \fancyhf{}
+\rhead{GVHD: TS. Nguyễn Xuân Hạ}
+ \rhead{Luận văn Tốt nghiệp Hệ Cao học Cơ điện tử}
+
+ %\fancyhead[RO]{\rightmark}
+ \cfoot{\thepage}
+
+\author{Nguyễn Văn Huy}
+
+
+\begin{document}
+% \input{chapters/Bia}
+
+\frontmatter
+
+\setcounter{page}{4}
+\newpage
+% \input{chapters/LoiMoDau}
+
+% \input{chapters/DanhMucKyHieu.tex}
+
+\tableofcontents % chèn mục  lục
+
+\addcontentsline{toc}{chapter}{MỤC LỤC}
+
+\listoffigures % chèn danh sách hình 
+
+\addcontentsline{toc}{chapter}{DANH SÁCH HÌNH VẼ}
+
+\listoftables % chèn danh sách bảng biểu
+
+\addcontentsline{toc}{chapter}{DANH SÁCH BẢNG}
+
+\mainmatter
+ \fancyhead[LO]{\leftmark}
+ \cfoot{}
+ \rfoot{\thepage}
+\lfoot{Sinh viên thực hiện: Nguyễn Văn Huy 20131782 - K58 Lớp KT CĐT01}
+\renewcommand{\headrulewidth}{2pt} % cho header
+\renewcommand{\footrulewidth}{2pt} % cho footer
+\input{chapter1/chapter1} %TỔNG QUAN VỀ ROBOT DẠNG NGƯỜI
+
+% \input{chapters/Chuong_TKCK.tex} %GIỚI THIỆU VỀ VIEBOT
+
+\newpage
+% \input{chapters/Chuong2} %ĐỘNG HỌC CÁNH TAY ROBOT
+
+% \input{chapters/Chuong3.tex}
+
+%----Tài liệu tham khảo-------
+\bibliographystyle{ieeetr}
+% \bibliography{Refs/DATN2017_Refs}
+%==============================
+\end{document}
