@@ -24,56 +24,48 @@
  \usepackage{fancyhdr}
  \pagestyle{fancy}
  \fancyhf{}
-\rhead{GVHD: TS. Nguyễn Xuân Hạ}
- \rhead{Luận văn Tốt nghiệp Hệ Cao học Cơ điện tử}
 
- %\fancyhead[RO]{\rightmark}
- \cfoot{\thepage}
+\lhead{GVHD: TS. Nguyễn Xuân Hạ}
+\rhead{Luận văn Tốt nghiệp Hệ Cao học Cơ điện tử}
+
+%  \fancyhead[RO]{\rightmark}
+\cfoot{\thepage}
 
 \author{Nguyễn Văn Huy}
 
 
+% ============ BEGIN =================================
 \begin{document}
-% \input{chapters/Bia}
+\input{chapter0/Bia}
 
 \frontmatter
 
-\setcounter{page}{4}
+\setcounter{page}{4} % Đặt vị trí bắt đầu đếm số trang
 \newpage
-% \input{chapters/LoiMoDau}
 
-% \input{chapters/DanhMucKyHieu.tex}
+\input{chapter0/LoiMoDau}
+\input{chapter0/DanhMucKyHieu}
 
 \tableofcontents % chèn mục  lục
-
 \addcontentsline{toc}{chapter}{MỤC LỤC}
-
 \listoffigures % chèn danh sách hình 
-
 \addcontentsline{toc}{chapter}{DANH SÁCH HÌNH VẼ}
-
 \listoftables % chèn danh sách bảng biểu
-
 \addcontentsline{toc}{chapter}{DANH SÁCH BẢNG}
 
 \mainmatter
- \fancyhead[LO]{\leftmark}
- \cfoot{}
- \rfoot{\thepage}
-\lfoot{Sinh viên thực hiện: Nguyễn Văn Huy 20131782 - K58 Lớp KT CĐT01}
+\fancyhead[LO]{\leftmark}
+\cfoot{}
+\rfoot{\thepage}
+\lfoot{Học viên: Nguyễn Văn Huy 180009- Lớp CH2018B}
 \renewcommand{\headrulewidth}{2pt} % cho header
 \renewcommand{\footrulewidth}{2pt} % cho footer
-\input{chapter1/chapter1} %TỔNG QUAN VỀ ROBOT DẠNG NGƯỜI
 
-% \input{chapters/Chuong_TKCK.tex} %GIỚI THIỆU VỀ VIEBOT
+%----Nội dung---------------------------------------
+\input{chapter1/chapter1}
 
-\newpage
-% \input{chapters/Chuong2} %ĐỘNG HỌC CÁNH TAY ROBOT
-
-% \input{chapters/Chuong3.tex}
-
-%----Tài liệu tham khảo-------
+%----Tài liệu tham khảo-----------------------------
 \bibliographystyle{ieeetr}
-% \bibliography{Refs/DATN2017_Refs}
+\bibliography{ref}
 %==============================
 \end{document}
