@@ -21,6 +21,7 @@ Từ đó, robot tự hành thông minh ra đời.
 
 \subsection{Robot tự hành thông minh}
 Robot tự hành thông minh là loại robot di động, có thể cảm nhận, mô hình hóa môi trường xung quanh nó. Thực hiện các hành động di chuyển mà không cần sự giám sát cũng như điều khiển trực tiếp từ con người (\figurename{\ref{fig:intro}}).
+
 \begin{figure}
 	\centering
 	\includegraphics[width=13cm]{chapter1/figs/intro.png}
@@ -28,31 +29,68 @@ Robot tự hành thông minh là loại robot di động, có thể cảm nhận
 	\label{fig:intro}
 \end{figure}
 
-Robot tự hành thông minh có rất nhiều ứng dụng, như: (\figurename{\ref{fig:applications}})
+\begin{figure}
+	\centering
+	\subfloat[][]{
+		\label{fig:ex3-a}
+		\includegraphics[width=0.4\columnwidth]{chapter1/figs/cleanerRb_2.JPG}}
+	\hspace{8pt}
+	\subfloat[][]{
+		\label{fig:ex3-b}
+		\includegraphics[width=0.4\columnwidth]{chapter1/figs/mobilerb_amazon.jpg}}\\
+	\subfloat[][]{
+		\label{fig:ex3-c}
+		\includegraphics[width=0.4\columnwidth]{chapter1/figs/serviceRB.jpg}}
+	\hspace{8pt}
+	\caption[]{Một số robot tự hành:\subref{fig:ex3-a} Robot hút bụi; \subref{fig:ex3-b} Robot trong kho hàng; \subref{fig:ex3-c} Robot dịch vụ phục vụ trong khách sạn.}
+	\label{fig:ex3}
+\end{figure}
+
+\subsection{Ứng dụng của robot tự hành thông minh}
+Với sự thông minh và linh hoạt của của nó, Robot tự hành thông minh có rất nhiều ứng dụng, như: (\figurename{\ref{fig:applications}})
+
 \begin{itemize}
 	\item Các ứng dụng trong nhà như robot hút bụi thông minh, robot dịch vụ, robot vận chuyển trong các kho hàng...
 	\item Robot thám hiểm dưới nước, trong lòng đất, trên các hành tinh khác...
 	\item Robot làm việc tại các khu vực nguy hiểm như khu vực nhiễm chất phóng xạ, robot chữa cháy...
 	\item Xe tự lái
 \end{itemize}
+
 \begin{figure}
 	\centering
 	\includegraphics[width=13cm]{chapter1/figs/applications.PNG}
-	\caption{Các ứng dụng của robot tự hành \cite{Burgard2010}
+	\caption{Các ứng dụng của robot tự hành \cite{Burgard2010}}
 	\label{fig:applications}
 \end{figure}
 
-\subsection{Bài toán SLAM}
-Trong robot tự hành, 
+\section{Công nghệ và bài toán cơ bản trên hệ thống robot tự hành thông minh}
+\subsection{Cảm biến}
+Robot tự hành thông minh cần một số loại cảm biến để có thể hiểu được môi trường, định vị và di chuyển tránh vật cản. 
 
+Có rất nhiều loại cảm biến, để cảm nhận được đa dạng thông tin của môi trường. Có thể chia làm các nhóm như sau:
+\begin{itemize}
+	\item Khoảng cách 1D: Cảm biến khoảng cách hồng ngoại, siêu âm
+	\item Khoảng cách 2D: Lidar
+	\item Cảm biến 3D: Có nhiều loại cảm biến 3D như Intel realsense, Microsoft Kinect, Asus Xction...
+	\item Ước tính trạng thái robot: GPS, IMU
+	\item Cảm biến lực, momen, cảm biến chạm...
+	\item Âm thanh, giọng nói như microphone, microphone array
+	\item Các loại camera 2D
+\end{itemize}
 
-\subsection{Ứng dụng của robot tự hành thông minh}
-Với sự thông minh và linh hoạt của của nó, robot tự hành thông 
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{chapter1/figs/CacloaiCB.JPG}
+	\caption{Một số loại cảm biến}
+	\label{fig:cacLoaiCambien}
+\end{figure}
 
-\section{Các bài toán nghiên cứu trên hệ thống robot tự hành thông minh}
+\subsection{Các bài toán cơ bản trên hệ thống robot tự hành}
+Định vị
 
-\section{Các nghiên cứu về SLAM}
+Xây dựng bản đồ
 
-\section{Sự cần thiết của luận văn}
+Điều hướng robot
 
+Tránh vật cản
 
