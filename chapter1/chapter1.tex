@@ -32,19 +32,27 @@ Robot tự hành thông minh là loại robot di động, có thể cảm nhận
 \begin{figure}
 	\centering
 	\subfloat[][]{
-		\label{fig:ex3-a}
-		\includegraphics[width=0.4\columnwidth]{chapter1/figs/cleanerRb_2.JPG}}
+		\label{fig:rb-a}
+		\includegraphics[width=0.6\columnwidth]{chapter1/figs/cleanerRb_2.JPG}}
 	\hspace{8pt}
 	\subfloat[][]{
-		\label{fig:ex3-b}
-		\includegraphics[width=0.4\columnwidth]{chapter1/figs/mobilerb_amazon.jpg}}\\
+		\label{fig:rb-b}
+		\includegraphics[width=0.5\columnwidth]{chapter1/figs/mobilerb_amazon.jpg}}
 	\subfloat[][]{
-		\label{fig:ex3-c}
-		\includegraphics[width=0.4\columnwidth]{chapter1/figs/serviceRB.jpg}}
+		\label{fig:rb-c}
+		\includegraphics[width=0.45\columnwidth]{chapter1/figs/UD_warehouse.jpg}}
 	\hspace{8pt}
-	\caption[]{Một số robot tự hành:\subref{fig:ex3-a} Robot hút bụi; \subref{fig:ex3-b} Robot trong kho hàng; \subref{fig:ex3-c} Robot dịch vụ phục vụ trong khách sạn.}
-	\label{fig:ex3}
+	\caption[]{Một số robot tự hành:\subref{fig:rb-a} Robot hút bụi; \subref{fig:rb-b} Robot trong kho hàng của Amazon; \subref{fig:rb-c} Robot trong kho hàng.}
+	\label{fig:rb}
 \end{figure}
+
+\begin{figure}[tph]
+	\centering
+	\includegraphics[width=\linewidth]{chapter1/figs/someRb}
+	\caption{Một số loại robot dịch vụ}
+	\label{fig:somerb}
+\end{figure}
+
 
 \subsection{Ứng dụng của robot tự hành thông minh}
 Với sự thông minh và linh hoạt của của nó, Robot tự hành thông minh có rất nhiều ứng dụng, như: (\figurename{\ref{fig:applications}})
@@ -86,7 +94,45 @@ Có rất nhiều loại cảm biến, để cảm nhận được đa dạng th
 \end{figure}
 
 \subsection{Các bài toán cơ bản trên hệ thống robot tự hành}
-Định vị
+\textbf{Odometry}: là bài toán sử dụng dữ liệu từ các cảm biến nhận biết sự di chuyển của robot để ước tính sự thay đổi vị trí của robot qua thời gian. Odometry được sử dụng trong hầu hết các robot tự hành, để ước tính vị trí tương đối của robot so với vị trí xuất phát (\figurename{\ref{fig:odom-a}}).
+Nếu chỉ sử dụng dữ liệu cảm biến để ước tính vị trí của robot thì sẽ gây ra sai số và sai số càng lớn dần theo thời gian (\figurename{\ref{fig:odom-b}}). Nguyên nhân gây ra sai số có thể do các nguyên nhân như sai số kích thước giữa hai bánh, trượt bánh, vấp vật cản... (\figurename{\ref{fig:wheel}}). 
+\begin{figure}[htp]
+	\centering
+	\subfloat[]{
+		\label{fig:odom-a}
+		\includegraphics[width=0.7\linewidth]{chapter1/figs/odometry_1.PNG}}\\
+	%\hspace{8pt}
+	\subfloat[]{
+		\label{fig:odom-b}
+		\includegraphics[width=0.7\linewidth]{chapter1/figs/odometry_2.PNG}}
+	\hspace{8pt}
+	\caption[]{Bài toán Odometry:\subref{fig:rb-a} Vị trí robot ước tính từ dữ liệu cảm biến; \subref{fig:rb-b} Sai số giữa ước tính từ sensor và thực tế; \subref{fig:rb-c} Hiệu chỉnh bằng EKF.}
+	\label{fig:odom}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\subfloat[Lý tưởng]{
+		\label{fig:wheel-a}
+		\includegraphics[width=0.4\linewidth]{chapter1/figs/wheel_ideal.PNG}}
+	\hspace{8pt}
+	\subfloat[Sai số kích thước]{
+		\label{fig:wheel-b}
+		\includegraphics[width=0.4\linewidth]{chapter1/figs/wheel_error_1.PNG}}\\
+	\subfloat[Vấp vật]{
+		\label{fig:wheel-c}
+		\includegraphics[width=0.4\linewidth]{chapter1/figs/wheel_error_2.PNG}}
+	\subfloat[Di chuyển trên thảm]{
+		\label{fig:wheel-d}
+		\includegraphics[width=0.4\linewidth]{chapter1/figs/wheel_error_3.PNG}}
+	\hspace{8pt}
+	\caption[]{Các trường hợp gây sai số trong odometry.}
+	\label{fig:wheel}
+\end{figure}
+
+Robot sử dụng dữ liệu odometry để ước tính vị trí robot, các thuật toán phía sau thực hiện hiệu chỉnh vị trí robot.
+
+\textbf{Định vị}: 
 
 Xây dựng bản đồ
 
