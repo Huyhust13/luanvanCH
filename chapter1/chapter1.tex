@@ -15,7 +15,9 @@ Robotics đã đạt được thành tựu cực kì lớn trong công nghiệp 
 Tuy vậy, hạn chế của cánh tay robot là không gian làm việc cố định và có giới hạn.
 
 Để khắc phục hạn chế đó của cánh tay robot công nghiệp, \textit{mobile robot} hay còn gọi là robot di động ra đời. 
+
 Ở thời điểm đầu, mobile robot chỉ có thể làm việc trong giới hạn sự kiểm soát của con người về mặt không gian và hành động. Thông qua việc điều khiển mọi hành động di chuyển của mobile robot. Ví dụ như điều khiển bằng tay thông qua bảng điều khiển, qua sóng RF... hay di chuyển bám line, đọc mã bar, mã QR. Tất cả các phương pháp đó đều khá hạn chế về không gian hoạt động cũng như yêu cầu thiết lập môi trường hết sức tốn kém, kém linh hoạt. Mỗi khi cần thực hiện một nhiệm vụ khác đều phải thiết lập lại nhà máy, không gian làm việc hết sức tốn kém.
+
 Như vậy, làm sao để mobile robot có thể di chuyển trong môi trường thế giới thực mà không cần (hoặc ít) sự kiểm soát, điều khiển của con người để tự nó thực hiện mọi hành động đã đặt ra một số bài toán thách thức cho các nhà nghiên cứu robotics.
 Từ đó, robot tự hành thông minh ra đời. 
 
@@ -132,11 +134,48 @@ Nếu chỉ sử dụng dữ liệu cảm biến để ước tính vị trí c�
 
 Robot sử dụng dữ liệu odometry để ước tính vị trí robot, các thuật toán phía sau thực hiện hiệu chỉnh vị trí robot.
 
-\textbf{Định vị}: 
+\textbf{Định vị}: Bài toán định vị của robot giúp trả lời câu hỏi: Đang ở đâu? (\figurename{\ref{fig:localization}})
+\begin{figure}[tph]
+	\centering
+	\includegraphics[width=0.7\linewidth]{chapter1/figs/localization}
+	\caption{Tôi đang ở đâu?}
+	\label{fig:localization}
+\end{figure}
 
-Xây dựng bản đồ
+\textbf{Xây dựng bản đồ}: Robot sử dụng SLAM (Simultaneous Localization and Mapping) để tạo bản đồ. Dựa trên odometry, dữ liệu cảm biến và các thuật toán để tạo bản đồ.
 
-Điều hướng robot
+\textbf{Điều hướng robot}: Xác định quỹ đạo, kế hoạch di chuyển từ vị trí hiện tại tới một vị trí xác định trong bản đồ.
 
-Tránh vật cản
+\textbf{Tránh vật cản}: Trong quá trình di chuyển, robot phát hiện vật cản (bao gồm cả tĩnh và động) và tránh vật cản, sau đó thiết lập lại quỹ đạo di chuyển tới đích.
+
+
+\section{Nội dung nghiên cứu}
+
+Trong khuôn khổ luận văn này, em sẽ thực hiện 3 nội dung chính như sau:
+\begin{itemize}
+	\item Nghiên cứu và ứng dụng giải thuật định vị dẫn đường (SLAM) trên nền tảng robot di động và hệ điều hành ROS
+	\item Phát triển, thử nghiệm và đánh giá giải thuật tránh vật cản tăng độ an toàn cho robot
+	\item Phát triển một số ứng dụng trên nền tảng robot tự hành thông minh
+\end{itemize}
+
+\section{Giới thiệu hệ thống robot thực nghiệm}
+\begin{figure}[tph]
+	\centering
+	\includegraphics[width=0.7\linewidth]{chapter1/figs/eaiD1}
+	\caption{Cấu tạo robot}
+	\label{fig:eaid1}
+\end{figure}
+Toàn bộ nghiên cứu về các giải thuật điều khiển robot sẽ được ứng dụng trên mô hình robot di động thật như trong \figurename{\ref{fig:eaid1}}. 
+
+Đây là một nền tảng robot di động, có cấu tạo:
+\begin{itemize}
+	\item Hệ thống di chuyển: 2 bánh xe chủ động và 2 bánh xe bị động. 
+	\item Cảm biến: Được trang bị 3 cảm biến sonar ở phía trước. Cảm biến Lidar 360 độ được gắn ở trên đỉnh robot.
+	\item Bộ điều khiển trung tâm là một máy tính nhúng mini Raspberry Pi 3, chạy hệ điều hành Raspbian	
+\end{itemize}
+
+Đây là nền tảng robot tự hành đã được nhà cung cấp phát triển mã nguồn mở các gói lệnh trong ROS, bao gồm các chức năng cơ bảntạo bản đồ môi trường, di chuyển tới vị trí xác định, tránh vật cản trong quá trình di chuyển...
+
+\section{Nội dung luận văn} 
+Luận văn này sẽ bao gồm 4 chương. Chương 1 là Tổng quan nghiên cứu, chương này giới thiệu về robot tự hành thông minh và ứng dụng, một số vấn đề nghiên cứu. Chương 2 Cơ sở lý thuyêt bao gồm các nội dung tổng quan về hệ điều hành robot ROS, cơ sở lý thuyết của SLAM và điều hướng cho robot tự hành và đánh giá một số giải thuật tránh vật cản. Chương 3 sẽ trình bày về việc ứng dụng các giải thuật điều khiển robot để điều khiển robot thật, tích hợp giải thuật tránh vật cản và thử nghiệm, đánh giá kết quả của hệ thống. Chương 4 kết luận và đề xuất các phát triển, tối ưu trong điều khiển robot tự hành. 
 

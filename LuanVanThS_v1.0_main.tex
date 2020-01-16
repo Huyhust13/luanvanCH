@@ -9,7 +9,7 @@
 \usepackage{wrapfig} % gói lệnh vẽ chèn hình vào giữa văn bản
 \usepackage{array}  % gói lệnh kẻ bảng với kích thước cố định
 \usepackage{tabu}
-\usepackage{color}
+\usepackage{xcolor}
 \usepackage{enumerate} % gói lệnh danh sách
 \usepackage[unicode]{hyperref} % gói lệnh tạo liên kết
 \usepackage{indentfirst} % Thụt vào đầu mỗi đoạn
@@ -25,6 +25,25 @@
  \usepackage{fancyhdr}
  \pagestyle{fancy}
  \fancyhf{}
+ \usepackage{listings} %Dùng cho định dạng khối lệnh
+ \lstset{
+ 	language=c++, %% Troque para PHP, C, Java, etc... bash é o padrão
+ 	basicstyle=\ttfamily\small,
+ 	numberstyle=\footnotesize,
+ 	% numbers=left,
+ 	backgroundcolor=\color{gray!10},
+ 	frame=single,
+ 	tabsize=2,
+ 	rulecolor=\color{black!30},
+ 	title=\lstname,
+ 	escapeinside={\%*}{*)},
+ 	breaklines=true,
+ 	breakatwhitespace=true,
+ 	framextopmargin=2pt,
+ 	framexbottommargin=2pt,
+ 	extendedchars=false,
+ 	showstringspaces=false,
+ 	inputencoding=utf8}
 
 \lhead{GVHD: TS. Nguyễn Xuân Hạ}
 \rhead{Luận văn Tốt nghiệp Hệ Cao học Cơ điện tử}
@@ -64,7 +83,7 @@
 
 %----Nội dung---------------------------------------
 \input{chapter1/chapter1}
-
+\input{chapter2/chapter2}
 %----Tài liệu tham khảo-----------------------------
 \bibliographystyle{ieeetr}
 \bibliography{ref}
