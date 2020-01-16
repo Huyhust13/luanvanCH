@@ -1,4 +1,4 @@
-\chapter{Cơ sở lý thuyết cho đề tài nghiên cứu}
+\chapter{Cơ sở lý thuyết liên quan đề tài nghiên cứu}
 
 \section{Tổng quan về hệ điều hành ROS}
 \textbf{Robot Operating System (ROS)} là một mã nguồn mở, là hệ điều hành cho robot. Nó cung cấp các dịch vụ mà bạn sẽ mong muốn từ một hệ điều hành, cài đặt các hàm được dùng chung, trao đổi thông điệp giữa các tiến trình, và quản lý các gói lệnh. Nó cũng cung cấp các công cụ và các thư viện để lập trình, chạy các nút thông qua nhiều máy tính khác nhau. 
@@ -136,7 +136,7 @@ Quá trình tạo bản đồ với SLAM được mô tả như trong \figurenam
 Trình tự thực hiện như sau:
 \begin{itemize}
 	\item \textbf{Cảm nhận - sensing}
-	○ Trên bản đồ, robot cập nhật dữ liệu từ encoder, cảm biến IMU, và đo khoảng cách từ LIDAR đến xung quanh
+	Trên bản đồ, robot cập nhật dữ liệu từ encoder, cảm biến IMU, và đo khoảng cách từ LIDAR đến xung quanh
 	\item \textbf{Định vị - localization/pose estimation}
 	Dựa trên dữ liệu từ encoder, IMU và LIDAR, công đoạn ước tính vị trí robot được thực hiện trên bản đồ có sẵn. Sử dụng AMCL.
 	\item \textbf{Tính quỹ đạo di chuyển - motion planning}
@@ -207,7 +207,7 @@ cách tiếp cận các vấn đề SLAM.
 	\item Tiếp theo là ước tính vị trí bằng cách tạo ra N điểm bằng phương pháp lọc điểm sử dụng xác suất tính toán $bel(x_t )$ của vị trí hiện tại. Trong MCL, từ "sample - mẫu" thay thế cho "particle - điểm" và xử lý qua SIR (Sampling Importance weighting Re-sampling). Bước đầu tiên là xử lý mẫu (sampling process). Ở đây một tập hợp mẫu mới xt được triết xuất thông qua mô hình chuyển động $p(x_t |x_{(t−1)},u_{(t−1)} )$  tại xác suất $bel(x_(t−1))$ của vị trí trước đó. Mẫu "i" $xt(i)$ trong tập hợp mẫu xt, dữ liệu khoảng cách zt, và hằng số chuẩn hóa .... Được dùng  để tính trọng số ....
 	$\omega _t^{\left( i \right)} = {\rm{\eta }}p({z_t}|x_t^{\prime \left( i \right)})$
 	\item Cuối cùng là quá trình làm mới mẫu, tạo ra N mẫu mới của tập hợp Xt sử dụng mẫu cũ xt và trọng số vừa tính:
-	${X_t} = \left\{ {x_t^{\left( j \right)}{\rm{|}}j = 1 \ldots N} \right\}\~\left\{ {x_t^{\prime \left( i \right)},\omega _t^{\left( i \right)}} \right\}$
+	$${X_t} = \left\{ {x_t^{\left( j \right)}{\rm{|}}j = 1 \ldots N} \right\}\~\left\{ {x_t^{\prime \left( i \right)},\omega _t^{\left( i \right)}} \right\}$$
 	Bằng cách lặp lại quá trình SIR trên trong khi di chuyển, vị trí ước tính robot tăng dần độ chính xác
 \end{itemize}
 
@@ -229,5 +229,3 @@ cách tiếp cận các vấn đề SLAM.
 	\item Đây là  1 phương pháp phổ biến trong việc lên quỹ đạo tránh vật cản và tránh vật cản. Phương pháp này lựa chọn 1 tốc độ mà có thể nhanh chóng tiến đến điểm đích và tránh vật cản mà có thể có khả năng cao va chạm với robot. Trong ROS, Trajectory Planner (bộ phận lên quỹ đạo) được dùng cho lên quỹ đạo local, nhưng DWA đang được ứng dụng nhiều bởi tính năng vượt trội của nó. 
 	\item Đầu tiên, robot không ở trong hệ tọa độ x-y, nhưng ở trong không gian tìm kiếm tốc độ (velocity search space) với vận tốc thẳng v và vận tốc quay omega. Trong không gian này, robot có tốc độ cho phép tối đa dựa trên giới hạn phần cứng, đây được gọi là Dynamic Window.
 \end{itemize}
-
-\section{Vấn đề tránh vật cản}
