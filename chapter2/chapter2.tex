@@ -1,5 +1,25 @@
 \chapter{Cơ sở lý thuyết liên quan đề tài nghiên cứu}
 
+\section{Giới thiệu hệ thống robot thực nghiệm}
+\begin{figure}[tph]
+	\centering
+	\includegraphics[width=0.7\linewidth]{chapter1/figs/eaiD1}
+	\caption{Cấu tạo robot}
+	\label{fig:eaid1}
+\end{figure}
+
+Toàn bộ nghiên cứu về các giải thuật điều khiển robot sẽ được ứng dụng trên mô hình robot di động thật như trong \figurename{\ref{fig:eaid1}}. 
+
+Đây là một nền tảng robot di động, có cấu tạo:
+\begin{itemize}
+	\item Hệ thống di chuyển: 2 bánh xe chủ động và 2 bánh xe bị động. 
+	\item Cảm biến: Được trang bị 3 cảm biến sonar ở phía trước. Cảm biến Lidar 360 độ được gắn ở trên đỉnh robot.
+	\item Bộ điều khiển trung tâm là một máy tính nhúng mini Raspberry Pi 3, chạy hệ điều hành Raspbian	
+\end{itemize}
+
+Đây là nền tảng robot tự hành đã được nhà cung cấp phát triển mã nguồn mở các gói lệnh trong ROS, bao gồm các chức năng cơ bảntạo bản đồ môi trường, di chuyển tới vị trí xác định, tránh vật cản trong quá trình di chuyển...
+
+
 \section{Tổng quan về hệ điều hành ROS}
 \textbf{Robot Operating System (ROS)} là một mã nguồn mở, là hệ điều hành cho robot. Nó cung cấp các dịch vụ mà bạn sẽ mong muốn từ một hệ điều hành, cài đặt các hàm được dùng chung, trao đổi thông điệp giữa các tiến trình, và quản lý các gói lệnh. Nó cũng cung cấp các công cụ và các thư viện để lập trình, chạy các nút thông qua nhiều máy tính khác nhau. 
 
@@ -200,14 +220,14 @@ cách tiếp cận các vấn đề SLAM.
 	\item Dữ liệu khoảng cách quét tại thời điểm t được ký hiệu là $z_{0…t}={z_0,z_1,…, z_t}$
 	\item Dữ liệu dịch chuyển lấy từ encoder tại t: $u_(0…t)={u_0,u_1, …, u_t}$
 	\item Sau đó bắt đầu tính toán:
-	$bel(x_t )=p(x_t│z_{0…t},u_{0…t} )$
-	\item Ở bước dự đoán, vị trí robot $bel′(x_t)$ tại khung thời gian kế tiếp được tính bằng cách sử dụng motion model $p(x_t |x_{t−1},u_{t−1})$ của robot, xác suất $bel(x_{t−1})$ tại vị trí trước đó và dữ liệu di chuyển u nhận được từ encoder:
+	\[{\rm{bel(}}{{\rm{x}}_{\rm{t}}}{\rm{)  =  p(}}{{\rm{x}}_{\rm{t}}}{\rm{|}}{{\rm{z}}_{{\rm{0}}...{\rm{t}}}}{\rm{, }}{{\rm{u}}_{{\rm{0}}..{\rm{t}}}}{\rm{)}}\]
+	\item Ở bước dự đoán, vị trí robot $bel'({x_t})$ tại khung thời gian kế tiếp được tính bằng cách sử dụng motion model $p({x_t}|{x_{t - 1}},{u_{t - 1}})$ của robot, xác suất $bel({x_{t - 1}})$ tại vị trí trước đó và dữ liệu di chuyển u nhận được từ encoder:
 	$$Be{l^\prime }\left( {{x_t}} \right) = \int p\left( {{x_t}|{x_{t - 1}},{u_{t - 1}}} \right)bel\left( {{x_{t - 1}}} \right)d{x_{t - 1}}$$
-	\item Bước tiếp theo là cập nhật. Lúc này, mô hình cảm biến $p(z_t |x_t)$, xác suất $bel(x_t)$ và hằng số chuẩn hóa $\eta (η_t)$ được dùng để có xác suất chính xác hơn $Bel\left( {{x_t}} \right) = {{\rm{\eta }}_t}p\left( {{z_t}|{x_t}} \right)bel\prime \left( {{x_t}} \right)$
-	\item Tiếp theo là ước tính vị trí bằng cách tạo ra N điểm bằng phương pháp lọc điểm sử dụng xác suất tính toán $bel(x_t )$ của vị trí hiện tại. Trong MCL, từ "sample - mẫu" thay thế cho "particle - điểm" và xử lý qua SIR (Sampling Importance weighting Re-sampling). Bước đầu tiên là xử lý mẫu (sampling process). Ở đây một tập hợp mẫu mới xt được triết xuất thông qua mô hình chuyển động $p(x_t |x_{(t−1)},u_{(t−1)} )$  tại xác suất $bel(x_(t−1))$ của vị trí trước đó. Mẫu "i" $xt(i)$ trong tập hợp mẫu xt, dữ liệu khoảng cách zt, và hằng số chuẩn hóa .... Được dùng  để tính trọng số ....
+	\item Bước tiếp theo là cập nhật. Lúc này, mô hình cảm biến $p(z_t |x_t)$, xác suất $bel(x_t)$ và hằng số chuẩn hóa eta $({\eta _t})$ được dùng để có xác suất chính xác hơn $Bel\left( {{x_t}} \right) = {{\rm{\eta }}_t}p\left( {{z_t}|{x_t}} \right)bel\prime \left( {{x_t}} \right)$
+	\item Tiếp theo là ước tính vị trí bằng cách tạo ra N điểm bằng phương pháp lọc điểm sử dụng xác suất tính toán $bel'({x_t})$ của vị trí hiện tại. Trong MCL, từ "sample - mẫu" thay thế cho "particle - điểm" và xử lý qua SIR (Sampling Importance weighting Re-sampling). Bước đầu tiên là xử lý mẫu (sampling process). Ở đây một tập hợp mẫu mới xt được triết xuất thông qua mô hình chuyển động $p({x_t}|{x_{t - 1}},{u_{t - 1}})$  tại xác suất $bel({x_{t - 1}})$ của vị trí trước đó. Mẫu "i" $xt(i)$ trong tập hợp mẫu xt, dữ liệu khoảng cách zt, và hằng số chuẩn hóa .... Được dùng  để tính trọng số ....
 	$\omega _t^{\left( i \right)} = {\rm{\eta }}p({z_t}|x_t^{\prime \left( i \right)})$
 	\item Cuối cùng là quá trình làm mới mẫu, tạo ra N mẫu mới của tập hợp Xt sử dụng mẫu cũ xt và trọng số vừa tính:
-	$${X_t} = \left\{ {x_t^{\left( j \right)}{\rm{|}}j = 1 \ldots N} \right\}\~\left\{ {x_t^{\prime \left( i \right)},\omega _t^{\left( i \right)}} \right\}$$
+	\[{X_t} = \left\{ {x_t^{\left( j \right)}{\rm{|}}j = 1 \ldots N} \right\} \sim \left\{ {x_t^{\prime \left( i \right)},\omega _t^{\left( i \right)}} \right\}\]
 	Bằng cách lặp lại quá trình SIR trên trong khi di chuyển, vị trí ước tính robot tăng dần độ chính xác
 \end{itemize}
 
