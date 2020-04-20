@@ -55,6 +55,7 @@
 
 
 % ============ BEGIN =================================
+\numberwithin{equation}{chapter} %đánh số theo chương
 \begin{document}
 \input{chapter0/Bia.tex}
 
@@ -84,10 +85,13 @@
 %----Nội dung---------------------------------------
 \input{chapters/chapter12}
 \input{chapters/chapter34}
-%----Tài liệu tham khảo-----------------------------
+% ----- Draft --------------------
+% \input{chapters/draft_reviewPapers}
+
+% ----Tài liệu tham khảo-----------------------------
 \bibliographystyle{ieeetr}
-\bibliography{ref}
-%==============================
+\bibliography{ref.bib}
+% ==============================
 \end{document}
 
 %%% Local Variables:

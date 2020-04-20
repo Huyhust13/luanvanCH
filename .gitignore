@@ -1,8 +1,15 @@
 *.log
 *.bak
 *~*
+*#
 *.aux
 *.lof
 *.out
 *.synctex.gz
 *.toc
+*.bbl
+*.blg
+*latexmk
+*.fls
+auto
+*.sav
