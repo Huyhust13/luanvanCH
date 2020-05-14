@@ -22,10 +22,26 @@
 \usepackage{scrextend}
 \changefontsizes{13pt} % đặt phông chữ kích thước 13
 \linespread{1.2}  % line space multiple 1.2
- \usepackage{fancyhdr}
- \pagestyle{fancy}
- \fancyhf{}
- \usepackage{listings} %Dùng cho định dạng khối lệnh
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{listings} %Dùng cho định dạng khối lệnh
+
+% Thư viện và định nghĩa định dạng các khối
+\usepackage{tikz} %Thư viện vẽ hình
+\usetikzlibrary{shapes.geometric, arrows}
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text badly centered, draw=black, fill=green!30, aspect=2]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+% Định nghĩa định dạng code word, file name...
+\usepackage{xparse}
+\NewDocumentCommand{\codeword}{v}{%
+\texttt{\textcolor{black}{#1}}%
+}
+
  \lstset{
  	language=c++, %% Troque para PHP, C, Java, etc... bash é o padrão
  	basicstyle=\ttfamily\small,
