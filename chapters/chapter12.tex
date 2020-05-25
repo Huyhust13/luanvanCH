@@ -1,5 +1,6 @@
 \chapter{Tổng quan nghiên cứu}
 \label{chap:1tqnc}
+
 \section{Giới thiệu robot tự hành}
 
 % - Thế nào là robot tự hành thông minh
@@ -7,9 +8,11 @@
 
 %%% Tài liệu tham khảo:
 % http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/ Bài Introduction
-% 
+%
 
-Trước đây, nghành robotics tập trung vào nghiên cứu và chế tạo cánh tay robot công nghiệp. Nó được coi như là robot truyền thống (\figurename{\ref{fig:RBCongNghiep}}). Bởi vậy khi nói đến thuật ngữ robot người ta thường nghĩ ngay đến cánh tay robot công nghiệp. \figurename{\ref{fig:RBCongNghiep}} là hình ảnh các cánh tay robot đang làm việc trong khâu sơn khung xe oto. Chúng ta không thấy bóng dáng con người ở trong bức hình này, bởi vì robot công nghiệp truyền thống phải làm việc trong không gian cách ly với con người, có hàng rào bảo vệ vì các lý do an toàn, con người không thể làm việc cùng không gian với robot. 
+% Trước đây, nghành robotics tập trung vào nghiên cứu và chế tạo cánh tay robot công nghiệp. Nó được coi như là robot truyền thống
+Người ta coi cánh tay robot là robot truyền thống.
+Bởi vậy khi nói đến thuật ngữ robot người ta thường nghĩ ngay đến cánh tay robot công nghiệp. \figurename{\ref{fig:RBCongNghiep}} là hình ảnh các cánh tay robot đang làm việc trong khâu sơn khung xe oto. Chúng ta không thấy bóng dáng con người ở trong bức hình này, bởi vì robot công nghiệp truyền thống phải làm việc trong không gian cách ly với con người, có hàng rào bảo vệ vì các lý do an toàn, con người không thể làm việc cùng không gian với robot.
 
 \begin{figure}[hpt]
   \centering
@@ -64,7 +67,7 @@ Với sự thông minh và cực kì linh hoạt của nó, robot tự hành th�
 \item Các ứng dụng ngoài trời như robot cắt cỏ, chăm sóc cây trồng...
 \item Ở các không gian mà con người không tới được như robot thám hiểm dưới nước, trong lòng đất, trên không trung trên các hành tinh khác...
 \item Tại các khu vực nguy hiểm như khu vực nhiễm chất phóng xạ, chữa cháy...
-\item Và đặc biệt, robot giao hàng tự động, xe tự lái đang phát triển rất nhanh trong những năm gần đây 
+\item Và đặc biệt, robot giao hàng tự động, xe tự lái đang phát triển rất nhanh trong những năm gần đây
 \end{itemize}
 
 \section{Các bài toán trên robot tự hành thông minh}
@@ -72,7 +75,7 @@ Với sự thông minh và cực kì linh hoạt của nó, robot tự hành th�
 % - Nêu qua concept về điều khiển robot, tạo bản đồ, định vị, path planning, điều hướng, tránh vật cản
 Một số bài toán chính trong robot tự hành như sau (\cite{Wise}):
 
-\textbf{Cảm biến:} Robot tự hành thông minh cần một số loại cảm biến để có thể hiểu được môi trường, định vị và di chuyển tránh vật cản. 
+\textbf{Cảm biến:} Robot tự hành thông minh cần một số loại cảm biến để có thể hiểu được môi trường, định vị và di chuyển tránh vật cản.
 
 Có rất nhiều loại cảm biến, để cảm nhận được đa dạng thông tin của môi trường. Có thể chia làm các nhóm như sau:
 \begin{itemize}
@@ -104,9 +107,9 @@ Vấn đề xuyên suốt trong các bài toán của robot tự hành thông mi
 
 % Review các bài báo về tránh vật cản trong robot tự hành
 % Chỉ ra các ưu, nhược điểm của các phương pháp như được nêu trong các bài báo trên
-Khả năng phát hiện và tránh vật cản theo thời gian thực là rất quan trọng trong robot tự hành. Do đó có rất nhiều nghiên cứu về giải pháp cho vấn đề này. Có nhiều loại cảm biến, nhiều giải thuật được sử dụng. 
+Khả năng phát hiện và tránh vật cản theo thời gian thực là rất quan trọng trong robot tự hành. Do đó có rất nhiều nghiên cứu về giải pháp cho vấn đề này. Có nhiều loại cảm biến, nhiều giải thuật được sử dụng.
 
-Các loại cảm biến sử dụng như cảm biến khoảng cách hồng ngoại, siêu âm với ứng dụng trên các thiết bị nhúng cấu hình thấp \cite{dongyue2013, Susnea2009}. Các phương pháp sử dụng cảm biến laser radar được trình bày trong \cite{Gao2019, Wu2015, Peng2015,Baras2019}. 
+Các loại cảm biến sử dụng như cảm biến khoảng cách hồng ngoại, siêu âm với ứng dụng trên các thiết bị nhúng cấu hình thấp \cite{dongyue2013, Susnea2009}. Các phương pháp sử dụng cảm biến laser radar được trình bày trong \cite{Gao2019, Wu2015, Peng2015,Baras2019}.
 
 Các thuật toán phổ biến được dùng để phát hiện và tránh vật cản như Virtual Force Field (VFF) \cite{Borenstein1989}, Vector Field Histogram (VFH) \cite{Borenstein1991}, Dynamic Window Approach (DWA) \cite{Fox1997}\ldots
 
@@ -116,10 +119,10 @@ Các thuật toán phổ biến được dùng để phát hiện và tránh v�
 
 
 \begin{equation}
-  F(i,j) = \frac{{F}_{cr}C(i,j)}{{d}^{2}(i,j)}\left [\frac{{x}_{t}-{x}_{0}}{d(i,j)}\dot{x} + \frac{{y}_{t}-{y}_{0}}{d(i,j)}\dot{y} 
+  F(i,j) = \frac{{F}_{cr}C(i,j)}{{d}^{2}(i,j)}\left [\frac{{x}_{t}-{x}_{0}}{d(i,j)}\dot{x} + \frac{{y}_{t}-{y}_{0}}{d(i,j)}\dot{y}
   \right ]
 \end{equation}
-Trong đó: 
+Trong đó:
 
 \begin{tabular}{ll}
   $F(i,j)$      & Lực ảo chống lại vật cản tại ô (i,j) \\
@@ -130,20 +133,20 @@ Trong đó:
   ${x}_{i}, {y}_{j}$ & Tọa độ của ô (i,j)
 \end{tabular}
 
-Lực ${F}_{r}$ đưa robot tránh khỏi các vật cản xuất hiện xung quanh robot là tổng của các lực tại mỗi ô lưới. 
+Lực ${F}_{r}$ đưa robot tránh khỏi các vật cản xuất hiện xung quanh robot là tổng của các lực tại mỗi ô lưới.
 
 \begin{equation}
   {F}_{r} = \sum\limits_{i,j}{F(i,j)}
 \end{equation}
 
-Trong khi đó, lực ${F}_{t}$ kéo robot đi từ điểm hiện tại tới điểm đích như sau: 
+Trong khi đó, lực ${F}_{t}$ kéo robot đi từ điểm hiện tại tới điểm đích như sau:
 
 \begin{equation}
-  {F}_{t} = {F}_{ct} \left [\frac{{x}_{t}-{x}_{0}}{d(t)}\dot{x} + \frac{{y}_{t}-{y}_{0}}{d(t)}\dot{y} 
+  {F}_{t} = {F}_{ct} \left [\frac{{x}_{t}-{x}_{0}}{d(t)}\dot{x} + \frac{{y}_{t}-{y}_{0}}{d(t)}\dot{y}
   \right ]
 \end{equation}
 
-Trong đó: 
+Trong đó:
 
 \begin{tabular} {ll}
   ${F}_{ct}$    & Hằng số lực kéo robot tới đích \\
@@ -169,8 +172,8 @@ Từ đó tính được hướng di chuyển của robot để điều khiển 
 \begin{itemize}
   \item Phương pháp này không xác định được đường viền cạnh của vật cản, nhưng có thể xác định được cụm các vị trí có vật cản.
   \item Phương pháp này không yêu cầu robot phải dừng lại để thực hiện lấy dữ liệu và tính toán. Trong điều kiện lý tưởng, phương pháp này giúp robot có thể tránh được tất cả vật cản trong khi vẫn di chuyển với vận tốc tối đa.
-  \item Việc cập nhật bản đồ lưới và điều hướng sử dụng bản đồ lưới là hai nhiệm vụ hoàn toàn không phụ thuộc vào nhau, nhưng có thể đồng bộ với nhau để tối ưu tính toán. 
-  \item Phương pháp này có thể dễ dàng tích hợp nhiều loại cảm biến để bổ sung thông tin vào bản đồ ô lưới. 
+  \item Việc cập nhật bản đồ lưới và điều hướng sử dụng bản đồ lưới là hai nhiệm vụ hoàn toàn không phụ thuộc vào nhau, nhưng có thể đồng bộ với nhau để tối ưu tính toán.
+  \item Phương pháp này có thể dễ dàng tích hợp nhiều loại cảm biến để bổ sung thông tin vào bản đồ ô lưới.
 \end{itemize}
 
 Tuy nhiên, theo \cite{Koren1991}, phương pháp này có một số điểm hạn chế như: Các trường hợp mắc bẫy do cực tiểu địa phương, không thể di chuyển qua giữa các vật cản gần nhau, lưỡng lự khi có vật cản, lưỡng lự trong lối đi hẹp
@@ -182,9 +185,9 @@ Do đó, phương pháp Vector Field Histogram cải thiện các hạn chế c�
 Phương pháp VFH \cite{Borenstein1991} sử dụng kĩ thuật hai giai đoạn giảm dữ liệu và ba mức thể hiện dữ liệu:
 
 \begin{itemize}
-  \item Mức biểu diễn dữ liệu cao nhất giữ mô tả chi tiết của môi trường robot, bản đồ lưới 2 chiều được cập nhật liên tục theo thời gian thực như trong phương pháp VFF. 
-  \item Mức ở giữa, một biểu đồ H một chiều được dựng quanh vị trí tức thời của robot. H bao gồm $n$ góc với độ rộng $\alpha$, phép chuyển đổi từ C sang H. 
-  \item Mức biểu diễn dữ liệu thấp nhất là đầu ra của thuật toán VFH: các giá trị tham chiếu cho động cơ và bánh xe điều khiển robot. 
+  \item Mức biểu diễn dữ liệu cao nhất giữ mô tả chi tiết của môi trường robot, bản đồ lưới 2 chiều được cập nhật liên tục theo thời gian thực như trong phương pháp VFF.
+  \item Mức ở giữa, một biểu đồ H một chiều được dựng quanh vị trí tức thời của robot. H bao gồm $n$ góc với độ rộng $\alpha$, phép chuyển đổi từ C sang H.
+  \item Mức biểu diễn dữ liệu thấp nhất là đầu ra của thuật toán VFH: các giá trị tham chiếu cho động cơ và bánh xe điều khiển robot.
 \end{itemize}
 
 % \begin{figure}[htp]
@@ -201,10 +204,10 @@ Phương pháp VFH \cite{Borenstein1991} sử dụng kĩ thuật hai giai đoạ
   \label{fig:VFH}
 \end{wrapfigure}
 
-Phương pháp này có thể phát hiện được lối đi đủ cho robot đi qua giữa các vật cản.  Phương pháp VFF dễ bị ảnh hưởng bởi sai số của cảm biến, với phương pháp này, sử dụng làm mịn biểu đồ H đã giảm trọng số của các giá trị sai ngẫu nhiên của cảm biến, do đó phương pháp này mạnh hơn phương pháp VFF. Vẫn bị hiện tượng mắc bẫy khi vào các trường hợp "dead-end" (đường cụt) do sử dụng phương pháp cục bộ. Tốc độ di chuyển tối đa khi điều khiển robot bằng VFH bị giới hạn bởi tốc độ lấy mẫu của cảm biến. 
+Phương pháp này có thể phát hiện được lối đi đủ cho robot đi qua giữa các vật cản.  Phương pháp VFF dễ bị ảnh hưởng bởi sai số của cảm biến, với phương pháp này, sử dụng làm mịn biểu đồ H đã giảm trọng số của các giá trị sai ngẫu nhiên của cảm biến, do đó phương pháp này mạnh hơn phương pháp VFF. Vẫn bị hiện tượng mắc bẫy khi vào các trường hợp "dead-end" (đường cụt) do sử dụng phương pháp cục bộ. Tốc độ di chuyển tối đa khi điều khiển robot bằng VFH bị giới hạn bởi tốc độ lấy mẫu của cảm biến.
 
 Dựa trên phương pháp này, \cite{Ulrich1998} đã đề xuất phương pháp được gọi là VFH+ thực hiện 4 giai đoạn giảm dữ liệu từ bản đồ lưới chiếm dụng hai chiều xuống thành dữ liệu điều khiển hướng di chuyển của robot. Sử dụng một số cải tiến để giúp robot có thể di chuyển tốt hơn.
-  
+
 \subsection{Phương pháp "Bong bóng phản ứng" tránh vật cản}
 
 \begin{wrapfigure}{r}{0.5\textwidth}
@@ -252,25 +255,25 @@ Với mong muốn tiếp cận với công nghệ thế giới trong lĩnh vực
 %%===========================
 \chapter{Cơ sở lý thuyết}
 \label{chap:1cslt}
-\section{Bài toán về nhiễu trong robot tự hành}
+\section{Bài toán về nhiễu trong robot tự hành} \label{sec:2.1}
 \subsection{Sự không chắc chắn trong robot}
-Robotics là một ngành khoa học về nhận thức và thực thi thế giới vật lý thông qua các thiết bị điều khiển bởi máy tính. Các hệ thống robotics được đặt trong thế giới vật lý, quan sát thông tin môi trường thông qua các cảm biến, và thao tác thông qua các lực vật lý. Đặc biệt trong công nghệ robot tự hành, robot phải có khả năng đáp ứng rất lớn sự không chắc chắn tồn tại trong thế giới vật lý. 
+Robotics là một ngành khoa học về nhận thức và thực thi thế giới vật lý thông qua các thiết bị điều khiển bởi máy tính. Các hệ thống robotics được đặt trong thế giới vật lý, quan sát thông tin môi trường thông qua các cảm biến, và thao tác thông qua các lực vật lý. Đặc biệt trong công nghệ robot tự hành, robot phải có khả năng đáp ứng rất lớn sự không chắc chắn tồn tại trong thế giới vật lý.
 
 Trước hết, môi trường của robot vốn dĩ đã không ổn định. Trong các môi trường có cấu trúc tốt, được thiết kế theo tiêu chuẩn như trong dây chuyền lắp ráp thì mức độ không ổn định thấp, trong khi đố các môi trường như trên đường, hay môi trường trong nhà của robot dịch vụ thì có mức độ không ổn định cao và nhiều chuyển động. Với các robot hoạt động gần con người thì độ không chắc chắn rất cao.
 
-Robot sử dụng hệ thống cảm biến để cảm nhận, quan sát môi trường xung quanh. Tuy nhiên, cảm biến có các giới hạn quan sát của nó. Phạm vi và độ phân giải của một cảm biến phụ thuộc vào giới hạn vật lý. Ví dụ, các camera không thể nhìn xuyên tường, độ phân giải của camera cũng có giới hạn. Cảm biến rất khó tránh khỏi nhiễu, và các phép đo nhiễu không thể đoán trước được. Do đó nó giới hạn thông tin có thể trích xuất được từ cảm biến. Hoặc cảm biến có thể bị hỏng và việc phát hiện lỗi từ cảm biến vô cùng khó khó khăn. 
+Robot sử dụng hệ thống cảm biến để cảm nhận, quan sát môi trường xung quanh. Tuy nhiên, cảm biến có các giới hạn quan sát của nó. Phạm vi và độ phân giải của một cảm biến phụ thuộc vào giới hạn vật lý. Ví dụ, các camera không thể nhìn xuyên tường, độ phân giải của camera cũng có giới hạn. Cảm biến rất khó tránh khỏi nhiễu, và các phép đo nhiễu không thể đoán trước được. Do đó nó giới hạn thông tin có thể trích xuất được từ cảm biến. Hoặc cảm biến có thể bị hỏng và việc phát hiện lỗi từ cảm biến vô cùng khó khó khăn.
 
-Robot được dẫn động bằng động cơ, ở một mức độ nhất định nó cũng không dự đoán được sai số. Độ không chắc chắn sinh ra do ảnh hưởng từ nhiễu điều khiển, mòn, hỏng và các lỗi cơ khí khác. Một vài cơ cấu chấp hành như cánh tay robot công nghiệp thường rất chính xác và độ tin cậy cao. Còn lại, như các robot di động giá thành thấp có thể rất dễ hỏng. 
+Robot được dẫn động bằng động cơ, ở một mức độ nhất định nó cũng không dự đoán được sai số. Độ không chắc chắn sinh ra do ảnh hưởng từ nhiễu điều khiển, mòn, hỏng và các lỗi cơ khí khác. Một vài cơ cấu chấp hành như cánh tay robot công nghiệp thường rất chính xác và độ tin cậy cao. Còn lại, như các robot di động giá thành thấp có thể rất dễ hỏng.
 
-Nhiều nguyên nhân không chắc chắn có thể đến từ phần mềm của robot. Tất cả mô hình của thế giới vật lý đều gần đúng. Mô hình là trừu tượng hóa của thế giới thực, vì vậy, chúng ta chỉ có thể mô hình được một phần các quá trình vật lý cơ bản của robot và môi trường hoạt động của nó. Lỗi mô hình hóa dẫn đến sự không chắc chắn thường bị bỏ qua trong quá trình chế tạo robot, mặc dù thực tế là hầu hết các mô hình robot được sử dụng trong các hệ thống robot hiện đại khá thô sơ. 
+Nhiều nguyên nhân không chắc chắn có thể đến từ phần mềm của robot. Tất cả mô hình của thế giới vật lý đều gần đúng. Mô hình là trừu tượng hóa của thế giới thực, vì vậy, chúng ta chỉ có thể mô hình được một phần các quá trình vật lý cơ bản của robot và môi trường hoạt động của nó. Lỗi mô hình hóa dẫn đến sự không chắc chắn thường bị bỏ qua trong quá trình chế tạo robot, mặc dù thực tế là hầu hết các mô hình robot được sử dụng trong các hệ thống robot hiện đại khá thô sơ.
 
-Sự không chắc chắn cũng có thể do các thuật toán gần đúng. Các hệ thống điều khiển robot có thể bị hạn chế lượng tính toán để đảm bảo robot có thể hoạt động theo thời gian thực. Đa số các thuật toán đều gần đúng, việc đảm bảo thời gian phản hồi có thể bị đánh đổi bởi độ chính xác. 
+Sự không chắc chắn cũng có thể do các thuật toán gần đúng. Các hệ thống điều khiển robot có thể bị hạn chế lượng tính toán để đảm bảo robot có thể hoạt động theo thời gian thực. Đa số các thuật toán đều gần đúng, việc đảm bảo thời gian phản hồi có thể bị đánh đổi bởi độ chính xác.
 
-Mức độ không chắc chắn phụ thuộc vào lĩnh vực ứng dụng. Trong một vài lĩnh vực robotics, như dây chuyền lắp ráp độ không chắc chắn có thể chỉ là các yếu tố biên. Tuy nhiên, trong robot tự hành, mức độ không chắc chắn là rất lớn, nó đến từ việc hoạt động trong môi trường động, từ sai số của các cảm biến, từ sai số trong mô hình hóa chính robot \dots 
+Mức độ không chắc chắn phụ thuộc vào lĩnh vực ứng dụng. Trong một vài lĩnh vực robotics, như dây chuyền lắp ráp độ không chắc chắn có thể chỉ là các yếu tố biên. Tuy nhiên, trong robot tự hành, mức độ không chắc chắn là rất lớn, nó đến từ việc hoạt động trong môi trường động, từ sai số của các cảm biến, từ sai số trong mô hình hóa chính robot \dots
 
 \subsection{Xác suất trong robotics}
 
-Xác suất trong robot là tương đối mới với robot để giải quyết vấn đề trong quan sát và hành động của robot, đặc biệt là với robot tự hành. Ý tưởng chính trong bài toán xác suất trong robot là thể hiện sự không chắc chắn một cách rõ ràng bằng việc sử dụng lý thuyết tính toán xác suất. Nhưng thay vì dựa vào một "dự đoán tốt nhất" những gì có thể xảy ra, các thuật toán xác suất thể hiện thông tin bằng các phân bố xác suất qua toàn bộ không gian dự đoán. Như vậy, chúng có thể biểu diễn sự không rõ ràng và mức độ tin cậy trong toán học. Xác suất trong robot có thể chủ động lựa chọn để giảm sự không chắc chắn, do đó các thuật toán xác suất giảm độ phức tạp của sự không chắc chắn. 
+Xác suất trong robot là tương đối mới với robot để giải quyết vấn đề trong quan sát và hành động của robot, đặc biệt là với robot tự hành. Ý tưởng chính trong bài toán xác suất trong robot là thể hiện sự không chắc chắn một cách rõ ràng bằng việc sử dụng lý thuyết tính toán xác suất. Nhưng thay vì dựa vào một "dự đoán tốt nhất" những gì có thể xảy ra, các thuật toán xác suất thể hiện thông tin bằng các phân bố xác suất qua toàn bộ không gian dự đoán. Như vậy, chúng có thể biểu diễn sự không rõ ràng và mức độ tin cậy trong toán học. Xác suất trong robot có thể chủ động lựa chọn để giảm sự không chắc chắn, do đó các thuật toán xác suất giảm độ phức tạp của sự không chắc chắn.
 
 \begin{figure}[htbp]
   \centering
@@ -282,14 +285,14 @@ Xác suất trong robot là tương đối mới với robot để giải quyế
 Ví dụ thứ nhất là bài toán định vị robot di động. Định vị robot là ước tính vị trí tương đối của robot với một không gian tham chiếu. Được cho một bản đồ của môi trường, nhưng việc tự nó định vị tới bản đồ này cần xem dữ liệu cảm biến của robot. \figurename{\ref{fig:markovLocalization}} là một ví dụ minh họa. Môi trường đã biết có ba cửa giống nhau, nhiệm vụ của robot là tìm xem chúng ở đâu, thông qua cảm biến và chuyển động.
 
 Vấn đề định vị cụ thể này được gọi là \textit{global localization} (định vị trên toàn cục ). Trong global localization, robot được đặt ở đâu đó trong một môi trường đã biết, nó phải tự định vị được vị trí của nó đang ở đâu. Mô hình xác suất thể hiện độ tin cậy tức thời của robot bằng một hàm phân bố xác suất trên toàn bộ không gian như biểu đồ (a) trong \figurename{\ref{fig:markovLocalization}}. Biểu đồ này thể hiện phân bố đồng đều trên tất cả các vị trị. Bây giờ cho rằng robot nhận được dữ liệu đo đầu tiên từ cảm biến và theo dõi cánh cửa phía trước. Công cụ xác suất khai thác thông tin này để cập nhật vào độ tin cậy.
-\textbf{Độ tin cậy sau} 
-% Cần sửa 'posterior belief% thể hiện trong    
-thể hiện trong biểu đồ (b) trong \figurename{\ref{fig:markovLocalization}}, tăng xác suất tại vị trí gần các cửa và giảm xác suất ở vị trí gần tường. 
-Nhận thấy rằng phân bố này có ba chóp giống nhau, mỗi chóp tương ứng với một cửa. Do đó robot không biết được nó đang ở đâu. 
+\textbf{Độ tin cậy sau}
+% Cần sửa 'posterior belief% thể hiện trong
+thể hiện trong biểu đồ (b) trong \figurename{\ref{fig:markovLocalization}}, tăng xác suất tại vị trí gần các cửa và giảm xác suất ở vị trí gần tường.
+Nhận thấy rằng phân bố này có ba chóp giống nhau, mỗi chóp tương ứng với một cửa. Do đó robot không biết được nó đang ở đâu.
 
-Bây giờ cho robot di chuyển, biểu đồ (c) trong \figurename{\ref{fig:markovLocalization}} thể hiện ảnh hưởng đến độ tin cậy của robot. Độ tin cậy đã được dịch chuyển theo hướng chuyển động. Nó cũng trải ra một khoảng roojnghonw, thể hiện mức độ không chắc chắn thể hiện bởi sự dịch chuyển của robot. Hình (d) trong trong \figurename{\ref{fig:markovLocalization}} miêu tả độ tin cậy sau khi theo dõi một cửa khác. Sự theo dõi này dẫn đến thuật toán đặt phần lớn xác suất tại vị trí gàn một cửa, và khi đó robot khá tự tin về việc nó đang ở đâu. Cuối cùng, biểu đồ (e) thể hiện độ tin cậy của robot sau khi di chuyển một đoạn xa trong hành lang. 
+Bây giờ cho robot di chuyển, biểu đồ (c) trong \figurename{\ref{fig:markovLocalization}} thể hiện ảnh hưởng đến độ tin cậy của robot. Độ tin cậy đã được dịch chuyển theo hướng chuyển động. Nó cũng trải ra một khoảng roojnghonw, thể hiện mức độ không chắc chắn thể hiện bởi sự dịch chuyển của robot. Hình (d) trong trong \figurename{\ref{fig:markovLocalization}} miêu tả độ tin cậy sau khi theo dõi một cửa khác. Sự theo dõi này dẫn đến thuật toán đặt phần lớn xác suất tại vị trí gàn một cửa, và khi đó robot khá tự tin về việc nó đang ở đâu. Cuối cùng, biểu đồ (e) thể hiện độ tin cậy của robot sau khi di chuyển một đoạn xa trong hành lang.
 
-Ví dụ này minh họa một vài vấn đề của mô mô hình xác suất. Nói theo xác suất, vấn đề quan sát của robot là một vấn đề ước tính trạng thái, ví dụ trên sử dụng một thuật toán có tên là \textit{Bayes filter} cho hậu ước tính qua không gian của định vị robot. Sự thể hiện của thông tin alf một hàm phân bố xác suất. Việc cập nhật hàm này thể hiện thông tin giành được thông qua các phép đo của cảm biến, hoặc thông tin bị mất qua quá trình xử lý trong không gian làm tăng độ không chắc chắn của robot. 
+Ví dụ này minh họa một vài vấn đề của mô mô hình xác suất. Nói theo xác suất, vấn đề quan sát của robot là một vấn đề ước tính trạng thái, ví dụ trên sử dụng một thuật toán có tên là \textit{Bayes filter} cho hậu ước tính qua không gian của định vị robot. Sự thể hiện của thông tin alf một hàm phân bố xác suất. Việc cập nhật hàm này thể hiện thông tin giành được thông qua các phép đo của cảm biến, hoặc thông tin bị mất qua quá trình xử lý trong không gian làm tăng độ không chắc chắn của robot.
 
 \begin{figure}[htbp]
   \centering
@@ -302,18 +305,17 @@ Ví dụ thứ hai là một ví dụ trong vấn đề lập kế hoạch và �
 
 Ví dụ này minh họa một trong những cách để xem xét ảnh hưởng của sự không chắc chắn trong điều khiển robot. Rõ ràng robot sẽ ưu tiên lựa chọn cách đi thứ hai hơn, dù có sự không chắc chắn nhưng thuật toán xác suất giúp robot lựa chọn đường đi để nó có thể thu thập được nhiều thông tin, giúp giảm độ không chắc chắn và đạt được độ chính xác tốt hơn.
 
-\subsection{Implications}
-Xác suất trong robotics kết hợp với dữ liệu cảm biến và khác phục hạn chế của cả hai. Ý tưởng này không chỉ là vấn đề của điều khiển mức thấp, chúng có mặt tại mọi mức phần mềm robot từ thấp nhất tới cao nhất. 
+% \subsection{Implications}
+Xác suất trong robotics kết hợp với dữ liệu cảm biến và khác phục hạn chế của cả hai. Ý tưởng này không chỉ là vấn đề của điều khiển mức thấp, chúng có mặt tại mọi mức phần mềm robot từ thấp nhất tới cao nhất.
 
-Trái ngược với các kĩ thuật lập trình truyền thống trong robot như các công cụ kế hoạch chuyển động dựa trên mô hình hay phản ứng dựa trên hành vi. Các cách tiếp cận theo xác suất có nhiều ưu điểm hơn với các giới hạn của cảm biến và mô hình hóa. Điều này giúp gần hơn với độ phức tạp của môi trường thế giới thực hơn là mô hình cũ. Trong thực tế, chắc chắn các thuật toán xác suất hiện nay chỉ mới biết các giải pháp với các vấn đề ước tính khó trong robotics như: vấn đề định vị, vấn đề xây dựng các bản đồ chính xác môi trường lớn. 
+Trái ngược với các kĩ thuật lập trình truyền thống trong robot như các công cụ kế hoạch chuyển động dựa trên mô hình hay phản ứng dựa trên hành vi. Các cách tiếp cận theo xác suất có nhiều ưu điểm hơn với các giới hạn của cảm biến và mô hình hóa. Điều này giúp gần hơn với độ phức tạp của môi trường thế giới thực hơn là mô hình cũ. Trong thực tế, chắc chắn các thuật toán xác suất hiện nay chỉ mới biết các giải pháp với các vấn đề ước tính khó trong robotics như: vấn đề định vị, vấn đề xây dựng các bản đồ chính xác môi trường lớn.
 
-So sánh với các công cụ robotics truyền thống dựa trên mô hình hóa, các thuật toán xác suất có yêu cầu thấp hơn về độ chính xác của các mô hình robot do đó giúp các nhà lập trình thoát khỏi gánh nặng không thể vượt qua để đưa ra các mô hình chính xác. Các thuật toán xác suất có yêu cầu thấp hơn về độ chính xác của các cảm biến hơn là các kĩ thuật dựa trên phản ứng, các kĩ thuật này phản ứng dựa trên dữ liệu cảm biến tức thời. Nhìn chung bài toán xác suất trong robot, việc học của robot là vấn đề ước lượng dài hạn. 
+So sánh với các công cụ robotics truyền thống dựa trên mô hình hóa, các thuật toán xác suất có yêu cầu thấp hơn về độ chính xác của các mô hình robot do đó giúp các nhà lập trình thoát khỏi gánh nặng không thể vượt qua để đưa ra các mô hình chính xác. Các thuật toán xác suất có yêu cầu thấp hơn về độ chính xác của các cảm biến hơn là các kĩ thuật dựa trên phản ứng, các kĩ thuật này phản ứng dựa trên dữ liệu cảm biến tức thời. Nhìn chung bài toán xác suất trong robot, việc học của robot là vấn đề ước lượng dài hạn.
 
 Tuy nhiên, những ưu điểm này cũng đi liền với cái giá của nó. Hai hạn chế thường xuyên được nhắc tới đó là độ phức tạp tính toán và việc phải tính xấp xỉ. Các thuật toán xấp xỉ vốn đã kém hiệu quả hơn so với các thuật toán không xác suất. Do thuật toán này xem xét trên toàn bộ phân bố chứ không phải tại một lần đoán. Hầu hết các loại robot đều hoạt động liên tục yêu cầu các thuật toán này phải tính toán được theo thời gian thực. Một số bài toán có thể giải quyết bằng một số mô hình đơn giản (như Gaussians) nhưng một số bài toán khác yêu cầu phải có các mô hình phwpcs tạp hơn.
 
 Việc phát triển của phần cứng máy tính ngày nay làm tăng số lượng phép tính trên một đơn vị giá. Điều này giúp cho lĩnh vực xác suất robot có hiệu quả hơn, thực hiện được các bài toán khó hơn. Tuy nhiên vẫn còn đó thách thức tính toán của lĩnh vực này. \cite{thrun2005probabilistic}
 
-\section{Bài toán SLAM 2D}
 
 \section{Hệ điều hành robot ROS và các ứng dụng}
 %FIXME: 2 phần dưới đây có vẻ trùng nhau quá
@@ -334,7 +336,7 @@ liệu từ cảm biến, điều khiển các cơ cấu chấp hành; một lư
 cho phép xây dựng bản đồ, điều hướng Robot, thu thập dữ liệu, lập kế hoạch di
 chuyển\dots ROS cũng có một cộng đồng lớn nghiên cứu trong lĩnh vực Robot.
 
-Nói cách khác, theo tác giả, ROS là một nền tảng cung cấp các phương thức để kết nối, trao đổi dữ liệu, quan sát dữ liệu giữa rất nhiều phần cứng với nhau như các cảm biến, các bộ phận chấp hành và các máy tính. Khi sử dụng ROS, người phát triển robot không cần quan tâm quá nhiều đến các thiết bị phần cứng (nếu thiết bị đó đã có thư viện driver ROS hỗ trợ), chỉ cần quan tâm đên việc tính toán, xử lý các dữ liệu để đạt được các mục đích trong các ứng dụng khác nhau. Nó làm giảm thời gian, giảm độ phức tạp khi phát triển robot đi rất nhiều lần. 
+Nói cách khác, theo tác giả, ROS là một nền tảng cung cấp các phương thức để kết nối, trao đổi dữ liệu, quan sát dữ liệu giữa rất nhiều phần cứng với nhau như các cảm biến, các bộ phận chấp hành và các máy tính. Khi sử dụng ROS, người phát triển robot không cần quan tâm quá nhiều đến các thiết bị phần cứng (nếu thiết bị đó đã có thư viện driver ROS hỗ trợ), chỉ cần quan tâm đên việc tính toán, xử lý các dữ liệu để đạt được các mục đích trong các ứng dụng khác nhau. Nó làm giảm thời gian, giảm độ phức tạp khi phát triển robot đi rất nhiều lần.
 
 \subsection{Tổng quan về HĐH ROS}
 ROS là một nền tảng mã nguồn mở, một software framework phục vụ cho việc
@@ -353,18 +355,18 @@ hỗ trợ bởi cộng đồng phát triển toàn cầu. Có một hệ sinh t
 mô hình phát triển Robot khác.
 Tóm lại, ROS là sự kết hợp của mô hình truyền thông (Plumbing or
 communication), các công cụ (Tools), khả năng phần cứng (Capabilities) và hệ
-sinh thái (Ecosystem). 
+sinh thái (Ecosystem).
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.9\linewidth]{figures/ROS-ditributions.png} 
+  \includegraphics[width=0.9\linewidth]{figures/ROS-ditributions.png}
   \caption{Các bản phân phối gần đây của ROS. Theo \url{http://wiki.ros.org/Distributions}}
   \label{fig:ROS-distributions}
 \end{figure}
 
 ROS có nhiều bản phân phối khác nhau tương ứng với các bản phân phối của Linux và mỗi bản phân phối hỗ trợ cập nhật đến hết vòng đời. ROS tương thích hoàn toàn với hệ điều hành Ubuntu, phần lớn các bản phân phối của ROS được phát triển theo các phiên bản của Ubuntu \figurename{\ref{fig:ROS-distributions}}
 
-ROS như một hệ sinh thái, bao gồm từ các loại phần cứng thường dùng trong robot, các phần mềm, các nhà sản xuất và các nhà nghiên cứu\footnote{Chi tiết các loại phần cứng, phần mềm ROS hỗ trợ tại\url{http://wiki.ros.org/}}. \figurename{\ref{fig:Ecosystem}} thể hiện hệ sinh thái ROS. 
+ROS như một hệ sinh thái, bao gồm từ các loại phần cứng thường dùng trong robot, các phần mềm, các nhà sản xuất và các nhà nghiên cứu\footnote{Chi tiết các loại phần cứng, phần mềm ROS hỗ trợ tại\url{http://wiki.ros.org/}}. \figurename{\ref{fig:Ecosystem}} thể hiện hệ sinh thái ROS.
 
 \begin{figure}[htbp]
 	\centering
@@ -378,22 +380,22 @@ ROS như một hệ sinh thái, bao gồm từ các loại phần cứng thườ
 Hình dung rằng chúng ta đang xây dựng một robot tự hành thông minh. Chúng ta lựa chọn ROS hơn là các nền tảng robotic khác như Player, YARP, Orocos, MRPT... bởi các lý do như sau:
 \begin{itemize}
 	\item \textbf{Có độ sẵn sàng cao}: ROS có thể sử dụng được luôn, ví dụ như các gói thư viện \textbf{SLAM (Simultaneous Localization and Mapping - tạm dịch là định vị và tạo bản đồ đồng thời)} và \textbf{AMCL(Adaptive Monte Carlo Localization - Là thuật toán định vị thích nghi Monte Carlo)} trong ROS có thể được sử dụng cho mobile robot di chuyển tự động và gói {\tt MoveIt} được sử dụng để lập kế hoạch chuyển động tay máy robot. Các gói thư viện này có thể dễ dàng sử dụng trực tiếp cho phần mềm robot của chúng ta. Việc sử dụng các gói thư viện này tốt hơn rất nhiều so với việc lập trình lại từ đầu để được thứ tương tự với một thứ đã có sẵn. Những gói chương trình này cũng rất dễ cấu hình lại, chúng ta có thể tinh chỉnh từng khả năng bằng cách sử dụng nhiều thông số khác nhau.
-	\item \textbf{Rất nhiều công cụ}: ROS được đóng gói với rất nhiều công cụ để gỡ rối chương trình, hiển thị và mô phỏng các quá trình. Các công cụ như là {\tt rqt\_gui}, RViz, Gazebo là một số công cụ mã nguồn mở rất mạnh cho việc gỡ rối, hiển thị và mô phỏng. 
-	\item \textbf{Hỗ trợ cao cho các cảm biến và cơ cấu chấp hành}: ROS được đóng gói với các gói driver và giao tiếp với các thiết bị của rất nhiều cảm biến và cơ cấu chấp hành trong robotics. Các cảm biến cao cấp bao gồm Lidar, Laser scanners, Kinect... và các cơ cấu chấp hành như động cơ servo Dynamixel. Chúng ta rất dễ để có thể giao tiếp với các phần cứng này với ROS. 
+	\item \textbf{Rất nhiều công cụ}: ROS được đóng gói với rất nhiều công cụ để gỡ rối chương trình, hiển thị và mô phỏng các quá trình. Các công cụ như là {\tt rqt\_gui}, RViz, Gazebo là một số công cụ mã nguồn mở rất mạnh cho việc gỡ rối, hiển thị và mô phỏng.
+	\item \textbf{Hỗ trợ cao cho các cảm biến và cơ cấu chấp hành}: ROS được đóng gói với các gói driver và giao tiếp với các thiết bị của rất nhiều cảm biến và cơ cấu chấp hành trong robotics. Các cảm biến cao cấp bao gồm Lidar, Laser scanners, Kinect... và các cơ cấu chấp hành như động cơ servo Dynamixel. Chúng ta rất dễ để có thể giao tiếp với các phần cứng này với ROS.
 	\item \textbf{Khả năng phân tích nền tảng bên trong}: Việc truyền thông điệp (message) ROS ở tầng giữa cho phép giao tiếp giữa các node (node) với nhau. Các node này có thể đươc lập trình bằng bất kì ngôn ngữ nào có hỗ trợ thư viện ROS (như rospy trong python, roscpp trong C++). Chúng ta có thể viết các node trong C++ hoặc C và các node khác bằng Python hoặc Java. Điều này rất linh hoạt mà không có trong bất kì nền tảng nào khác.
 	\item \textbf{Module hóa}: Một trong những các vấn đề có thể xảy ra trong phần lớn các ứng dụng robot đơn lẻ đó là, nếu bất kì luồng nào trong chương trình chính bị hỏng, toàn bộ ứng dụng robot đó có thể dừng lại. Trong ROS, trường hợp này sẽ khác, chúng ta viết các node khác nhau cho mỗi tiến trình và nếu một node bị hỏng, hệ thống vẫn có thể tiếp tục làm việc. ROS cũng cung cấp các phương pháp rất hữu ích để tiếp tục hoạt động một khi có bất kì cảm biến hoặc động cơ nào bị hỏng.
-	\item \textbf{Điều khiển các nguồn tài nguyên đồng thời}: Việc sử dụng một nguồn tài nguyên phần cứng bởi nhiều hơn hai tiến trình luôn là một vấn đề đau đầu. Hãy hình dung, chúng ta muốn xử lý một hình ảnh từ một camera cho nhận dạng khuôn mặt và nhận dạng chuyển động, chúng ta có thể viết chương trình như một chương trình thực hiện toàn bộ cả hai vấn đề đó, hoặc chúng ta có thể viết riêng để thực hiện đồng thời. Nếu chúng ta muốn thêm nhiều hơn hai tính năng trong các luồng, hành vi ứng dụng sẽ trở nên phức tạp và rất khó để gỡ rối. Nhưng trong ROS, chúng ta có thể truy cập các thiết bị bằng cách sử dụng các chủ đề ROS từ các bộ điều khiển ROS (driver). bao nhiêu node cũng có thể đăng kí tới thông điệp hình ảnh từ bộ điều khiển camera ROS và mỗi node có thể thực hiện các chức năng khác nhau. Nó có thể làm đơn giản tính toán và cũng như tăng khả năng gỡ rối của toàn bộ hệ thống. 
+	\item \textbf{Điều khiển các nguồn tài nguyên đồng thời}: Việc sử dụng một nguồn tài nguyên phần cứng bởi nhiều hơn hai tiến trình luôn là một vấn đề đau đầu. Hãy hình dung, chúng ta muốn xử lý một hình ảnh từ một camera cho nhận dạng khuôn mặt và nhận dạng chuyển động, chúng ta có thể viết chương trình như một chương trình thực hiện toàn bộ cả hai vấn đề đó, hoặc chúng ta có thể viết riêng để thực hiện đồng thời. Nếu chúng ta muốn thêm nhiều hơn hai tính năng trong các luồng, hành vi ứng dụng sẽ trở nên phức tạp và rất khó để gỡ rối. Nhưng trong ROS, chúng ta có thể truy cập các thiết bị bằng cách sử dụng các chủ đề ROS từ các bộ điều khiển ROS (driver). bao nhiêu node cũng có thể đăng kí tới thông điệp hình ảnh từ bộ điều khiển camera ROS và mỗi node có thể thực hiện các chức năng khác nhau. Nó có thể làm đơn giản tính toán và cũng như tăng khả năng gỡ rối của toàn bộ hệ thống.
 	\item \textbf{Có một cộng đồng năng động}: Khi chúng ta lựa chọn một thư viện hoặc một nền tảng phần mềm, đặc biệt từ một cộng đồng mã nguồn mở, một trong những yếu tố chính là xem xét tới phần mèm hỗ trợ và cộng đồng các nhà phát triển sử dụng nó. Mã nguồn mở thì sẽ không đảm bảo có các công cụ hỗ trợ, một số công cụ có sự cung cấp hỗ trợ rất tốt nhưng ngược lại một số khác lại không. Trong ROS, cộng đồng hỗ trợ rất năng động. Có thể vào trang web sau để tham khảo sự hỗ trợ từ các người dùng khác: {\tt http://answers.ros.org}. Dường như cộng đồng ROS có sự tăng trưởng đều đặn của các nhà phát triển trên toàn thế giới.
 \end{itemize}
 
-Có rất nhiều lý do để lựa chọn ROS cho việc phát triển robot. 
+Có rất nhiều lý do để lựa chọn ROS cho việc phát triển robot.
 
 \subsection{Một số thành phần cơ bản trong ROS}
 
-Một hệ thống ROS thông thường bao gồm những thành phần cơ bản như thể hiện trong \figurename{\ref{fig:ros-filesystem}}. 
+Một hệ thống ROS thông thường bao gồm những thành phần cơ bản như thể hiện trong \figurename{\ref{fig:ros-filesystem}}.
 
 \begin{figure}[htbp]
-    \centering
+  \centering
   \begin{tikzpicture}[node distance=2cm]
     \node (no1) [process] {ROS Filesystem};
     \node (no2) [process, below of=no1, xshift=3.5cm] {Metapackages};
@@ -412,13 +414,13 @@ Một hệ thống ROS thông thường bao gồm những thành phần cơ bả
     \draw [arrow] (no3) --++(0,-0.5) -- (no6);
     \draw [arrow] (no3) --++(0,-1) -- (no7);
     \draw [arrow] (no3)--++(0,-0.5) -- (no8);
-    
+
   \end{tikzpicture}
   \caption{ROS File System}
   \label{fig:ros-filesystem}
 \end{figure}
 
-Một số thuật ngữ, thành phần cơ bản trong ROS: 
+Một số thuật ngữ, thành phần cơ bản trong ROS:
 
 \textbf{Node} là đơn vị xử lý nhỏ nhất đang chạy trong ROS. Có thể coi nó như một chương trình thực thi. ROS khuyên rằng nên tạo một node đơn cho mỗi mục đích và nên phát triển để có thể dễ dàng sử dụng lại. Ví dụ, trong robot di động, chương trình để vận hành robot được chia thành các hàm chức năng nhỏ. Mỗi node được dùng cho một hàm chức năng như driver cảm biến, biến đổi dữ liệu cảm biến, nhận dạng vật cản, driver động cơ, đầu vào encoder và định hướng.
 
@@ -426,14 +428,14 @@ Khi khởi động, một node ghi thông tin như tên, dạng thông điệp, 
 
 node sử dụng XMLRPC cho việc giao tiếp với node chủ và sử dụng XMLRPC hoặc TCPROS của giao thức TCP/IP khi giao tiếp giữa các node với nhau. Yêu cầu kết nối và phản hồi giữa các node sử dụng XMLRPC và truyền thông điệp sử dụng TCPROS bởi vì nó là giao tiếp trực tiếp giữa các node với nhau mà không phụ thuộc vào node chủ. Với địa chỉ URI và số cổng, một biến được gọi là \codeword{ROS_HOSTNAME} được lưu trên máy tính, nơi node đang chạy, được sử dụng địa chỉ URI và cổng được đặt bằng một giá trị duy nhất bất kì.
 
-\textbf{Master} có là một node đặc biệt, nó hoạt động như một máy chủ cho các kết nối node tới node và truyền thông điệp. Lệnh \codeword{roscore} được dùng để chạy node chủ, và nếu chạy node chủ, nó sẽ ghi tên của mỗi node và lấy thông tin khi cần thiết. Các hoạt động của ROS không được thực hiện khi chưa chạy master. 
+\textbf{Master} có là một node đặc biệt, nó hoạt động như một máy chủ cho các kết nối node tới node và truyền thông điệp. Lệnh \codeword{roscore} được dùng để chạy node chủ, và nếu chạy node chủ, nó sẽ ghi tên của mỗi node và lấy thông tin khi cần thiết. Các hoạt động của ROS không được thực hiện khi chưa chạy master.
 
-Giao tiếp giữa node chủ và các node khách bằng XMLRPC (Viết tắt của XML-Remote Produce Call: nghĩa là gọi hàm từ xa XML), là giao thức dựa trên HTTP không duy trì kết nối. Nói cách khác, các node khách chỉ có thể truy cập khi chúng cần ghi thông tin của chúng hoặc yêu cầu thông tin của các node khác. Trạng thái kết nối không được kiểm tra thường xuyên. Vì đặc điểm này, ROS có thể được sử dụng trong các môi trường rất lớn và phức tạp. XMLRPC rất nhẹ và hỗ trợ rất nhiều ngôn ngữ lập trình khác nhau, rất phù hợp để sử dụng cho ROS vì ROS hỗ trợ rất nhiều phần cứng và nhiều ngôn ngữ lập trình.   
+Giao tiếp giữa node chủ và các node khách bằng XMLRPC (Viết tắt của XML-Remote Produce Call: nghĩa là gọi hàm từ xa XML), là giao thức dựa trên HTTP không duy trì kết nối. Nói cách khác, các node khách chỉ có thể truy cập khi chúng cần ghi thông tin của chúng hoặc yêu cầu thông tin của các node khác. Trạng thái kết nối không được kiểm tra thường xuyên. Vì đặc điểm này, ROS có thể được sử dụng trong các môi trường rất lớn và phức tạp. XMLRPC rất nhẹ và hỗ trợ rất nhiều ngôn ngữ lập trình khác nhau, rất phù hợp để sử dụng cho ROS vì ROS hỗ trợ rất nhiều phần cứng và nhiều ngôn ngữ lập trình.
 \textbf{Packages:} Gói chương trình là đơn vị chính trong tổ chức phần mềm của hệ điều hành ROS. Một package có thể chứa các lệnh thực thi của ROS (các node), thư viện, các tệp chứa thông số\dots Package chính là thành phần nguyên tử nhỏ nhất được xây dựng và đưa vào sử dụng trong ROS.
 
-\textbf{Packages Manifest:} Bảng kê khai thông tin dữ liệu của package (package.xml), cung cấp siêu dữ liệu về package đó bao gồm tên gọi, phiên bản, thông tin bản quyền (license) và những yếu tố phụ thuộc của gói dữ liệu đó. Manifest còn chứa thông tin về đặc trưng của ngôn ngữ lập trình ví dụ như các cờ báo (flags) của trình biên dịch. 
+\textbf{Packages Manifest:} Bảng kê khai thông tin dữ liệu của package (package.xml), cung cấp siêu dữ liệu về package đó bao gồm tên gọi, phiên bản, thông tin bản quyền (license) và những yếu tố phụ thuộc của gói dữ liệu đó. Manifest còn chứa thông tin về đặc trưng của ngôn ngữ lập trình ví dụ như các cờ báo (flags) của trình biên dịch.
 
-\textbf{Message} hay còn gọi là thông điệp, thông tin. Một node gửi hoặc nhận dữ liệu giữa các node thông qua một thông điệp. Các thông điệp là cá biến như số nguyên (integer), điểm số thực (floating point), hay logic (boolean). Có thể sử dụng thông điệp lồng vào các thông điệp hoặc một mảng các thông điệp khác. 
+\textbf{Message} hay còn gọi là thông điệp, thông tin. Một node gửi hoặc nhận dữ liệu giữa các node thông qua một thông điệp. Các thông điệp là cá biến như số nguyên (integer), điểm số thực (floating point), hay logic (boolean). Có thể sử dụng thông điệp lồng vào các thông điệp hoặc một mảng các thông điệp khác.
 
 Giao thức truyền thông TCPROS và UDPROS được sử dụng để truyền thông điệp. Chủ đề (topic) được sử dụng để truyền thông điệp đơn hướng trong khi dịch vụ (service) được dùng để truyền thông điệp đa hướng bao gồm yêu cầu và phản hồi.
 
@@ -456,8 +458,8 @@ Có 3 phương pháp để trao đổi dữ liệu: \codeword{topic, service, ac
 
 \textbf{Topic} hay còn gọi là chủ đề, giống như nghĩa đen là chủ để trong một đoạn hội thoại. node xuất bản đầu tiên ghi thông tin chủ đề của nó với node chủ và sau đó bắt đầu xuất bản thông điệp trên một chủ đề. Các node đăng kí muốn nhận chủ đề yêu cầu thông tin của node đăng kí khớp với tên của chủ đề đã được ghi ở trên node chủ. Dựa vào thông tin này, node đăng kí kết nối trực tiếp tới node xuất bản để trao đổi thông điệp như một chủ đề. \figurename{\ref{fig:topic}}
 
-\textbf{Publish và Publisher} Hay còn gọi là xuất bản và node xuất bản. Xuất bản là thuật ngữ dành cho hành động chuyển các thông điệp liên quan tới đúng chủ đề. node xuất bản ghi thông tin của nó và chủ đề với node chủ, và gửi một thông điệp tới các node đăng kí, là các node quan tâm tới cùng chủ đề. 
-\textbf{Subscribe và Subscriber:} Thuật ngữ 'Subscribe', còn gọi là Đăng kí, thể hiện hành động của việc nhận các thông điệp khớp với topic. node Subscriber đăng kí thông tin của nó và chủ đề với master, và nhận thông tin của các node xuất bản. 
+\textbf{Publish và Publisher} Hay còn gọi là xuất bản và node xuất bản. Xuất bản là thuật ngữ dành cho hành động chuyển các thông điệp liên quan tới đúng chủ đề. node xuất bản ghi thông tin của nó và chủ đề với node chủ, và gửi một thông điệp tới các node đăng kí, là các node quan tâm tới cùng chủ đề.
+\textbf{Subscribe và Subscriber:} Thuật ngữ 'Subscribe', còn gọi là Đăng kí, thể hiện hành động của việc nhận các thông điệp khớp với topic. node Subscriber đăng kí thông tin của nó và chủ đề với master, và nhận thông tin của các node xuất bản.
 
 \begin{figure}[htbp]
   \centering
@@ -476,11 +478,186 @@ Có 3 phương pháp để trao đổi dữ liệu: \codeword{topic, service, ac
 \textbf{Action:} Được sử dụng khi một nhiệm vụ thực hiện cần nhiều thời gian để hoàn thành cần 1 quá trình phản hồi (feedback). Trong action, \codeword{goals} và \codeword{results} sẽ tương tự như \codeword{request} (yêu cầu) và \codeword{response}(đáp ứng), ngoài ra còn có thêm \codeword{feedback} là tín hiệu phản hồi đến client theo chu kì
 
 
-
-
-\section{Bài toán tạo định vị, tạo bản đồ, điều hướng và tránh vật cản}
+\section{Bài toán điều hướng robot }
 
 % Tóm gọn nội dung giới thiệu về ROS và các ứng dụng trong khuôn khổ của luận văn này.
+
+Giống như chúng ta sử dụng GPS để định vị và tìm đường trong quá trình di chuyển giữa thành phố đông đúc, rộng lớn, hoặc khi ta đi tới một địa điểm xa lạ. Khi đó chúng ta sử dụng các ứng dụng trên điện thoại di động như googlemap để định vị vị trí của mình, sau đó tìm đường tới địa điểm mong muốn. Tương tự như vậy, robot tự hành cũng cần định vị, và xác định đường đi tới điểm đích.
+
+\subsection{Điều hướng robot di động}
+
+Điều hướng không thể thiếu trong robotics. Điều hướng là sự di chuyển của robot tới một đích xác định, điều này không dễ dàng với robot. Robot phải biết được nó đang ở đâu và phải có một bản đồ của môi trường. Robot phải tìm được đường đi tối ưu trong rất nhiều đường đi khác, tránh vật cản như tường, đồ vật. Để có thể điều hướng robot, cần những yếu tố sau:
+\begin{itemize}
+  \item Bản đồ
+  \item Trạng thái của robot\footnote{Trong luận văn này, khi nhắc đến trạng thái robot có nghĩa là vị trí và hướng của robot}
+  \item Cảm nhận thông tin từ cảm biến
+  \item Tính toán đường đi và di chuyển
+\end{itemize}
+
+\subsubsection*{Bản đồ}
+Tương tự như hệ thống điều hướng trên các phương tiện, hay ứng dụng google map chúng ta sử dụng hằng ngày đều có bản đồ rất chính xác và được cập nhật thường xuyên. Còn với robot, chúng cũng cần có bản đồ. Vì vậy chúng ta sẽ phải tạo một bản đồ và cung cấp cho nó, hoặc robot có thể tự tạo bản đồ.
+
+SLAM (Simultaneous Localization And Mapping) được phát triển để robot có thể tự nó khám phá và tạo bản đồ tại một môi trường chưa biết.
+
+\subsubsection*{Trạng thái của robot}
+Robot cần phải đo và ước tính được trạng thái của nó. Hiện nay, phương pháp được sử dụng rộng rãi nhất để ước tính trạng thái trong nhà cho robot dịch vụ là \codeword{dead reckoning}\footnote{\url{https://en.wikipedia.org/wiki/Dead_reckoning}} - dùng để ước tính trạng thái robot, nhưng nhưng nó đã được sử dụng từ rất lâu và phù hợp với các cảm biến giá rẻ và có thể đạt được một độ chính xác nhất định. Sự dịch chuyển của robot được đo bằng số vòng quay của bánh xe. Tuy nhiên, có sai số giữa khoảng cách tính được với số vòng quay của bánh xe và khoảng cách dịch chuyển thực tế. Tuy nhiên, thông tin quán tính từ IMU có thể được sử dụng để giảm thiểu sai số bằng việc bù sai số của vị trí và hướng giữa giá trị tính được và giá trị thực tế.
+
+\begin{figure}
+\centering
+\subfloat[][]{
+\label{fig:mobile-rb-dead-reckoning}
+\includegraphics[width=0.3\textwidth]{figures/mobile-rb-dead-reckoning.png}}
+\subfloat[][]{
+  \label{fig:dead-reckoning}
+  \includegraphics[width=0.6\textwidth]{figures/dead-reckoning.png}}
+  \caption{Dead Reckoning}
+  \label{fig:deadReckoning}
+\end{figure}
+
+\figurename{\ref{fig:mobile-rb-dead-reckoning}} thể thông tin cần thiết cho dead reckoning
+bao gồm tọa độ tâm robot (x,y), khoảng cách giữa hai bánh xe D và bán kính bánh r.
+% \figurename{\ref{fig:dead-reckoning}} là mô hình dead reckoning.
+Giả sử robot di chuyển một đoạn ngắn trong khoảng thời gian ${T}_{e}$, vận tốc góc $({v}_{l}, {v}_{r})$ của bánh trái và bánh phải được tính như trong phương trình \ref{equa:deadReckoning-vl} và \ref{equa:deadReckoning-vr} với góc quay của động cơ bên trái và bên phải (giá trị encoder hiện tại là ${E}_{l}c, {E}_{r}c$ và giá trị encoder trước đó là ${E}_{r}p, {E}_{l}p$)
+
+\begin{equation}
+  {v}_{l} = \frac{({E}_{l}c - {E}_{l}p)}{{T}_{e}}.\frac{\pi}{180}  (radian/sec)
+  \label{equa:deadReckoning-vl}
+\end{equation}
+\begin{equation}
+  {v}_{r} = \frac{({E}_{r}c - {E}_{r}p)}{{T}_{e}}.\frac{\pi}{180}  (radian/sec)
+  \label{equa:deadReckoning-vr}
+\end{equation}
+
+Phương trình \ref{equa:V_l} và \ref{equa:V_r} tính vận tốc của bánh trái và bánh phải $({V}_{l}, {V}_{r})$. Từ vận tốc bánh trái và bánh phải, vận tốc dài (${v}_{k}$) và vận tốc góc (${\omega}_{k}$) của robot có thể tính được như phương trình \ref{equa:v_k} và \ref{equa:omega_k}
+
+\begin{equation}
+  {V}_{l} = {v}_{l}.r (m/s)
+  \label{equa:V_l}
+\end{equation}
+\begin{equation}
+  {V}_{r} = {v}_{r}.r (m/s)
+  \label{equa:V_r}
+\end{equation}
+\begin{equation}
+  {v}_{k} = \frac{({V}_{r}+{V}_{l})}{2} (m/s)
+  \label{equa:v_k}
+\end{equation}
+\begin{equation}
+  {\omega}_{k} = \frac{({V}_{r}-{V}_{l})}{D} (rad/s)
+  \label{equa:omega_k}
+\end{equation}
+
+Cuối cùng, sử dụng những giá trị này, chúng ta có thể tính được vị trí (${x}_{(k+1)},{y}_{(k+1)}$) và hướng ${\theta}_{k+1}$ của robot từ phương trình \ref{equa:delta} tới phương trình \ref{equa:theta_k}
+
+\begin{equation}
+  {\Delta}s = {v}_{k}{T}_{e} \qquad
+  {\Delta}{\theta} = {\omega}_{k}{T}_{e}
+  \label{equa:delta}
+\end{equation}
+\begin{equation}
+  {x}_{k+1} = {x}_{k} + {\Delta}s .{\cos} \left( {\theta}_{k}+\frac{{\Delta}{\theta}}{2} \right)
+  \label{equa:x_kp1}
+\end{equation}
+\begin{equation}
+  {y}_{k+1} = {y}_{k} + {\Delta}s .{\sin} \left( {\theta}_{k}+\frac{{\Delta}{\theta}}{2} \right)
+  \label{equa:y_kp1}
+\end{equation}
+\begin{equation}
+  {\Theta}_{k+1} = {\theta}_{k} + {\Delta}{\theta}
+  \label{equa:theta_k}
+\end{equation}
+
+\subsection*{Cảm nhận môi trường}
+Thứ ba, việc phát hiện ra đâu là vật cản như tường, các đồ vật yêu cầu cần có các cảm biến. Có nhiều loại cảm biến như cảm biến khoảng cách và cảm biến hình ảnh. Cảm biến khoảng cách dạng laser như LDS, LRF, LiDAR, cảm biến siêu âm và cảm biến hồng ngoại. Cảm biến hình ảnh bao gồm stereo camera, monocamera, omnidirectional camera,\dots và hiện nay có các loại camera như RealSense, Kinect, Xtion được sử dụng rộng rãi như camera chiều sâu được sử dụng để phát hiện các vật cản.
+
+\subsection*{Tính toán đường đi và di chuyển}
+Một đặc điểm cuối cùng cho điều hưởng robot là tính toán và di chuyển theo đường đi tối ưu tới đích. Được gọi là tìm kiếm đường đi và lên kế hoạch di chuyển. có nhiều thuật toán như thuật toán ${A}^{*}$, thuật toán \textit{potential field}(Vùng tiềm năng), \textit{particle filter}(lọc từng phần)\dots
+
+\section{Bài toán SLAM 2D}
+
+% \subsection{SLAM}
+
+% SLAM(Simultaneus Localization And Mapping) có nghĩa là khám phá và tạo bản đồ của một môi trường chưa biết trong khi ước tính trạng thái vị trí của chính nó bằng dữ liệu từ các cảm biến được gắn trên robot. Đây là công nghệ lõi của điều hướng robot cũng như trong thiết bị tự hành.
+
+% Encoders và cảm biến gia tốc góc IMU\footnote{Inertial Measurement Units} thường được sử dụng để ước tính trạng thái vị trí robot. Encoder tính toán vị trí robot bằng \textit{dead reckoning} với thiết bị đo vòng quay của bánh lái. Quá trình này có thể có sai số, và cảm biến gia tốc góc hỗ trợ để giảm thiểu sai số đó. Phụ thuộc vào từng mục đích, có thể ước tính trạng thái của robot mà không cần tới encoder mà chỉ cần sử dụng cảm biến gia tốc góc.
+
+% Có thể hiệu chỉnh trạng thái vị trí robot ước tính một lần nữa bằng thông tin môi trường xung quanh bằng cảm biến khoảng cách hoặc camera khi tạo bản đồ. Một số phương pháp ước tính trạng thái robot như Kalman Filter, Markov Localization, Monte Carlo localization sử dụng particle filter\dots
+
+% Các loại cảm biến khoảng cách thường dùng như cảm biến siêu âm, cảm biến hồng ngoại, cảm biến laser (Laser Range Finders). Ngoài ra, camera cũng được sử dụng để đo khoảng cách như stereo camera.
+
+\subsection{Một số phương pháp định vị}
+
+Ước tính trạng thái vị trí robot là nghiên cứu rất quan trọng trong Robotics, và được nghiên cứu rất tích cực cho tới ngày nay. Nếu trạng thái vị trí của robot có thể được ước tính chính xác thì sẽ dễ dàng hơn trong việc xây dựng bản đồ dựa trên vị trí robot. Tuy nhiên, có nhiều vấn đề như không chắc chắn của phép đo cảm biến như đã nhắc đến trong \ref{sec:2.1}, và cần phải hoạt động real-time\footnote{là hoạt động theo thời gian thực} để hoạt động trong môi trường thực tế. Nhiều phương pháp để ước tính trạng thái vị trí robot đã được nghiên cứu để giải quyết vấn đề này. Trong khuôn khổ luận văn này, tác giả đề cập tới hai phương pháp là Kalman filter và Particle filter.
+
+\subsubsection*{Kalman filter}
+Kalman filter được sử dụng trong dự án Apollo của NASA, được phát triển bởi Tiến sỹ Rudof E.Kalman. Phương pháp này theo dõi một vật thể trong hệ tuyến tính với nhiễu. Bộ lọc dựa trên phương pháp xác suất Bayes bằng cách xây dựng một mô hình và sử dụng mô hình này để dự đoán trạng thái hiện tại từ trạng thái trước đó. Sau đó, sai số giữa giá trị dự đoán của bước ngay trước và giá trị thực tế đo được được sử dụng để cập nhật vào giá trị ước tính để đạt được giá trị chính xác hơn. Bộ lọc lặp lại quá trình trên và tăng độ chính xác. Một quá trình cơ bản được minh họa trong \figurename{\ref{fig:BasicConceptKalmanFilter}}
+
+Tuy nhiên, Kalman Filter chỉ có thể áp dụng với hệ tuyến tính. Phần lớn robot và cảm biến là hệ thống phi tuyến, và EKF (Extended Kalman Filter) có một số điều chỉnh từ Kalman Filter được sử dụng rộng rãi hơn.
+
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{figures/BasicConceptKalmanFilter.png}
+  \caption{Kalman Filter\cite{pyo2017ros}}
+  \label{fig:BasicConceptKalmanFilter}
+\end{figure}
+
+\subsubsection*{Particle Filter}
+Particle filter là giải thuật phổ biến nhất trong theo dõi vật thể (object tracking). Monte Carlo localization sử dụng bộ lọc Particle. Bộ lọc Kalman filter chỉ chính xác với hệ tuyến tính và nhiễu theo chuẩn Gaussian. Phần lớn các vấn đề trong thế giới thực là các hệ phi tuyến.
+
+Bởi vì các cảm biến và robot cũng là hệ tuyến tính, bộ lọc particle thường được sử dụng cho ước tính trạng thái vị trí robot. Nếu bộ lọc Kalman tìm kiếm các thông số bằng chuyển động tuyến tính thì bộ lọc Particle filter là một kĩ thuật dự đoán thông qua mô phỏng dựa trên phương pháp thử sai (try-and-error). Bộ lọc này ước tính giá trị bằng phân bố xác suất từng phần trong hệ thống.
+
+Khi sử dụng SLAM, giá trị odometry của robot và các giá trị đo từ cảm biến được sử dụng để ước tính trạng thái hiện tại của robot. Trong phương pháp này, trạng thái vị trí không chắc chắn của robot được mô tả bằng một chùm điểm gọi là các mẫu. Chúng ta di chuyển các điểm tới một vị trí và hướng mới được ước tính dựa trên mô hình chuyển động của robot và xác suất, phép đo trọng số của từng điểm dựa vào giá trị đo thực tế, và giảm nhiễu để ước tính trạng thái chính xác. Trong robot di động, mỗi điểm được biểu diễn bởi trạng thái vị trí (x, y, i), trọng số.
+
+Bộ lọc particle filter gồm 5 bước chính, ngoại trừ bước khởi tạo, các bước còn lại được lặp đi lặp lại để thực hiện ước tính vị trí robot. Nói cách khác, đây là phương pháp ước tính trạng thái vị trí của robot bằng acsch cập nhật phân bố của các điểm thông qua xác suất của robot trong hệ tọa độ X, Y dựa trên các giá trị cảm biến đo được.
+
+(1) \textbf{Khởi tạo}:
+Vì trạng thái khởi tạo của robot (vị trí và hướng) chưa biết, các điểm dự đoán được phân bố ngẫu nhiên trong phạm vi có thể, với N điểm. Mỗi điểm khởi tạo có trọng số 1/N, và tooner các trọng số của các điểm dự đoán là 1. N được đặt theo kinh nghiệm, thông thường là vài trăm. Nếu vị trí khởi tạo đã biết, các điểm dự đoán được đặt gần vởi robot.
+
+(2) \textbf{Dự đoán}: Dựa trên mô hình mô tả hệ thống chuyển động của robot, nó dịch chuyển mỗi điểm particle theo giá trị đo từ thông tin odometry và nhiễu.
+
+(3) \textbf{Cập nhât}: Dựa trên thông tin đo được từ các cảm biến, xác suất của mỗi điểm dự đoán được tính toán và giá trị trọng số được cập nhật dựa trên xác suất tính được.
+
+(4) \textbf{Ước tính trạng thái}: Vị trí, hướng và trọng số của tất cả các điểm dự đoán được dùng để tính toán trọng số trung bình, giá trị trung bình và giá trị trọng số lớn nhất cho việc dự đoán trạng thái của robot.
+
+(5) \textbf{Lấy mẫu lại}: Bước này tạo ra các điểm dự đoán mới để loại bỏ các điểm có trọng số thấp và tạo các điểm mới kế thừa từ các điểm được giữ lại, tổng số điểm N phải được duy trì.
+
+\subsection{SLAM}
+
+SLAM - Simultaneous Localization And Mapping. Đây là một trong các vấn đề khó nhất của robotics. Vấn đề SLAM nảy sinh khi robot không có bản đồ của môi trường và cũng không biết trạng thái vị trí của chính nó. Thay vao đó là dữ liệu đo ${z}_{1:t}$ và tín hiệu điều khiển ${u}_{1:t}$. Thuật ngữ SLAM mô tả kết quả của vấn đề: Trong SLAM, robot đạt được một bản đồ môi trường trong khi đồng thời định vị nó ở đâu trong bản đồ đó. Bài toán SLAM khó hơn bài toán định vị bởi vì bản đồ chưa biết trước và nó phải được ước tính vị trí theo một quãng đường dài. Nõ cũng khó hơn bài toán tạo bản đồ vì trạng thái vị trí robot chưa biết và nó cũng phải được ước tính trong quãng đường dài.
+
+Như một bài toán con gà và quả trứng, bởi vì trong robot di động muốn định vị tốt thì cần phải có bản đồ chính xác và muốn tạo được bản đồ chính xác thì lại phải định vị tốt.
+
+Theo luật xác suất, có hai dạng chính của SLAM, cả hai dạng này đều quan trọng như nhau. Một dạng là SLAM online. Nó thực hiện các dự đoán qua các trạng thái hiện tại xuyên suốt bản đồ:
+
+\begin{equation}
+  p\left({x}_{t}, m | {z}_{1:t}, {u}_{1:t}\right)
+\end{equation}
+
+Trong đó, ${x}_{t}$ là trạng thái vị trí tại thời điểm $t$, $m$ là bản đồ, và ${z}_{1:t}$ và ${u}_{1:t}$ là các giá trị đo và điều khiển tương ứng. Vấn đề này gọi là SLAM online vì nó chỉ bao gàm sự dự đoán của các biến tại thời điểm $t$. Có nhiều giải thuật cho vấn đề online SLAM: chúng bỏ qua các dữ liệu đo và điều khiển cũ một khi chúng đã được xử lý. Mô hình online SLAM được thể hiện như trong \figurename{\ref{fig:onlineSLAM}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.6\linewidth]{figures/onlineSLAM.PNG}
+  \caption{Online SLAM}
+  \label{fig:onlineSLAM}
+\end{figure}
+
+Vấn đề SLAM thứ hai là được gọi là \textit{full SLAM}. Trong full SLAM, chúng ta tính toán toàn bộ đường đi ${x}_{1:t}$ xuyên suốt bản đồ, thay vì chỉ trạng thái hiện tại ${x}_{t}$
+\begin{equation}
+  p\left({x}_{1:t},m | {z}_{1:t}, {u}_{1:t}\right)
+\end{equation}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.6\linewidth]{figures/fullSLAM.png}
+  \caption{Full SLAM}
+  \label{fig:fullSLAM}
+\end{figure}
+
+%TODO: Bổ sung phần 11.7
+
+
 
 %% ===================
 %%% Local Variables:
