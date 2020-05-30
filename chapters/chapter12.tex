@@ -271,7 +271,7 @@ Sự không chắc chắn cũng có thể do các thuật toán gần đúng. C�
 
 Mức độ không chắc chắn phụ thuộc vào lĩnh vực ứng dụng. Trong một vài lĩnh vực robotics, như dây chuyền lắp ráp độ không chắc chắn có thể chỉ là các yếu tố biên. Tuy nhiên, trong robot tự hành, mức độ không chắc chắn là rất lớn, nó đến từ việc hoạt động trong môi trường động, từ sai số của các cảm biến, từ sai số trong mô hình hóa chính robot \dots
 
-\subsection{Xác suất trong robotics}
+\subsection{Xác suất trong robotics} \label{subsec:probabilityinRobotics}
 
 Xác suất trong robot là tương đối mới với robot để giải quyết vấn đề trong quan sát và hành động của robot, đặc biệt là với robot tự hành. Ý tưởng chính trong bài toán xác suất trong robot là thể hiện sự không chắc chắn một cách rõ ràng bằng việc sử dụng lý thuyết tính toán xác suất. Nhưng thay vì dựa vào một "dự đoán tốt nhất" những gì có thể xảy ra, các thuật toán xác suất thể hiện thông tin bằng các phân bố xác suất qua toàn bộ không gian dự đoán. Như vậy, chúng có thể biểu diễn sự không rõ ràng và mức độ tin cậy trong toán học. Xác suất trong robot có thể chủ động lựa chọn để giảm sự không chắc chắn, do đó các thuật toán xác suất giảm độ phức tạp của sự không chắc chắn.
 
@@ -708,11 +708,53 @@ Trong bước dự đoán, vị trí $bel'\left({x}_{t}\right)$ của robot tạ
   bel'({x}_{t} = \int p\left({x}_ {t}|{z}_{0..t}, {u}_{0..t}\right))bel\left({x}_{t-1}\right)d{x}_{t-1}
 \end{equation}
 
-Tiếp theo là bước cập nhật. Thời điểm này, mô hình cảm biến $p\left({z}_{t}|{x}_{t}\right)$, xác suất $bel\left({x}_{t}\right)$ và hằng số chuẩn $\left({\eta}_{t}\right)$ được dùng để nâng độ chính xác xác suất $bel'\left({x}_{t}\right)$ dựa trên thông tin cảm biển.
+Tiếp theo là bước cập nhật. Thời điểm này, mô hình cảm biến $p\left({z}_{t}|{x}_{t}\right)$, xác suất $bel\left({x}_{t}\right)$ và hằng số chuẩn $\left({\eta}_{t}\right)$ được dùng để nâng độ chính xác xác suất $bel'\left({x}_{t}\right)$ dựa trên thông tin cảm biến.
 
 \begin{equation}
   bel({x}_{t}) = {\eta}_{t} p\left({z}_ {t}|{x}_{0..t}\right)bel'({x}_{t})
 \end{equation}
+
+Phương trình sau để ước tính vị trí bằng việc tạo ra N điểm mẫu với particle filter sử dụng các xác suất đã tính $bel({x}_{t})$ của vị trí hiện tại. Đầu tiên là quá trình lấy mẫu. Ở đây, có một tập mẫu ${x}_{t}'$ được trích xuất bằng cách sử dụng mô hình di chuyển của robot $p\left({x}_{t}|{x}_{t-1}, {u}_{t-1}\right)$ tại xác suất $bel({x}_{t-1})$ của vị trí trước. Mẫu thứ \textit{i} ${{x}_{i}'}^{(i)}$ giữa tập mẫu ${x}_{t}'$, thông tin khoảng cách ${z}_{t}$ và hằng số chuẩn hóa $\eta$ được sử dụng để tính trọng số ${\omega}_{t}^{(i)}$.
+
+\begin{equation}
+  {\omega}_{t}^{(i)} = {\eta}p\left({z}_{t}|{x}_{t}'^{(i)}\right)
+\end{equation}
+
+Cuối cùng, trong quá trình lấy mẫu lại, chúng ta tạo N mẫu mới ${X}_{t}$ sử dụng mẫu ${{x}_{t}'}^{(i)}$ và trọng số ${\omega}_{t}^{(i)}$.
+
+\begin{equation}
+  X_t = \left\{x_t^{(j)} | j = 1..N\right\} ~  \left\{x_t'^{(i)}, {\omega}_t^{i}\right\}
+\end{equation}
+
+Bằng việc lặp lại quá rtinfh trên trong khi di chuyển các điểm mẫu, vị trí được ước tính của robot có độ chính xác tăng lên. Ví dụ như trong hình \figurename{\ref{fig:AMCLprocess}}, quá trình hội tụ vị trí từ 't1' tới 't4'. Tất cả quá trình này đã được mô tả trong phần \ref{subsec:probabilityinRobotics}. \cite{pyo2017ros}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=1\linewidth]{figures/AMCL-process-for-pose-estimate.png}
+  \caption{Quá trình AMCL cho ước tính trạng thái vị trí robot}
+  \label{fig:AMCLprocess}
+\end{figure}
+
+\subsection{Dynamic Window Approach (DWA)}
+DWA là phương pháp phổ biến cho di chuyển và tránh vật cản. Đây là phương pháp lựa chọn tốc độ để có thể tới điểm đích nhanh nhất trong khi tránh vật cản. Trong ROS, \codeword{Trajectory planner} được dùng để tạo kế hoạch di chuyển cục bộ, nhưng DWA được dùng để thay thế vì sự vượt trội của nó.
+
+Đầu tiên, robot không nằm trong hệ tọa độ x, y mà trong không gian tìm kiếm với tốc độ di chuyển $x$ và vận tốc góc $\omega$, như trong hình \figurename{\ref{fig:dwa}}. Trong không gian này, robot có tốc độ tối đa cho phép do giới hạn phần cứng và được gọi là CỬa sổ động.
+
+Trong cửa sổ động này, hàm mục tiêu $G(v, \omega)$ được dùng để tính vận tốc dài x và vận tốc góc $\omega$ tối đa từ hàm mục tiêu trên và xem xét hướng, vận tốc và vật cản của robot. Nếu vẽ đồ thị ra chúng ta có thể tìm được vận tốc tối ưu giữa nhiều gía trị $v$ và $\omega$ để tới đích như trong hình \figurename{\ref{fig:dwa-search-velocity}}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=1\linewidth]{figures/DWA.png}
+  \caption{Không gian tìm kiếm vận tốc và cửa sổ động}
+  \label{fig:dwa}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\linewidth]{figures/dwa-search-velocity.png}
+  \caption{Vận tốc dài v và vận tốc góc $\omega$}
+  \label{fig:dwa-search-velocity}
+\end{figure}
 
 
 
