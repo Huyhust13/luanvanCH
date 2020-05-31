@@ -10,9 +10,8 @@
 % http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/ Bài Introduction
 %
 
-% Trước đây, nghành robotics tập trung vào nghiên cứu và chế tạo cánh tay robot công nghiệp. Nó được coi như là robot truyền thống
 Người ta coi cánh tay robot là robot truyền thống.
-Bởi vậy khi nói đến thuật ngữ robot người ta thường nghĩ ngay đến cánh tay robot công nghiệp. \figurename{\ref{fig:RBCongNghiep}} là hình ảnh các cánh tay robot đang làm việc trong khâu sơn khung xe oto. Chúng ta không thấy bóng dáng con người ở trong bức hình này, bởi vì robot công nghiệp truyền thống phải làm việc trong không gian cách ly với con người, có hàng rào bảo vệ vì các lý do an toàn, con người không thể làm việc cùng không gian với robot.
+Bởi vậy khi nói đến thuật ngữ robot người ta thường nghĩ ngay đến cánh tay robot công nghiệp. \figurename{\ref{fig:RBCongNghiep}} là hình ảnh các cánh tay robot đang làm việc trong dây chuyền sản xuất oto. Chúng ta không thấy bóng dáng con người ở trong bức hình này, bởi vì robot công nghiệp truyền thống phải làm việc trong không gian cách ly với con người, có hàng rào bảo vệ vì các lý do an toàn, con người không thể làm việc cùng không gian với robot.
 
 \begin{figure}[hpt]
   \centering
@@ -21,14 +20,14 @@ Bởi vậy khi nói đến thuật ngữ robot người ta thường nghĩ ngay
   \label{fig:RBCongNghiep}
 \end{figure}
 
-Bên cạnh đó, robot di động (mobile robot) truyền thống thực hiện các nhiệm vụ di chuyển trên quỹ đạo xác định trước. Robot di động cũng hoạt động dựa trên các khối chương trình được lập trình sẵn. Các phương pháp điều khiển như điều khiển bằng tay thông qua bảng điều khiển, qua sóng RF, wifi... hay di chuyển bám đường chỉ dẫn gắn ở dưới sàn, đọc mã QR, bar. Robot dạng này bị hạn chế về không gian hoạt động. Việc thiết lập, cấu hình nhà máy, không gian làm việc cho robot hoạt động hết sức tốn kém về chi phí và thời gian mà lại kém linh hoạt.
+Bên cạnh đó, robot di động (mobile robot) truyền thống thực hiện các nhiệm vụ di chuyển trên quỹ đạo xác định trước. Robot di động cũng hoạt động dựa trên các khối chương trình được lập trình sẵn. Các phương pháp điều khiển như điều khiển bằng tay thông qua bảng điều khiển, qua sóng RF, wifi... hay di chuyển bám đường chỉ dẫn gắn ở dưới sàn, đọc mã QR, bar. Các dạng robot này bị hạn chế về không gian hoạt động. Việc thiết lập, cấu hình nhà máy, không gian làm việc cho robot hoạt động rất tốn kém về chi phí và thời gian khiến chúng kém linh hoạt, khó có thể đáp ứng được các nhu cầu sản xuất thay đổi chóng mặt như hiện nay.
 
-Ngày nay, robot có xu hướng đi ra khỏi không gian nhà máy, xuất hiện nhiều loại robot như: robot giải trí (\figurename{\ref{fig:rbMoi-a}}), robot dịch vụ cá nhân (\figurename{\ref{fig:rbMoi-b}}) (như máy tính cá nhân), robot trong y tế (\figurename{\ref{fig:rbMoi-c}}); các loại robot tự động trong công nghiệp như robot hái quả (\figurename{\ref{fig:rbMoi-d}}), phun thuốc trong nông nghiệp, robot thông minh tác hợp trong công nghiệp; robot đi tới các môi trường mà con người không tới được như trong lòng đất dưới nước, trên không, trong vũ trụ...
 \begin{figure}
 	\centering
     \subfloat[][]{
             \label{fig:rbMoi-a}
             \includegraphics[height=5cm]{figures/c1_entertainmentRobot.jpg}}
+            % \caption{Robot giải trí [\url{wowwee.com/chip}]}
           \subfloat[][]{
             \label{fig:rbMoi-b}
             \includegraphics[height=5cm]{figures/c1_personalServiceRobot.png}}
@@ -44,6 +43,10 @@ Ngày nay, robot có xu hướng đi ra khỏi không gian nhà máy, xuất hi�
 	\label{fig:rbMoi}
 \end{figure}
 
+Ngày nay, robot có xu hướng trở nên thông minh hơn và xuất hiện nhiều loại robot có ứng dụng ngoài phạm vi nhà máy như:
+robot giải trí (\figurename{\ref{fig:rbMoi-a}} \footnote{\url{wowwee.com/chip}}),
+robot dịch vụ cá nhân (\figurename{\ref{fig:rbMoi-b}} \footnote{\url{www.noithatmagazine.vn/amazon-dang-phat-trien-robot-quan-gia-648592.html}}) (như máy tính cá nhân), robot trong y tế (\figurename{\ref{fig:rbMoi-c}} \footnote{\url{www.overlakehospital.org/robot}}); các loại robot tự động trong nông nghiệp như robot hái quả (\figurename{\ref{fig:rbMoi-d}} \footnote{\href{www.freshplaza.com/article/175737/Mechanical-harvesting-robot-received-attention-at-Macfrut/}{www.freshplaza.com}}), phun thuốc trong nông nghiệp, robot thông minh tác hợp trong công nghiệp; robot đi tới các môi trường mà con người không tới được như trong lòng đất dưới nước, trên không, trong vũ trụ...
+
 \begin{figure}[htp]
   \centering
   \includegraphics[width=12cm]{figures/c1_AutonomousRBModel.png}
@@ -53,38 +56,40 @@ Ngày nay, robot có xu hướng đi ra khỏi không gian nhà máy, xuất hi�
 
 %Trong đó, hệ thống robot tự hành là một dạng robot điển hình cho thế hệ robot mới ngày nay và đang phát triển rất mạnh mẽ. Hệ thống robot tự hành là hệ thống hoạt động như mô hình \figurename{\ref{fig:MohinhRB}}: Robot cảm nhận môi trường thông qua hệ thống cảm biến. Mô hình hóa môi trường sau đó thực hiện các hành động phản ứng lại với môi trường. Các hoạt động cảm nhận môi trường như đo khoảng cách bằng cảm biến siêu âm, hồng ngoại, lidar hay ứng dụng deep learning để nhận dạng đồ vật, người... Các hành động phản ứng có thể là xây dựng bản đồ, thực hiện di chuyển, thực hiện tránh vật, gắp vật...
 
-Robot tự hành thông minh là loại robot di động, có thể cảm nhận, mô hình hóa môi trường xung quanh nó. Thực hiện các hành động di chuyển mà không cần sự giám sát cũng như điều khiển trực tiếp từ con người (\figurename{\ref{fig:MohinhRB}}).
+Robot tự hành thông minh là loại robot di động. Robot có thể cảm nhận môi trường thông qua hệ thống cảm biến, sử dụng các mô hình học máy để mô hình hóa môi trường. Từ đó, robot có thể thực hiện các hành động phản ứng lại với môi trường như di chuyển và một số hành động khác theo yêu cầu (\figurename{\ref{fig:MohinhRB}} \footnote{\href{http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/00-intro.pdf}{Introduction to Mobile Robotics}}).
 
 % Có nên thêm phần giới thiệu các robot dựa trên robot tự hành:
 
 \section{Ứng dụng của robot tự hành thông minh}
 \label{sec:ungdung}
+%==============================================
 
-Với sự thông minh và cực kì linh hoạt của nó, robot tự hành thông minh có rất nhiều ứng dụng. Về cơ bản, nó là nền tảng di chuyển cho tất cả các loại robot di động thông minh ngày nay. Một số sản phẩm ứng dụng trong nhà như:
+Với sự thông minh và linh hoạt của nó, robot tự hành thông minh có rất nhiều ứng dụng. Về cơ bản, nó là nền tảng di chuyển cho tất cả các loại robot di động thông minh ngày nay. Một số sản phẩm ứng dụng như:
 
 \begin{itemize}
-\item Các ứng dụng trong nhà như robot hút bụi thông minh, robot dịch vụ, robot vận chuyển trong các kho hàng\dots
-\item Các ứng dụng ngoài trời như robot cắt cỏ, chăm sóc cây trồng...
-\item Ở các không gian mà con người không tới được như robot thám hiểm dưới nước, trong lòng đất, trên không trung trên các hành tinh khác...
-\item Tại các khu vực nguy hiểm như khu vực nhiễm chất phóng xạ, chữa cháy...
-\item Và đặc biệt, robot giao hàng tự động, xe tự lái đang phát triển rất nhanh trong những năm gần đây
+  \item Các ứng dụng trong nhà như robot hút bụi thông minh, robot dịch vụ thông minh, robot vận chuyển trong các nhà máy, kho hàng\dots
+  \item Các ứng dụng ngoài trời như robot cắt cỏ, chăm sóc cây trồng...
+  \item Robot làm việc tại các không gian mà con người không tới được như robot thám hiểm dưới nước, trong lòng đất, trên không trung, trên vũ trụ...
+  \item Tại các khu vực nguy hiểm như khu vực nhiễm chất phóng xạ, chữa cháy, dò mìn...
+  \item Và đặc biệt robot giao hàng tự động, xe tự lái đang phát triển rất nhanh trong những năm gần đây
 \end{itemize}
 
 \section{Các bài toán trên robot tự hành thông minh}
-
 % - Nêu qua concept về điều khiển robot, tạo bản đồ, định vị, path planning, điều hướng, tránh vật cản
+%=================================================
+
 Một số bài toán chính trong robot tự hành như sau (\cite{Wise}):
 
 \textbf{Cảm biến:} Robot tự hành thông minh cần một số loại cảm biến để có thể hiểu được môi trường, định vị và di chuyển tránh vật cản.
 
 Có rất nhiều loại cảm biến, để cảm nhận được đa dạng thông tin của môi trường. Có thể chia làm các nhóm như sau:
 \begin{itemize}
-\item Khoảng cách 1D: Cảm biến khoảng cách hồng ngoại, siêu âm
-\item Khoảng cách 2D: Lidar
-\item Cảm biến 3D: Có nhiều loại cảm biến 3D như Intel realsense, Microsoft Kinect, Asus Xction...
+\item Cảm biến khoảng cách một chiều: Cảm biến khoảng cách hồng ngoại, siêu âm
+\item Cảm biến khoảng cách hai chiều: Lidar
+\item Cảm biến hình ảnh 3 chiều như Intel realsense, Microsoft Kinect, Asus Xction...
 \item Ước tính trạng thái robot: GPS, IMU
 \item Cảm biến lực, momen, cảm biến chạm...
-\item Âm thanh, giọng nói như microphone, microphone array
+\item Cảm biến âm thanh, giọng nói như microphone, microphone array
 \item Các loại camera 2D
 \end{itemize}
 
@@ -94,26 +99,30 @@ Có rất nhiều loại cảm biến, để cảm nhận được đa dạng th
 
 \textbf{Xây dựng bản đồ}: Dự trên dữ liệu từ các loại cảm biến, từ odometry và định vị robot, robot sử dụng các thuật toán để xây dựng bản đồ của môi trường.
 
-\textbf{Điều hướng robot}: Từ bài toán định vị và khi có được bản đồ và nhiệm vụ di chuyển từ vị trí hiện tại tới một vị trí đích. Robot sẽ tính toán qũy đạo và điều khiển di chuyển tới đích.
+\textbf{Kế hoạch di chuyển và điều hướng robot}: Từ bài toán định vị và sau khi có bản đồ, để thực hiện nhiệm vụ đi từ vị trí hiện tại tới một vị trí đích xác định. Robot sẽ tính toán, lập kế hoạch di chuyển và điều khiển robot di chuyển tới đích.
 
-\textbf{Tránh vật cản}: Trong quá trình di chuyển, robot phải phát hiện được các vật cản (bao gồm cả tĩnh và động) và tránh vật cản, sau đó thiết lập lại quỹ đạo di chuyển tới đích.
+\textbf{Tránh vật cản}: Trong quá trình di chuyển, robot phát hiện được các vật cản (bao gồm cả tĩnh và động) và tránh vật cản, sau đó thiết lập lại quỹ đạo di chuyển tới đích.
 
-Vấn đề xuyên suốt trong các bài toán của robot tự hành thông minh đó là các dữ liệu đều không chắc chắn, các bài toán trên đều dựa vào các mô hình xác suất để mô hình hóa được trình bày trong tài liệu \cite{Sebastian2005}.
+Vấn đề xuyên suốt trong các bài toán của robot tự hành thông minh đó là các dữ liệu đều không chắc chắn, các bài toán trên đều dựa vào các mô hình xác suất để mô hình hóa được trình bày trong tài liệu \cite{thrun2005probabilistic}.
 
 % Thêm một đoạn dẫn liên kết vào đây
 
 \section{Các nghiên cứu tránh vật cản trong robot tự hành thông minh}
 \label{sec:tranhVatCan_ref}
-
 % Review các bài báo về tránh vật cản trong robot tự hành
 % Chỉ ra các ưu, nhược điểm của các phương pháp như được nêu trong các bài báo trên
+%================================================================
+
 Khả năng phát hiện và tránh vật cản theo thời gian thực là rất quan trọng trong robot tự hành. Do đó có rất nhiều nghiên cứu về giải pháp cho vấn đề này. Có nhiều loại cảm biến, nhiều giải thuật được sử dụng.
 
 Các loại cảm biến sử dụng như cảm biến khoảng cách hồng ngoại, siêu âm với ứng dụng trên các thiết bị nhúng cấu hình thấp \cite{dongyue2013, Susnea2009}. Các phương pháp sử dụng cảm biến laser radar được trình bày trong \cite{Gao2019, Wu2015, Peng2015,Baras2019}.
 
-Các thuật toán phổ biến được dùng để phát hiện và tránh vật cản như Virtual Force Field (VFF) \cite{Borenstein1989}, Vector Field Histogram (VFH) \cite{Borenstein1991}, Dynamic Window Approach (DWA) \cite{Fox1997}\ldots
+Các thuật toán phổ biến được dùng để phát hiện và tránh vật cản như Virtual Force Field (VFF - Trường lực ảo) \cite{Borenstein1989}, Vector Field Histogram (VFH - Biểu đồ trường lực) \cite{Borenstein1991}, Dynamic Window Approach (DWA - Cửa sổ tiếp cận động) \cite{Fox1997}\ldots
+
+Sau đây, các thuật toán sẽ được giới thiệu chi tiết.
 
 \subsection{Thuật toán Virtual Force Field (VFF)}
+%------------------------------------------------
 
 Được áp dụng cho điều khiển tránh vật cản trình bày trong \cite{Borenstein1988,Borenstein1989}. Ý tưởng của giải thuật này là tạo một ô lưới quanh robot. Khi có dữ liệu có vật cản từ cảm biến, ô tương ứng sẽ được đặt là bị chiếm dụng bởi vật cản với một tỉ số chiếm dụng (thể hiện cho sự không chắc chắn), nhiệm vụ của thuật toán là tính toán một lực để đưa robot xa khỏi ô bị chiếm dụng đó.
 
@@ -156,12 +165,12 @@ Trong đó:
 
 \begin{figure}[htp]
   \centering
-  \includegraphics[width=0.5\linewidth]{figures/VFFconcept.png}
+  \includegraphics[width=1\linewidth]{figures/VFFconcept.png}
   \caption{Virtual Force Field \cite{Koren1991}}
   \label{fig:VFFconcept}
 \end{figure}
 
-Hợp lực của 2 loại lực này là lực chính kéo robot di chuyển.
+Hợp lực của 2 loại lực này là lực chính kéo robot di chuyển (\figurename{\ref{fig:VFFconcept}}).
 
 \begin{equation}
   R = {F}_{t} + {F}_{r}
@@ -182,20 +191,24 @@ Do đó, phương pháp Vector Field Histogram cải thiện các hạn chế c�
 
 \subsection{The Vector Field Histogram}
 \label{sub:VFH}
-Phương pháp VFH \cite{Borenstein1991} sử dụng kĩ thuật hai giai đoạn giảm dữ liệu và ba mức thể hiện dữ liệu:
+%-------------------------------------
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.6\linewidth]{figures/VFH-PolarHistogram.png}
+  \caption{Biểu đồ cực trong VFH}
+  \label{fig:PolarHistogram}
+\end{figure}
+
+Phương pháp VFH được trình bày trong \cite{Borenstein1991}. Phương pháp này sử dụng một cấu trúc dữ liệu trung gian, được gọi là biểu đồ cực H (\textit{polar histogram}). H là một mảng 72 góc hình quạt (\figurename{\ref{fig:PolarHistogram}}).
+
+Phương pháp này sử dụng kĩ thuật hai giai đoạn giảm dữ liệu và ba mức thể hiện dữ liệu:
 
 \begin{itemize}
   \item Mức biểu diễn dữ liệu cao nhất giữ mô tả chi tiết của môi trường robot, bản đồ lưới 2 chiều được cập nhật liên tục theo thời gian thực như trong phương pháp VFF.
   \item Mức ở giữa, một biểu đồ H một chiều được dựng quanh vị trí tức thời của robot. H bao gồm $n$ góc với độ rộng $\alpha$, phép chuyển đổi từ C sang H.
   \item Mức biểu diễn dữ liệu thấp nhất là đầu ra của thuật toán VFH: các giá trị tham chiếu cho động cơ và bánh xe điều khiển robot.
 \end{itemize}
-
-% \begin{figure}[htp]
-%   \centering
-%   \includegraphics[]{figures/VFH.png}
-%   \caption{Virtual Force Field \cite{Susnea2009}}
-%   \label{}
-% \end{figure}
 
 \begin{wrapfigure}{r}{0.4\textwidth}
   \centering
@@ -209,6 +222,7 @@ Phương pháp này có thể phát hiện được lối đi đủ cho robot đ
 Dựa trên phương pháp này, \cite{Ulrich1998} đã đề xuất phương pháp được gọi là VFH+ thực hiện 4 giai đoạn giảm dữ liệu từ bản đồ lưới chiếm dụng hai chiều xuống thành dữ liệu điều khiển hướng di chuyển của robot. Sử dụng một số cải tiến để giúp robot có thể di chuyển tốt hơn.
 
 \subsection{Phương pháp "Bong bóng phản ứng" tránh vật cản}
+%---------------------------------------------------------
 
 \begin{wrapfigure}{r}{0.5\textwidth}
   \centering
@@ -236,15 +250,15 @@ Một phương pháp cải tiến được đề xuất trong \cite{Susnea2010}.
 
 Cũng theo tác giả \cite{Susnea2010}, phương pháp này có ưu điểm là có thể triển khai trên các thiết bị giá thành thấp, chi phí tính toán thấp nhưng có thể hoạt động theo thời gian thực. Tuy nhiên, nó cũng có một số điểm hạn chế như quá trình di chuyển chưa mượt, robot khó xử lý khi gặp nhiều vật cản đồng thời \dots
 
-
+TODO: Rút ra kết luận từ các nghiên cứu --> Sau đó mới quyết định làm gì
 
 
 \section{Nội dung nghiên cứu}
-
 % Chốt lại nội dung nghiên cứu gồm 2 nội dung:
 % - Điều khiển robot ứng dụng SLAM trên nền tảng hệ điều hành ROS
 % - Sử dụng Multi-sensor để tăng cường phát hiện và tránh vật cản cho robot
 % - Trình bày vắn tắt nội dung của các chương.
+%===========================================
 
 Với mong muốn tiếp cận với công nghệ thế giới trong lĩnh vực robot tự hành, xe tự lái, luận văn này thực hiện 2 nhiệm vụ chính:
 \begin{itemize}
@@ -755,6 +769,8 @@ Trong cửa sổ động này, hàm mục tiêu $G(v, \omega)$ được dùng đ
   \caption{Vận tốc dài v và vận tốc góc $\omega$}
   \label{fig:dwa-search-velocity}
 \end{figure}
+
+
 
 
 
