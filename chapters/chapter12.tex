@@ -248,10 +248,29 @@ Phương pháp này được đề xuất trong \cite{Quinlan1993}, phương ph�
 
 Một phương pháp cải tiến được đề xuất trong \cite{Susnea2010}. Tác giả đã cải tiến hình dạng của bong bóng, không phải là hình dạng cố định như trong \cite{Quinlan1993} mà hình dạng và kích thước được điều chỉnh liên tục dựa vào tốc độ di chuyển của robot. Khi các cảm biến phát hiện vật cản nằm trong giới hạn của bong bóng phản ứng, một thuật toán được dùng để xác định hướng của vật cản so với hướng di chuyển của robot \figurename{\ref{fig:bb-computeAngle}}. Một quá trình di chuyển của robot sử dụng phương pháp này được minh họa tại \figurename{\ref{fig:bb-reboudProcess}}.
 
-Cũng theo tác giả \cite{Susnea2010}, phương pháp này có ưu điểm là có thể triển khai trên các thiết bị giá thành thấp, chi phí tính toán thấp nhưng có thể hoạt động theo thời gian thực. Tuy nhiên, nó cũng có một số điểm hạn chế như quá trình di chuyển chưa mượt, robot khó xử lý khi gặp nhiều vật cản đồng thời \dots
+Cũng theo tác giả trong tài liệu \cite{Susnea2010}, phương pháp này có ưu điểm là có thể triển khai trên các thiết bị giá thành thấp, chi phí tính toán thấp nhưng có thể hoạt động theo thời gian thực. Tuy nhiên, nó cũng có một số điểm hạn chế như quá trình di chuyển chưa mượt, robot khó xử lý khi gặp nhiều vật cản đồng thời \dots
 
-TODO: Rút ra kết luận từ các nghiên cứu --> Sau đó mới quyết định làm gì
+\subsection{Tránh vật cản cho thiết bị tự hành bằng LIDAR và hệ thống nhúng}
+  Tài liệu \cite{Baras2019} tác giả trình bày một mô hình robot tự hành di chuyển và tránh vật cản sử dụng RPLidar A2 và máy tính nhúng Raspberry Pi 3. Tóm tắt hệ thống như sau:
+  \begin{itemize}
+    \item \textbf{Hệ thống định vị trong nhà:} Trong tài liệu này tác giả sử dụng phương pháp định vị IPS (Indoor Positioning System - Hệ thống định vị trong nhà), sử dụng hạ tầng Wi-Fi sẵn có. Nhiều trạm phát Wi-Fi được đặt trong không gian. Dựa vào cường độ tín hiệu Wi-Fi có thể tín được khoảng cách tới trạm phát Wi-Fi đó. Cần ít nhất 3 trạm phát sóng Wi-Fi để xác định được vị trí của robot.
+    \item \textbf{Phát hiện vật cản:} Module RPLidar A2 được sử dụng để phát hiện vật cản xung quanh robot. Dựa trên góc quét của Lidar, tác giả chia thành 4 vùng: Trước, Trái, Phải và Sau.
+    \item \textbf{Tránh vật cản:} Hệ thống IPS dẫn robot đi từ vị trí hiện tại tới đích, trong quá trình di chuyển đó module RPLidar liên tục quét để phát hiện vật cản. Nếu vùng phía trước, trái và phải không có vật cản, robot sẽ di chuyển theo đường ngắn nhất để tới đích. Nếu phía có xuất hiện vật cản tại hướng nào đó, robot sẽ xem xét các hướng còn lại và quyết định đi theo hướng nào.
+  \end{itemize}
+  Tài liệu này đề xuất phương pháp định vị, dẫn đường và tránh vật cản rất đơn giản, có thể hiệu quả nhưng vẫn còn nhiều hạn chế. Chưa có bản đồ để có thể xác định kế hoạch di chuyển tối ưu nhất. Phần tránh vật cản có thễ khiển robot dễ rơi vào các trạng thái không thể di chuyển do xuất hiện nhiều vật cản mà không quyết định được để len lỏi giữa chúng.
 
+% TODO: Rút ra kết luận từ các nghiên cứu --> Sau đó mới quyết định làm gì
+\subsection*{Kết luận}
+Trên đây là một số phương pháp tránh vật cản và điều hướng cho robot. Các phương pháp trên là các phương pháp sơ khai và tương đối đơn giản với các ưu điểm có thể triển khai trên các thiết bị nhúng, nhẹ, chi phí tính toán thấp nhưng vẫn đảm bảo hoạt động real-time.
+
+Tuy nhiên, các phương pháp trên có những hạn chế về định vị, dẫn đường và tránh vật cản:
+\begin{itemize}
+  \item Chưa có bản đồ của môi trường
+  \item Hệ thống điều hướng chưa tốt
+  \item Chỉ mới phát hiện và tránh vật cản trên một mặt phẳng bố trí cảm biến.
+\end{itemize}
+
+Trong luận văn này, tác giả sẽ ứng dụng nền tảng robot tự hành có sẵn. Với khả năng định vị, dẫn đường, tạo bản đồ trên nền tảng máy tính nhúng trên nền tảng hệ điều hành robot ROS và giải thuật SLAM. Từ đó, tác giả đề xuất phương pháp tăng độ an toàn trong quá trình di chuyển bằng cách thêm một tầng cảm biến tránh vật cản cho robot, xử lý phối hợp điều khiển robot.
 
 \section{Nội dung nghiên cứu}
 % Chốt lại nội dung nghiên cứu gồm 2 nội dung:
@@ -259,12 +278,15 @@ TODO: Rút ra kết luận từ các nghiên cứu --> Sau đó mới quyết đ
 % - Sử dụng Multi-sensor để tăng cường phát hiện và tránh vật cản cho robot
 % - Trình bày vắn tắt nội dung của các chương.
 %===========================================
+Nội dung nghiên cứu chính của luận văn gồm mấy phần như sau:
 
-Với mong muốn tiếp cận với công nghệ thế giới trong lĩnh vực robot tự hành, xe tự lái, luận văn này thực hiện 2 nhiệm vụ chính:
 \begin{itemize}
-  \item Cấu hình robot ứng dụng SLAM trên nền tảng hệ điều hành ROS
-  \item Tăng cường phát hiện và tránh vật cản cho robot bằng đa cảm biến.
+  \item Ứng dụng hệ thống định vị, di chuyển và tạo bản đồ dự trên giải thuật SLAM trên nền tảng hệ điều hành ROS trong robot tự hành Dashgo D1.
+  \item Tăng cường phát hiện và tránh vật cản cho robot bằng đa cảm biến. Đề xuất phương pháp lắp đặt cảm biến và giải thuật điều khiển, phân quyền điều khiển.
+  \item Đánh giá hiệu quả của hệ thống.
 \end{itemize}
+
+Nội dung của luận văn như sau: Chương 1 khái quát tổng quan về robot tự hành, một số phương pháp điều khiển và tránh vật cản được sử dụng trong robot tự hành.Chương 2 tổng hợp một số cơ sở lý thuyết được sử dụng trong luận văn này, bao gồm bài toán về nhiễu và xác suất trong robot tự hành, hệ điều hành robot ROS, bài toán điều hướng robot, bài toán SLAM 2D. Chương 3 trình bày giải thuật và phương pháp triển khai để kiểm chứng hiệu quả của giải thuật tránh vật cản do tác giả đề xuất. Chương bốn là kết luận của tác giả về các vấn đề trong luận văn, từ đó đề xuất các hướng phát triển sau này.
 
 %%===========================
 \chapter{Cơ sở lý thuyết}
@@ -494,9 +516,9 @@ Có 3 phương pháp để trao đổi dữ liệu: \codeword{topic, service, ac
 
 \section{Bài toán điều hướng robot }
 
-% Tóm gọn nội dung giới thiệu về ROS và các ứng dụng trong khuôn khổ của luận văn này.
+  % Tóm gọn nội dung giới thiệu về ROS và các ứng dụng trong khuôn khổ của luận văn này.
 
-Giống như chúng ta sử dụng GPS để định vị và tìm đường trong quá trình di chuyển giữa thành phố đông đúc, rộng lớn, hoặc khi ta đi tới một địa điểm xa lạ. Khi đó chúng ta sử dụng các ứng dụng trên điện thoại di động như googlemap để định vị vị trí của mình, sau đó tìm đường tới địa điểm mong muốn. Tương tự như vậy, robot tự hành cũng cần định vị, và xác định đường đi tới điểm đích.
+  Giống như chúng ta sử dụng GPS để định vị và tìm đường trong quá trình di chuyển giữa thành phố đông đúc, rộng lớn, hoặc khi ta đi tới một địa điểm xa lạ. Khi đó chúng ta sử dụng các ứng dụng trên điện thoại di động như googlemap để định vị vị trí của mình, sau đó tìm đường tới địa điểm mong muốn. Tương tự như vậy, robot tự hành cũng cần định vị, và xác định đường đi tới điểm đích.
 
 \subsection{Điều hướng robot di động}
 
@@ -592,96 +614,6 @@ Kế hoạch di chuyển bao gồm cả \textit{global path planning} (kế ho�
 \subsection*{Di chuyển và tránh vật cản}
 Nếu một lệnh gửi tới robot trên quỹ đạo di chuyển được tạo bằng \textit{motion planing}, robot di chuyển tới đích theo đường đi đã được lên kế hoạch. Do đó việc cảm nhận môi trường, ước tính trạng thái vị trí robot và \textit{motion planning} vẫn tiếp tục thực hiện, tính toán trong quá trình di chuyển., các vật cản và đối tượng di động xuất hiện đột ngột trong môi trường sẽ được tránh bởi giải thuật \textit{Dynamic Window Approach} (DWA).
 
-
-\section{Bài toán SLAM 2D}
-
-% \subsection{SLAM}
-
-% SLAM(Simultaneus Localization And Mapping) có nghĩa là khám phá và tạo bản đồ của một môi trường chưa biết trong khi ước tính trạng thái vị trí của chính nó bằng dữ liệu từ các cảm biến được gắn trên robot. Đây là công nghệ lõi của điều hướng robot cũng như trong thiết bị tự hành.
-
-% Encoders và cảm biến gia tốc góc IMU\footnote{Inertial Measurement Units} thường được sử dụng để ước tính trạng thái vị trí robot. Encoder tính toán vị trí robot bằng \textit{dead reckoning} với thiết bị đo vòng quay của bánh lái. Quá trình này có thể có sai số, và cảm biến gia tốc góc hỗ trợ để giảm thiểu sai số đó. Phụ thuộc vào từng mục đích, có thể ước tính trạng thái của robot mà không cần tới encoder mà chỉ cần sử dụng cảm biến gia tốc góc.
-
-% Có thể hiệu chỉnh trạng thái vị trí robot ước tính một lần nữa bằng thông tin môi trường xung quanh bằng cảm biến khoảng cách hoặc camera khi tạo bản đồ. Một số phương pháp ước tính trạng thái robot như Kalman Filter, Markov Localization, Monte Carlo localization sử dụng particle filter\dots
-
-% Các loại cảm biến khoảng cách thường dùng như cảm biến siêu âm, cảm biến hồng ngoại, cảm biến laser (Laser Range Finders). Ngoài ra, camera cũng được sử dụng để đo khoảng cách như stereo camera.
-
-\subsection{Một số phương pháp định vị}
-
-Ước tính trạng thái vị trí robot là nghiên cứu rất quan trọng trong Robotics, và được nghiên cứu rất tích cực cho tới ngày nay. Nếu trạng thái vị trí của robot có thể được ước tính chính xác thì sẽ dễ dàng hơn trong việc xây dựng bản đồ dựa trên vị trí robot. Tuy nhiên, có nhiều vấn đề như không chắc chắn của phép đo cảm biến như đã nhắc đến trong \ref{sec:2.1}, và cần phải hoạt động real-time\footnote{là hoạt động theo thời gian thực} để hoạt động trong môi trường thực tế. Nhiều phương pháp để ước tính trạng thái vị trí robot đã được nghiên cứu để giải quyết vấn đề này. Trong khuôn khổ luận văn này, tác giả đề cập tới hai phương pháp là Kalman filter và Particle filter.
-
-\subsubsection*{Kalman filter}
-Kalman filter được sử dụng trong dự án Apollo của NASA, được phát triển bởi Tiến sỹ Rudof E.Kalman. Phương pháp này theo dõi một vật thể trong hệ tuyến tính với nhiễu. Bộ lọc dựa trên phương pháp xác suất Bayes bằng cách xây dựng một mô hình và sử dụng mô hình này để dự đoán trạng thái hiện tại từ trạng thái trước đó. Sau đó, sai số giữa giá trị dự đoán của bước ngay trước và giá trị thực tế đo được được sử dụng để cập nhật vào giá trị ước tính để đạt được giá trị chính xác hơn. Bộ lọc lặp lại quá trình trên và tăng độ chính xác. Một quá trình cơ bản được minh họa trong \figurename{\ref{fig:BasicConceptKalmanFilter}}
-
-Tuy nhiên, Kalman Filter chỉ có thể áp dụng với hệ tuyến tính. Phần lớn robot và cảm biến là hệ thống phi tuyến, và EKF (Extended Kalman Filter) có một số điều chỉnh từ Kalman Filter được sử dụng rộng rãi hơn.
-
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=\linewidth]{figures/BasicConceptKalmanFilter.png}
-  \caption{Kalman Filter\cite{pyo2017ros}}
-  \label{fig:BasicConceptKalmanFilter}
-\end{figure}
-
-\subsubsection*{Particle Filter}
-Particle filter là giải thuật phổ biến nhất trong theo dõi vật thể (object tracking). Monte Carlo localization sử dụng bộ lọc Particle. Bộ lọc Kalman filter chỉ chính xác với hệ tuyến tính và nhiễu theo chuẩn Gaussian. Phần lớn các vấn đề trong thế giới thực là các hệ phi tuyến.
-
-Bởi vì các cảm biến và robot cũng là hệ tuyến tính, bộ lọc particle thường được sử dụng cho ước tính trạng thái vị trí robot. Nếu bộ lọc Kalman tìm kiếm các thông số bằng chuyển động tuyến tính thì bộ lọc Particle filter là một kĩ thuật dự đoán thông qua mô phỏng dựa trên phương pháp thử sai (try-and-error). Bộ lọc này ước tính giá trị bằng phân bố xác suất từng phần trong hệ thống.
-
-Khi sử dụng SLAM, giá trị odometry của robot và các giá trị đo từ cảm biến được sử dụng để ước tính trạng thái hiện tại của robot. Trong phương pháp này, trạng thái vị trí không chắc chắn của robot được mô tả bằng một chùm điểm gọi là các mẫu. Chúng ta di chuyển các điểm tới một vị trí và hướng mới được ước tính dựa trên mô hình chuyển động của robot và xác suất, phép đo trọng số của từng điểm dựa vào giá trị đo thực tế, và giảm nhiễu để ước tính trạng thái chính xác. Trong robot di động, mỗi điểm được biểu diễn bởi trạng thái vị trí (x, y, i), trọng số.
-
-Bộ lọc particle filter gồm 5 bước chính, ngoại trừ bước khởi tạo, các bước còn lại được lặp đi lặp lại để thực hiện ước tính vị trí robot. Nói cách khác, đây là phương pháp ước tính trạng thái vị trí của robot bằng cách cập nhật phân bố của các điểm thông qua xác suất của robot trong hệ tọa độ X, Y dựa trên các giá trị cảm biến đo được.
-
-(1) \textbf{Khởi tạo}:
-Vì trạng thái khởi tạo của robot (vị trí và hướng) chưa biết, các điểm dự đoán được phân bố ngẫu nhiên trong phạm vi có thể, với N điểm. Mỗi điểm khởi tạo có trọng số 1/N, và tổng các trọng số của các điểm dự đoán là 1. N được đặt theo kinh nghiệm, thông thường là vài trăm. Nếu vị trí khởi tạo đã biết, các điểm dự đoán được đặt gần vởi robot.
-
-(2) \textbf{Dự đoán}: Dựa trên mô hình mô tả hệ thống chuyển động của robot, nó dịch chuyển mỗi điểm particle theo giá trị đo từ thông tin odometry và nhiễu.
-
-(3) \textbf{Cập nhật}: Dựa trên thông tin đo được từ các cảm biến, xác suất của mỗi điểm dự đoán được tính toán và giá trị trọng số được cập nhật dựa trên xác suất tính được.
-
-(4) \textbf{Ước tính trạng thái}: Vị trí, hướng và trọng số của tất cả các điểm dự đoán được dùng để tính toán trọng số trung bình, giá trị trung bình và giá trị trọng số lớn nhất cho việc dự đoán trạng thái của robot.
-
-(5) \textbf{Lấy mẫu lại}: Bước này tạo ra các điểm dự đoán mới để loại bỏ các điểm có trọng số thấp và tạo các điểm mới kế thừa từ các điểm được giữ lại, tổng số điểm N phải được duy trì.
-
-\subsection{SLAM}
-
-SLAM - Simultaneous Localization And Mapping. Đây là một trong các vấn đề khó nhất của robotics. Vấn đề SLAM nảy sinh khi robot không có bản đồ của môi trường và cũng không biết trạng thái vị trí của chính nó. Thay vào đó là dữ liệu đo ${z}_{1:t}$ và tín hiệu điều khiển ${u}_{1:t}$. Thuật ngữ SLAM mô tả kết quả của vấn đề: Trong SLAM, robot đạt được một bản đồ môi trường trong khi đồng thời định vị nó ở đâu trong bản đồ đó. Bài toán SLAM khó hơn bài toán định vị bởi vì bản đồ chưa biết trước và nó phải được ước tính vị trí theo một quãng đường dài. Nõ cũng khó hơn bài toán tạo bản đồ vì trạng thái vị trí robot chưa biết và nó cũng phải được ước tính trong quãng đường dài.
-
-Như một bài toán con gà và quả trứng, bởi vì trong robot di động muốn định vị tốt thì cần phải có bản đồ chính xác và muốn tạo được bản đồ chính xác thì lại phải định vị tốt.
-
-Theo luật xác suất, có hai dạng chính của SLAM, cả hai dạng này đều quan trọng như nhau. Một dạng là SLAM online. Nó thực hiện các dự đoán qua các trạng thái hiện tại xuyên suốt bản đồ:
-
-\begin{equation}
-  p\left({x}_{t}, m | {z}_{1:t}, {u}_{1:t}\right)
-\end{equation}
-
-Trong đó, ${x}_{t}$ là trạng thái vị trí tại thời điểm $t$, $m$ là bản đồ, và ${z}_{1:t}$ và ${u}_{1:t}$ là các giá trị đo và điều khiển tương ứng. Vấn đề này gọi là SLAM online vì nó chỉ dự đoán các biến tại thời điểm $t$k, bỏ qua các dữ liệu đo và điều khiển cũ một khi các dữ liệu đó đã được xử lý. Mô hình online SLAM được thể hiện như trong \figurename{\ref{fig:onlineSLAM}
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.6\linewidth]{figures/onlineSLAM.PNG}
-  \caption{Online SLAM}
-  \label{fig:onlineSLAM}
-\end{figure}
-
-Vấn đề SLAM thứ hai là được gọi là \textit{full SLAM}. Trong full SLAM, chúng ta tính toán toàn bộ đường đi ${x}_{1:t}$ xuyên suốt bản đồ, thay vì chỉ trạng thái hiện tại ${x}_{t}$
-\begin{equation}
-  p\left({x}_{1:t},m | {z}_{1:t}, {u}_{1:t}\right)
-\end{equation}
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.6\linewidth]{figures/fullSLAM.png}
-  \caption{Full SLAM}
-  \label{fig:fullSLAM}
-\end{figure}
-
-Sự khác nhau dữa online và full SLAM tạo nên sự phân nhánh trong các thuật toán tương ứng với mỗi loại. Cụ thể, online SLAM là kết quả của việc tích hợp trạng thái robot cũ từ full SLAM.
-
-Một đặc điểm quan trọng nữa của SLAM đó là nó có hai thành phần liên tục và rời rạc. Vấn đề liên tục là ước tính vị trí của các vật thể, đối tượng trong bản đồ và các biến số đặt ra của robot. Các đối tượng có thể là các điểm mốc. Bản chất rời rạc liên quan đến sự tương ứng của các vật thể nó phát hiện được, nó phải xem xét vật thể đó đã được phát hiện ở bước trước đó hay chưa.
-
-%TODO: Bổ sung phần 11.7
-
-\section{Lý thuyết điều hướng robot}
 \subsection{Costmap}
 
 Trạng thái của robot được ước tính dựa trên odometry từ encoder và cảm biến gia tốc góc IMU. Và khoảng cách giữa robot và các vật cản được tính từ cảm biến khoảng cách gắn trên robot. Trạng thái robot và cảm biến, thông tin vật cản, một bản đồ lưới chiếm dụng là kết quả của SLAM được sử dụng để tải bản đồ tĩnh và sử dụng các vùng bị chiếm dụng, các vùng trống và các vùng chưa biết cho điều hướng robot.
@@ -769,6 +701,95 @@ Trong cửa sổ động này, hàm mục tiêu $G(v, \omega)$ được dùng đ
   \caption{Vận tốc dài v và vận tốc góc $\omega$}
   \label{fig:dwa-search-velocity}
 \end{figure}
+
+\section{Bài toán SLAM 2D}
+
+% \subsection{SLAM}
+
+% SLAM(Simultaneus Localization And Mapping) có nghĩa là khám phá và tạo bản đồ của một môi trường chưa biết trong khi ước tính trạng thái vị trí của chính nó bằng dữ liệu từ các cảm biến được gắn trên robot. Đây là công nghệ lõi của điều hướng robot cũng như trong thiết bị tự hành.
+
+% Encoders và cảm biến gia tốc góc IMU\footnote{Inertial Measurement Units} thường được sử dụng để ước tính trạng thái vị trí robot. Encoder tính toán vị trí robot bằng \textit{dead reckoning} với thiết bị đo vòng quay của bánh lái. Quá trình này có thể có sai số, và cảm biến gia tốc góc hỗ trợ để giảm thiểu sai số đó. Phụ thuộc vào từng mục đích, có thể ước tính trạng thái của robot mà không cần tới encoder mà chỉ cần sử dụng cảm biến gia tốc góc.
+
+% Có thể hiệu chỉnh trạng thái vị trí robot ước tính một lần nữa bằng thông tin môi trường xung quanh bằng cảm biến khoảng cách hoặc camera khi tạo bản đồ. Một số phương pháp ước tính trạng thái robot như Kalman Filter, Markov Localization, Monte Carlo localization sử dụng particle filter\dots
+
+% Các loại cảm biến khoảng cách thường dùng như cảm biến siêu âm, cảm biến hồng ngoại, cảm biến laser (Laser Range Finders). Ngoài ra, camera cũng được sử dụng để đo khoảng cách như stereo camera.
+
+\subsection{Một số phương pháp định vị}
+
+Ước tính trạng thái vị trí robot là nghiên cứu rất quan trọng trong Robotics, và được nghiên cứu rất tích cực cho tới ngày nay. Nếu trạng thái vị trí của robot có thể được ước tính chính xác thì sẽ dễ dàng hơn trong việc xây dựng bản đồ dựa trên vị trí robot. Tuy nhiên, có nhiều vấn đề như không chắc chắn của phép đo cảm biến như đã nhắc đến trong \ref{sec:2.1}, và cần phải hoạt động real-time\footnote{là hoạt động theo thời gian thực} để hoạt động trong môi trường thực tế. Nhiều phương pháp để ước tính trạng thái vị trí robot đã được nghiên cứu để giải quyết vấn đề này. Trong khuôn khổ luận văn này, tác giả đề cập tới hai phương pháp là Kalman filter và Particle filter.
+
+\subsubsection*{Kalman filter}
+Kalman filter được sử dụng trong dự án Apollo của NASA, được phát triển bởi Tiến sỹ Rudof E.Kalman. Phương pháp này theo dõi một vật thể trong hệ tuyến tính với nhiễu. Bộ lọc dựa trên phương pháp xác suất Bayes bằng cách xây dựng một mô hình và sử dụng mô hình này để dự đoán trạng thái hiện tại từ trạng thái trước đó. Sau đó, sai số giữa giá trị dự đoán của bước ngay trước và giá trị thực tế đo được được sử dụng để cập nhật vào giá trị ước tính để đạt được giá trị chính xác hơn. Bộ lọc lặp lại quá trình trên và tăng độ chính xác. Một quá trình cơ bản được minh họa trong \figurename{\ref{fig:BasicConceptKalmanFilter}}
+
+Tuy nhiên, Kalman Filter chỉ có thể áp dụng với hệ tuyến tính. Phần lớn robot và cảm biến là hệ thống phi tuyến, và EKF (Extended Kalman Filter) có một số điều chỉnh từ Kalman Filter được sử dụng rộng rãi hơn.
+
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{figures/BasicConceptKalmanFilter.png}
+  \caption{Kalman Filter\cite{pyo2017ros}}
+  \label{fig:BasicConceptKalmanFilter}
+\end{figure}
+
+\subsubsection*{Particle Filter}
+Particle filter là giải thuật phổ biến nhất trong theo dõi vật thể (object tracking). Monte Carlo localization sử dụng bộ lọc Particle. Bộ lọc Kalman filter chỉ chính xác với hệ tuyến tính và nhiễu theo chuẩn Gaussian. Phần lớn các vấn đề trong thế giới thực là các hệ phi tuyến.
+
+Bởi vì các cảm biến và robot cũng là hệ tuyến tính, bộ lọc particle thường được sử dụng cho ước tính trạng thái vị trí robot. Nếu bộ lọc Kalman tìm kiếm các thông số bằng chuyển động tuyến tính thì bộ lọc Particle filter là một kĩ thuật dự đoán thông qua mô phỏng dựa trên phương pháp thử sai (try-and-error). Bộ lọc này ước tính giá trị bằng phân bố xác suất từng phần trong hệ thống.
+
+Khi sử dụng SLAM, giá trị odometry của robot và các giá trị đo từ cảm biến được sử dụng để ước tính trạng thái hiện tại của robot. Trong phương pháp này, trạng thái vị trí không chắc chắn của robot được mô tả bằng một chùm điểm gọi là các mẫu. Chúng ta di chuyển các điểm tới một vị trí và hướng mới được ước tính dựa trên mô hình chuyển động của robot và xác suất, phép đo trọng số của từng điểm dựa vào giá trị đo thực tế, và giảm nhiễu để ước tính trạng thái chính xác. Trong robot di động, mỗi điểm được biểu diễn bởi trạng thái vị trí (x, y, i), trọng số.
+
+Bộ lọc particle filter gồm 5 bước chính, ngoại trừ bước khởi tạo, các bước còn lại được lặp đi lặp lại để thực hiện ước tính vị trí robot. Nói cách khác, đây là phương pháp ước tính trạng thái vị trí của robot bằng cách cập nhật phân bố của các điểm thông qua xác suất của robot trong hệ tọa độ X, Y dựa trên các giá trị cảm biến đo được.
+
+(1) \textbf{Khởi tạo}:
+Vì trạng thái khởi tạo của robot (vị trí và hướng) chưa biết, các điểm dự đoán được phân bố ngẫu nhiên trong phạm vi có thể, với N điểm. Mỗi điểm khởi tạo có trọng số 1/N, và tổng các trọng số của các điểm dự đoán là 1. N được đặt theo kinh nghiệm, thông thường là vài trăm. Nếu vị trí khởi tạo đã biết, các điểm dự đoán được đặt gần vởi robot.
+
+(2) \textbf{Dự đoán}: Dựa trên mô hình mô tả hệ thống chuyển động của robot, nó dịch chuyển mỗi điểm particle theo giá trị đo từ thông tin odometry và nhiễu.
+
+(3) \textbf{Cập nhật}: Dựa trên thông tin đo được từ các cảm biến, xác suất của mỗi điểm dự đoán được tính toán và giá trị trọng số được cập nhật dựa trên xác suất tính được.
+
+(4) \textbf{Ước tính trạng thái}: Vị trí, hướng và trọng số của tất cả các điểm dự đoán được dùng để tính toán trọng số trung bình, giá trị trung bình và giá trị trọng số lớn nhất cho việc dự đoán trạng thái của robot.
+
+(5) \textbf{Lấy mẫu lại}: Bước này tạo ra các điểm dự đoán mới để loại bỏ các điểm có trọng số thấp và tạo các điểm mới kế thừa từ các điểm được giữ lại, tổng số điểm N phải được duy trì.
+
+\subsection{SLAM}
+
+SLAM - Simultaneous Localization And Mapping. Đây là một trong các vấn đề khó nhất của robotics. Vấn đề SLAM nảy sinh khi robot không có bản đồ của môi trường và cũng không biết trạng thái vị trí của chính nó. Thay vào đó là dữ liệu đo ${z}_{1:t}$ và tín hiệu điều khiển ${u}_{1:t}$. Thuật ngữ SLAM mô tả kết quả của vấn đề: Trong SLAM, robot đạt được một bản đồ môi trường trong khi đồng thời định vị nó ở đâu trong bản đồ đó. Bài toán SLAM khó hơn bài toán định vị bởi vì bản đồ chưa biết trước và nó phải được ước tính vị trí theo một quãng đường dài. Nõ cũng khó hơn bài toán tạo bản đồ vì trạng thái vị trí robot chưa biết và nó cũng phải được ước tính trong quãng đường dài.
+
+Như một bài toán con gà và quả trứng, bởi vì trong robot di động muốn định vị tốt thì cần phải có bản đồ chính xác và muốn tạo được bản đồ chính xác thì lại phải định vị tốt.
+
+Theo luật xác suất, có hai dạng chính của SLAM, cả hai dạng này đều quan trọng như nhau. Một dạng là SLAM online. Nó thực hiện các dự đoán qua các trạng thái hiện tại xuyên suốt bản đồ:
+
+\begin{equation}
+  p\left({x}_{t}, m | {z}_{1:t}, {u}_{1:t}\right)
+\end{equation}
+
+Trong đó, ${x}_{t}$ là trạng thái vị trí tại thời điểm $t$, $m$ là bản đồ, và ${z}_{1:t}$ và ${u}_{1:t}$ là các giá trị đo và điều khiển tương ứng. Vấn đề này gọi là SLAM online vì nó chỉ dự đoán các biến tại thời điểm $t$k, bỏ qua các dữ liệu đo và điều khiển cũ một khi các dữ liệu đó đã được xử lý. Mô hình online SLAM được thể hiện như trong \figurename{\ref{fig:onlineSLAM}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.6\linewidth]{figures/onlineSLAM.PNG}
+  \caption{Online SLAM}
+  \label{fig:onlineSLAM}
+\end{figure}
+
+Vấn đề SLAM thứ hai là được gọi là \textit{full SLAM}. Trong full SLAM, chúng ta tính toán toàn bộ đường đi ${x}_{1:t}$ xuyên suốt bản đồ, thay vì chỉ trạng thái hiện tại ${x}_{t}$
+\begin{equation}
+  p\left({x}_{1:t},m | {z}_{1:t}, {u}_{1:t}\right)
+\end{equation}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.6\linewidth]{figures/fullSLAM.png}
+  \caption{Full SLAM}
+  \label{fig:fullSLAM}
+\end{figure}
+
+Sự khác nhau dữa online và full SLAM tạo nên sự phân nhánh trong các thuật toán tương ứng với mỗi loại. Cụ thể, online SLAM là kết quả của việc tích hợp trạng thái robot cũ từ full SLAM.
+
+Một đặc điểm quan trọng nữa của SLAM đó là nó có hai thành phần liên tục và rời rạc. Vấn đề liên tục là ước tính vị trí của các vật thể, đối tượng trong bản đồ và các biến số đặt ra của robot. Các đối tượng có thể là các điểm mốc. Bản chất rời rạc liên quan đến sự tương ứng của các vật thể nó phát hiện được, nó phải xem xét vật thể đó đã được phát hiện ở bước trước đó hay chưa.
+
+% \section{Một số bài toán thực tế trong điều hướng robot}
+
 
 
 
