@@ -302,7 +302,7 @@ Nội dung của luận văn như sau: Chương 1 khái quát tổng quan về r
 \subsection{Sự bất định trong robot}
 Robotics là một ngành khoa học về nhận thức và thực thi thế giới vật lý thông qua các thiết bị điều khiển bởi máy tính. Các hệ thống robotics được đặt trong thế giới vật lý, quan sát thông tin môi trường thông qua các cảm biến, và thao tác thông qua các lực vật lý. Đặc biệt trong công nghệ robot tự hành, robot phải có khả năng đáp ứng rất lớn sự bất định tồn tại trong thế giới vật lý.
 
-Trước hết, môi trường của robot vốn dĩ đã không ổn định. Trong các môi trường có cấu trúc tốt, được thiết kế theo tiêu chuẩn như trong dây chuyền lắp ráp thì mức độ không ổn định thấp, trong khi đố các môi trường như trên đường, hay môi trường trong nhà của robot dịch vụ thì có mức độ không ổn định cao và nhiều chuyển động. Với các robot hoạt động gần con người thì độ bất định rất cao.
+Trước hết, môi trường của robot vốn dĩ đã không ổn định. Trong các môi trường có cấu trúc tốt, được thiết kế theo tiêu chuẩn như trong dây chuyền lắp ráp thì mức độ bất định thấp, trong khi đó các môi trường khác như môi trường trong nhà của robot dịch vụ, môi trường trên đường phố\dots thì có mức độ bất ổn định cao, có nhiều chuyển động. Với các robot hoạt động gần con người thì độ bất định rất cao.
 
 Robot sử dụng hệ thống cảm biến để cảm nhận, quan sát môi trường xung quanh. Tuy nhiên, cảm biến có các giới hạn quan sát của nó. Phạm vi và độ phân giải của một cảm biến phụ thuộc vào giới hạn vật lý. Ví dụ, các camera không thể nhìn xuyên tường, độ phân giải của camera cũng có giới hạn. Cảm biến rất khó tránh khỏi nhiễu, và các phép đo nhiễu không thể đoán trước được. Do đó nó giới hạn thông tin có thể trích xuất được từ cảm biến. Hoặc cảm biến có thể bị hỏng và việc phát hiện lỗi từ cảm biến vô cùng khó khó khăn.
 
@@ -316,7 +316,7 @@ Mức độ bất định phụ thuộc vào lĩnh vực ứng dụng. Trong m�
 
 \subsection{Xác suất trong robotics} \label{subsec:probabilityinRobotics}
 
-Xác suất trong robot là tương đối mới với robot để giải quyết vấn đề trong quan sát và hành động của robot, đặc biệt là với robot tự hành. Ý tưởng chính trong bài toán xác suất trong robot là thể hiện sự bất định một cách rõ ràng bằng việc sử dụng lý thuyết tính toán xác suất. Nhưng thay vì dựa vào một "dự đoán tốt nhất" những gì có thể xảy ra, các thuật toán xác suất thể hiện thông tin bằng các phân bố xác suất qua toàn bộ không gian dự đoán. Như vậy, chúng có thể biểu diễn sự không rõ ràng và mức độ tin cậy trong toán học. Xác suất trong robot có thể chủ động lựa chọn để giảm sự bất định, do đó các thuật toán xác suất giảm độ phức tạp của sự bất định.
+Xác suất trong robot là tương đối mới với robot để giải quyết vấn đề trong quan sát và hành động của robot, đặc biệt là với robot tự hành. Ý tưởng chính trong bài toán xác suất trong robot là thể hiện sự bất định một cách rõ ràng bằng việc sử dụng lý thuyết tính toán xác suất. Nhưng thay vì dựa vào một "dự đoán tốt nhất" những gì có thể xảy ra, các thuật toán xác suất thể hiện thông tin bằng các phân bố xác suất qua toàn bộ không gian dự đoán. Như vậy, chúng có thể biểu diễn sự bất định và độ tin cậy trong toán học. Xác suất trong robot có thể chủ động lựa chọn để giảm sự bất định, do đó các thuật toán xác suất giảm độ phức tạp của sự bất định.
 
 \begin{figure}[htbp]
   \centering
@@ -325,7 +325,7 @@ Xác suất trong robot là tương đối mới với robot để giải quyế
   \label{fig:markovLocalization}
 \end{figure}
 
-Ví dụ thứ nhất là bài toán định vị robot di động. Định vị robot là ước tính vị trí tương đối của robot với một không gian tham chiếu. Được cho một bản đồ của môi trường, nhưng việc tự nó định vị tới bản đồ này cần xem dữ liệu cảm biến của robot. \figurename{ \ref{fig:markovLocalization}} là một ví dụ minh họa. Môi trường đã biết có ba cửa giống nhau, nhiệm vụ của robot là tìm xem chúng ở đâu, thông qua cảm biến và chuyển động.
+Ví dụ thứ nhất là bài toán định vị robot di động. Định vị robot là ước tính vị trí tương đối của robot trong một không gian tham chiếu. Bản đồ của môi trường được cho trước, robot cần có các dữ liệu của cảm biến để tự định vị trong bản đồ này. Ví dụ về định vị được minh họa trong Hình \ref{fig:markovLocalization}. Môi trường đã biết có ba cửa giống nhau, nhiệm vụ của robot là tìm xem chúng ở đâu, thông qua cảm biến và chuyển động.
 
 Vấn đề định vị cụ thể này được gọi là \textit{định vị toàn cục} (global localization). Trong định vị toàn cục, robot được đặt ở đâu đó trong một môi trường đã biết, nó phải tự định vị được vị trí của nó đang ở đâu. Mô hình xác suất thể hiện độ tin cậy tức thời của robot bằng một hàm phân bố xác suất trên toàn bộ không gian như trong \figurename{ \ref{fig:markovLocalization}}a. Biểu đồ này thể hiện phân bố đồng đều trên tất cả các vị trí. Bây giờ cho rằng robot nhận được dữ liệu đo đầu tiên từ cảm biến và theo dõi cánh cửa phía trước. Công cụ xác suất khai thác thông tin này để cập nhật vào độ tin cậy.
 \textbf{Độ tin cậy sau}
@@ -615,27 +615,27 @@ Cuối cùng, sử dụng những giá trị này, chúng ta có thể tính đ�
 Thứ ba, việc phát hiện ra đâu là vật cản như tường, các đồ vật yêu cầu cần có các cảm biến. Có nhiều loại cảm biến như cảm biến khoảng cách và cảm biến hình ảnh. Cảm biến khoảng cách dạng laser như LDS, LRF, LiDAR, cảm biến siêu âm và cảm biến hồng ngoại. Cảm biến hình ảnh bao gồm stereo camera, monocamera, omnidirectional camera,\dots và hiện nay có các loại camera như RealSense, Kinect, Xtion được sử dụng rộng rãi như camera chiều sâu được sử dụng để phát hiện các vật cản.
 
 \subsection*{Tính toán đường đi và di chuyển}
-Một đặc điểm cuối cùng cho điều hưởng robot là tính toán và di chuyển theo đường đi tối ưu từ vị trí hiện tại tới đích xác định trong bản đồ. Được gọi là tìm kiếm đường đi và lên kế hoạch di chuyển. có nhiều thuật toán như thuật toán ${A}^{*}$, thuật toán \textit{potential field}(Vùng tiềm năng), \textit{particle filter}(lọc từng phần)\dots
+Một đặc điểm cuối cùng cho điều hưởng robot là tính toán và di chuyển theo đường đi tối ưu từ vị trí hiện tại tới đích xác định trong bản đồ. Được gọi là tìm kiếm đường đi và lên kế hoạch di chuyển. có nhiều thuật toán như thuật toán ${A}^{*}$, thuật toán \textit{trường tiềm năng}(Potential Field), \textit{Lọc từng phần} (particle filter)\dots
 
-Kế hoạch di chuyển bao gồm cả \textit{global path planning} (kế hoạch đường đi toàn cục) trên toàn bộ bản đồ và \textit{local path planning} (kế hoạch đường đi địa phương) cho một vùng nhỏ hơn xung quanh robot.
+Kế hoạch di chuyển bao gồm cả \textit{kế hoạch đường đi toàn cục} (global path planning) trên toàn bộ bản đồ và \textit{kế hoạch đường đi địa phương} (local path planning) cho một vùng nhỏ hơn xung quanh robot.
 
 \subsection*{Di chuyển và tránh vật cản}
-Nếu một lệnh gửi tới robot trên quỹ đạo di chuyển được tạo bằng \textit{motion planing}, robot di chuyển tới đích theo đường đi đã được lên kế hoạch. Do đó việc cảm nhận môi trường, ước tính trạng thái vị trí robot và \textit{motion planning} vẫn tiếp tục thực hiện, tính toán trong quá trình di chuyển., các vật cản và đối tượng di động xuất hiện đột ngột trong môi trường sẽ được tránh bởi giải thuật \textit{Dynamic Window Approach} (DWA).
+Nếu một lệnh gửi tới robot trên quỹ đạo di chuyển được tạo bằng \textit{kế hoạch chuyển động} (motion planing), robot di chuyển tới đích theo đường đi đã được lên kế hoạch. Do đó việc cảm nhận môi trường, ước tính trạng thái vị trí robot và kế hoạch chuyển động vẫn tiếp tục thực hiện, tính toán trong quá trình di chuyển., các vật cản và đối tượng di động mới xuất hiện trong môi trường sẽ được phát hiện và tránh bởi giải thuật \textit{Cửa sổ tiếp cận động} (Dynamic Window Approach - DWA).
 
-\subsection{Costmap}
+\subsection{Bản đồ trọng số (costmap)}
 
 Trạng thái của robot được ước tính dựa trên odometry từ encoder và cảm biến gia tốc góc IMU. Và khoảng cách giữa robot và các vật cản được tính từ cảm biến khoảng cách gắn trên robot. Trạng thái robot và cảm biến, thông tin vật cản, một bản đồ lưới chiếm dụng là kết quả của SLAM được sử dụng để tải bản đồ tĩnh và sử dụng các vùng bị chiếm dụng, các vùng trống và các vùng chưa biết cho điều hướng robot.
 
-Trong điều hướng robot, costmap\footnote{Bản đồ giá trị} tính vùng có vật cản, các vùng có khả năng va chạm và vùng robot có thể di chuyển. Phụ thuộc vào kiểu điều hướng, costmap có thể chia thành hai phần. Một là \textit{global\_costmap}, thiết lập kế hoạch di chuyển cho điều hướng robot trong toàn bộ không gian của bản đồ cố định. Phần còn lại là \textit{local\ costmap} được sử dụng cho kế hoạch di chuyển và tránh vật cản trong không gian giới hạn quanh robot. Mặc dù mục đích khác nhau nhưng cả hai loại bản đồ này được thể hiện theo cùng một cách.
+Trong điều hướng robot, bản đồ trọng số tính vùng có vật cản, các vùng có khả năng va chạm và vùng robot có thể di chuyển. Phụ thuộc vào kiểu điều hướng, bản đồ trọng số có thể chia thành hai phần. Một là \textit{global\_costmap}, thiết lập kế hoạch di chuyển cho điều hướng robot trong toàn bộ không gian của bản đồ cố định. Phần còn lại là \textit{local\ costmap} được sử dụng cho kế hoạch di chuyển và tránh vật cản trong không gian giới hạn quanh robot. Mặc dù mục đích khác nhau nhưng cả hai loại bản đồ này được thể hiện theo cùng một cách.
 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.8\linewidth]{figures/relationship-distanceToObstacle-vs-costmapValue.png}
-  \caption{Quan hệ giữa khoảng cách tới vật cản và giá trị costmap}
+  \caption{Quan hệ giữa khoảng cách tới vật cản và giá trị bản đồ trọng số}
   \label{fig:relationship-distanceToObstacle-vs-costmapValue}
 \end{figure}
 
-Costmap thể hiện giá trị từ 0 tới 255. Nghĩa của từng giá trị được thể hiện trong \figurename{ \ref{fig:relationship-distanceToObstacle-vs-costmapValue}, và tóm tắt như sau, được dùng để xác định nơi robot có thể di chuyển hoặc va chạm với vật cản.
+Bản đồ trọng số thể hiện giá trị từ 0 tới 255. Nghĩa của từng giá trị được thể hiện trong \figurename{ \ref{fig:relationship-distanceToObstacle-vs-costmapValue}, và tóm tắt như sau, được dùng để xác định nơi robot có thể di chuyển hoặc va chạm với vật cản.
 
 \begin{itemize}
   \item \textbf{000:} vùng trống robot có thể di chuyển thoải mái
@@ -710,7 +710,8 @@ Trong cửa sổ động này, hàm mục tiêu $G(v, \omega)$ được dùng đ
   \label{fig:dwa-search-velocity}
 \end{figure}
 
-\section{Bài toán SLAM 2D}
+% \section{Bài toán SLAM 2D}
+\section{Bài toán định vị và tạo bản đồ đồng thời}
 
 % \subsection{SLAM}
 
@@ -759,7 +760,7 @@ Vì trạng thái khởi tạo của robot (vị trí và hướng) chưa biết
 
 (5) \textbf{Lấy mẫu lại}: Bước này tạo ra các điểm dự đoán mới để loại bỏ các điểm có trọng số thấp và tạo các điểm mới kế thừa từ các điểm được giữ lại, tổng số điểm N phải được duy trì.
 
-\subsection{SLAM}
+\subsection{Định vị và tạo bản đồ đồng thời - SLAM}}
 
 SLAM - Simultaneous Localization And Mapping. Đây là một trong các vấn đề khó nhất của robotics. Vấn đề SLAM nảy sinh khi robot không có bản đồ của môi trường và cũng không biết trạng thái vị trí của chính nó. Thay vào đó là dữ liệu đo ${z}_{1:t}$ và tín hiệu điều khiển ${u}_{1:t}$. Thuật ngữ SLAM mô tả kết quả của vấn đề: Trong SLAM, robot đạt được một bản đồ môi trường trong khi đồng thời định vị nó ở đâu trong bản đồ đó. Bài toán SLAM khó hơn bài toán định vị bởi vì bản đồ chưa biết trước và nó phải được ước tính vị trí theo một quãng đường dài. Nõ cũng khó hơn bài toán tạo bản đồ vì trạng thái vị trí robot chưa biết và nó cũng phải được ước tính trong quãng đường dài.
 
