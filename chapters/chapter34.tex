@@ -9,12 +9,12 @@ Công nghệ SLAM là công nghệ cốt lõi trong robot tự hành thông minh
 
 Để giải quyết vấn đề này, có một số phương pháp như:
 \begin{itemize}
-    \item Thêm một số tầng cảm biến khác theo chiều cao thân robot như robot RHINO
-    \item Sử dụng cảm biến LIDAR 3D
-    \item Ứng dụng visual-based SLAM
+    \item Thêm một số tầng cảm biến khác theo chiều cao thân robot như robot RHINO (\cite{Buhmann1995})
+    \item Sử dụng cảm biến LIDAR 3D (\cite{Pierzchala2018})
+    \item Ứng dụng visual-based SLAM (\cite{Chen2000, Mittal2019})
 \end{itemize}
 
-Trong khuôn khổ luận văn này, để đảm bảo robot có thể hoạt động được real-time và tích hợp trên hệ thống sẵn có, tác giả sử dụng phương pháp tích hợp thêm một tầng cảm biến khoảng cách hồng ngoại để phối hợp với Lidar và cảm biến siêu âm có sẵn trên robot để hỗ trợ và tăng cường tránh vật cản cho robot. Thực hiện một số nhiệm vụ như sau:
+Trong khuôn khổ luận văn này \cite{Burgard2010}, để đảm bảo robot có thể hoạt động được real-time và tích hợp trên hệ thống sẵn có, tác giả sử dụng phương pháp tích hợp thêm một tầng cảm biến khoảng cách hồng ngoại để phối hợp với Lidar và cảm biến siêu âm có sẵn trên robot để hỗ trợ và tăng cường tránh vật cản cho robot. Thực hiện một số nhiệm vụ như sau:
 \begin{itemize}
     \item Thiết kế mạch lấy dữ liệu cảm biến
     \item Lập trình lấy dữ liệu và xử lý dữ liệu từ các cảm biến khoảng cách hồng ngoại
@@ -24,13 +24,13 @@ Trong khuôn khổ luận văn này, để đảm bảo robot có thể hoạt �
     \item Đánh giá kết quả và hiệu quả của hệ thống
 \end{itemize}
 
-\section{Giới thiệu platform robot của nhóm}
+\section{Giới thiệu nền tảng robot}
 \label{sec:RobotIntro}
 % - Kiến trúc phần cứng của robot
 % - Ứng dụng hệ điều hành ROS
 % - Các bài toán điều khiển trên rb
 
-Luận văn này được thực hiện dựa trên nền tảng robot di động EAI Dashgo D1 \figurename{\ref{fig:dashgoD1}}. Là một nền tảng robot di động thông minh được sản xuất phục vụ nghiên cứu về robot tự hành.
+Luận văn này được thực hiện dựa trên nền tảng robot di động EAI Dashgo D1 \figurename{ \ref{fig:dashgoD1}}, là một nền tảng robot di động thông minh được sản xuất phục vụ nghiên cứu về robot tự hành.
 
 % \subsection{Phần cứng}
 
@@ -51,7 +51,7 @@ Robot có cấu tạo gồm 3 phần chính: Phần chân đế thực hiện ch
 \end{figure}
 
 \subsection{Phần chân đế}
-Phần chân đế có cấu tạo gồm hai bánh chủ động và 2 bánh xe bị động (\figurename{\ref{fig:dashgoBase}}). Động cơ có gắn encoder độ chính xác cao để phản hồi vị trí. Phần chân đế được điều khiển bởi mạch điều khiển được mở rộng từ mạch arduino kết hợp với các module điều khiển bánh xe. Hoạt động nhờ nguồn điện 12V từ acquy với thời gian sạc đầy khoảng 4 tiếng.
+Phần chân đế có cấu tạo gồm hai bánh chủ động và 2 bánh xe bị động (\figurename{ \ref{fig:dashgoBase}}). Động cơ có gắn encoder độ chính xác cao để phản hồi vị trí. Phần chân đế được điều khiển bởi mạch điều khiển được mở rộng từ mạch arduino kết hợp với các module điều khiển bánh xe. Hoạt động nhờ nguồn điện 12V từ acquy với thời gian sạc đầy khoảng 4 tiếng.
 
 \subsection{Phần cảm biến}
 Robot được trang bị bốn cảm biến siêu âm và một cảm biến LIDAR. Bốn cảm biến siêu âm sử dụng cho mục đích tránh vật cản. Nguyên lý hoạt động của cảm biến siêu âm như sau:
@@ -80,7 +80,7 @@ Cảm biến này được sử dụng cho việc tạo bản đồ, điều hư
 
 Robot sử dụng mạch Raspberry Pi 3 làm bộ điều khiển trung tâm. Chạy hệ điều hành robot ROS Kinetic trên nền tảng Ubuntu MATE 16.04. Để thực hiện các chức năng cơ bản như Định vị, Tạo bản đồ, Di chuyển tới vị trí xác định trong bản đồ, Tránh vật cản trong quá trình di chuyển phải cài đặt gói chương trình dashgo được cung cấp bởi nhà sản xuất.
 
-\figurename{\ref{fig:dashgo-architecture}} mô tả kiến trúc phần mềm trên Dashgo D1. Trong đó:
+\figurename{ \ref{fig:dashgo-architecture}} mô tả kiến trúc phần mềm trên Dashgo D1. Trong đó:
 \begin{itemize}
     \item \codeword{dashgo_description} là gói chứa các mô tả của robot, được dùng trong hiển thị Rviz và mô phỏng robot trong Gazebo.
     \item \codeword{dashgo_driver} chứa các thông số cấu hình và chương trình driver để điều khiển robot.
@@ -188,7 +188,7 @@ Từ các hạn chế của robot hiện tại và với mục tiêu phát tri�
 %     \label{fig:components}
 % \end{figure}
 
-Phần cứng gồm một hệ thống cảm biến hồng ngoại IR Sharp GP2Y0A21YK0F và mạch Arduino Mega 2560 (\figurename{\ref{fig:workflow-dataProcessing}}).
+Phần cứng gồm một hệ thống cảm biến hồng ngoại IR Sharp GP2Y0A21YK0F và mạch Arduino Mega 2560 (\figurename{ \ref{fig:workflow-dataProcessing}}).
 
 \begin{figure}[htbp]
 	\centering
@@ -204,10 +204,10 @@ Phần cứng gồm một hệ thống cảm biến hồng ngoại IR Sharp GP2Y
     \label{fig:dead-reckoning}
 \end{figure}
 
-Mười cảm biến khoảng cách hồng ngoại được bố trí như \figurename{\ref{fig:IR_layout.png}}. Bao gồm 7 cảm biến ở phía trước robot và 3 cảm biến ở phía sau robot.
+Mười cảm biến khoảng cách hồng ngoại được bố trí như \figurename{ \ref{fig:IR_layout.png}}. Bao gồm 7 cảm biến ở phía trước robot và 3 cảm biến ở phía sau robot.
 Trong quá trình di chuyển, robot có cả tiến và lùi vì vậy cần phải đặt cảm biến ở cả trước và phía sau robot.
 Robot sử dụng hai bánh dẫn động chính và di chuyển trên mặt phẳng, do vậy chuyển động của robot được quy về hai thông số vận tốc dài $v$ và vận tốc góc $\omega$ theo phương pháp ước tính trạng thái robot dead-reckoning \cite{pyo2017ros}.
-Do đó tác giả đề xuất phương án mới đặt cảm biến dày hơn ở khu vực chính giữa và thưa ra hai bên như \figurename{\ref{fig:IR_layout.png}}.
+Do đó tác giả đề xuất phương án mới đặt cảm biến dày hơn ở khu vực chính giữa và thưa ra hai bên như \figurename{ \ref{fig:IR_layout.png}}.
 
 \subsection{Xử lý dữ liệu cảm biến}
 
@@ -225,9 +225,9 @@ Do đó tác giả đề xuất phương án mới đặt cảm biến dày hơn
     \label{fig:irSharp_theory}
 \end{figure}
 
-Cảm biến khoảng cách hồng ngoại là loại cảm biến sử dụng ánh sáng hồng ngoại với một đầu phát và một đầu thu. Cơ chế hoạt động của cảm biến khoảng cách hồng ngoại như \figurename{\ref{fig:sensor_ir_distance_principle}}. Trong đó, đề LED phát tia sáng hồng ngoại, khi gặp vật cản, tia sáng sẽ bị phản xạ lại, in lên tấm PSD tại các vị trí tương ứng với góc chiếu khác nhau, tạo điện áp khác nhau từ U1 đến U2 \footnote{\url{https://home.roboticlab.eu/en/examples/sensor/ir_distance}}.
+Cảm biến khoảng cách hồng ngoại là loại cảm biến sử dụng ánh sáng hồng ngoại với một đầu phát và một đầu thu. Cơ chế hoạt động của cảm biến khoảng cách hồng ngoại như \figurename{ \ref{fig:sensor_ir_distance_principle}}. Trong đó, đề LED phát tia sáng hồng ngoại, khi gặp vật cản, tia sáng sẽ bị phản xạ lại, in lên tấm PSD tại các vị trí tương ứng với góc chiếu khác nhau, tạo điện áp khác nhau từ U1 đến U2 \footnote{\url{https://home.roboticlab.eu/en/examples/sensor/ir_distance}}.
 
-Mối quan hệ giữa điện áp ra và khoảng cách của module cảm biến khoảng cách hồng ngoại IR Sharp GP2Y0A21YK0F như \figurename{\ref{fig:irSharp-vol-distance}} \footnote{\url{www.sparkfun.com/datasheets/Components/GP2Y0A21YK.pdf}}
+Mối quan hệ giữa điện áp ra và khoảng cách của module cảm biến khoảng cách hồng ngoại IR Sharp GP2Y0A21YK0F như \figurename{ \ref{fig:irSharp-vol-distance}} \footnote{\url{www.sparkfun.com/datasheets/Components/GP2Y0A21YK.pdf}}
 
 \begin{figure}[htbp]
     \centering
@@ -238,15 +238,23 @@ Mối quan hệ giữa điện áp ra và khoảng cách của module cảm bi�
 
 Mạch Arduino Mega sẽ đọc tín hiệu điện trả về từ các cảm biến IR mỗi khi có lệnh yêu cầu từ Raspberry Pi. Mỗi chân dữ liệu của cảm biến kết nối với chân Analog input trên mạch Arduino để đọc dữ liệu điện áp thông qua ADC 8 bit.
 
-Trên Raspberry Pi, {\tt node ir\_driver} sẽ nhận các dữ liệu ADC của các cảm biến từ Arduino. \figurename{\ref{fig:irSharp-vol-distance}} cho ta mối liên hệ giữa điện áp và khoảng cách của cảm biến SHARP GP2Y0A21YK0F. Tuy nhiên, đây là đồ thị một đường cong không được biểu diễn bởi một hàm toán học cụ thể. Phương pháp được sử dụng là dùng thí nghiệm đo với giá trị điện áp và khoảng cách tương ứng. Sau đó nội suy kết quả thí nghiệm thành một hàm toán học gần đúng. Trong luận văn này, tác giả tham khảo tại \url{https://github.com/guillaume-rico/SharpIR} và kiểm nghiệm thấy kết quả khá chính xác, chi tiết kiểm chứng tại bảng << Thêm kết quả đánh giá >>
+Trên Raspberry Pi, {\tt node ir\_driver} sẽ nhận các dữ liệu ADC của các cảm biến từ Arduino. \figurename{ \ref{fig:irSharp-vol-distance}} cho ta mối liên hệ giữa điện áp và khoảng cách của cảm biến SHARP GP2Y0A21YK0F. Tuy nhiên, đây là đồ thị một đường cong không được biểu diễn bởi một hàm toán học cụ thể. Phương pháp được sử dụng là dùng thí nghiệm đo với giá trị điện áp và khoảng cách tương ứng. Sau đó nội suy kết quả thí nghiệm thành một hàm toán học gần đúng. Trong luận văn này, sử dụng công thức \ref{equa:ADC2Vol} và \ref{equa:Vol2Distance} \footnote{\url{https://github.com/guillaume-rico/SharpIR}} và kiểm nghiệm thấy kết quả khá chính xác (tại \ref{sub:DanhgiaCBIR})
 
 \begin{equation}
-    vol = \frac{ADC * 5.0}{1023.0}
+    V = \frac{ADC * 5.0}{1023.0}
+    \label{equa:ADC2Vol}
 \end{equation}
 
 \begin{equation}
-    distance = 27.728 * {vol}^{-1.2045}
+    D = 27.728 * {V}^{-1.2045}
+    \label{equa:Vol2Distance}
 \end{equation}
+
+Trong đó:
+\begin{itemize}
+    \item V - Điện áp ghi nhận tại chân analog của arduino.
+    \item D - Khoảng cách đo được từ cảm biến
+\end{itemize}
 
 Sau khi tính được khoảng cách của các cảm biến sẽ {\tt publish} ra {\tt topic IR\_sensor\_arr} chứa thông tin đo được từ tất cả các cảm biến với tần số 20Hz.
 %FIXME: Hiện tại trong chương trình đang để tần số 100Hz, tuy nhiên xem lại data sheet thì tần số đo của cảm biến này chỉ đạt 26Hz.
@@ -262,7 +270,7 @@ Sau đó dùng bộ lọc trung bình cộng để lấy trung bình cộng củ
     \label{fig:arg-obstacle-area}
 \end{figure}
 
-Tác giả đề xuất sử dụng hai giải thuật để điều khiển robot tránh vật cản sử dụng tầng cảm biến hồng ngoại. Định nghĩa hai vùng phát hiện vật cản. Vùng B và vùng U như \figurename{\ref{fig:arg-obstacle-area}}. Chúng ta đặt mức độ ưu tiên khác nhau cho từng vùng. Đặt cờ C1, C2 lần lượt thể hiện thuật toán phản ứng ở vùng B và vùng U.
+Tác giả đề xuất sử dụng hai giải thuật để điều khiển robot tránh vật cản sử dụng tầng cảm biến hồng ngoại. Định nghĩa hai vùng phát hiện vật cản. Vùng B và vùng U như \figurename{ \ref{fig:arg-obstacle-area}}. Chúng ta đặt mức độ ưu tiên khác nhau cho từng vùng. Đặt cờ C1, C2 lần lượt thể hiện thuật toán phản ứng ở vùng B và vùng U.
 
 \textbf{Vùng khẩn cấp U} xác định một bằng một đường tròn bán kính ${R}_{U}$ từ tâm của robot. Vùng này thể hiện vùng nguy hiểm, khi phát hiện có vật cản nằm trong vùng này nếu robot có lệnh di chuyển tiến hoặc lùi thì sẽ dừng lại, di chuyển robot lùi/tiến để tránh khỏi vật cản, đồng thời phát âm thanh để thông báo có vật cản cho đến khi không còn vật cản trong vùng này.
 \begin{figure}[]
@@ -287,7 +295,7 @@ Tác giả đề xuất sử dụng hai giải thuật để điều khiển rob
         % \draw [arrow] (dec2) -- node[anchor=east] {Sai}(dec3);
         \draw [arrow] (dec1) -- node[anchor=east] {Đúng}(0,-3.5) -| (dec3);
     \end{tikzpicture}
-    \caption{Flow-chart với vùng khẩn cấp}
+    \caption{Giải thuật với vùng khẩn cấp}
     \label{flowchart-urgent}
 \end{figure}
 
@@ -301,7 +309,7 @@ Trên cơ sở tham khảo \cite{Susnea2009} Thuật toán bong bóng phản ứ
     \label{fig:BB-argorithm}
 \end{figure}
 
-Hình dạng bong bóng phản ứng như \figurename{\ref{fig:BB-argorithm} cập nhật theo công thức \ref{equa:BB-update}. Trong đó $bb[i]$ là kích thước bong bóng tại vị trí cảm biến thứ i, $K_i$ là hệ số, $V_t$ là vận tốc dài của robot tại thời điểm t $\Delta_t$ là khoảng thời gian giữa 2 lần cập nhật.
+Hình dạng bong bóng phản ứng như \figurename{ \ref{fig:BB-argorithm} cập nhật theo công thức \ref{equa:BB-update}. Trong đó $bb[i]$ là kích thước bong bóng tại vị trí cảm biến thứ i, $K_i$ là hệ số, $V_t$ là vận tốc dài của robot tại thời điểm t $\Delta_t$ là khoảng thời gian giữa 2 lần cập nhật.
 Thuật toán phải đảm robot có thể di chuyển tự do trong khoảng thời gian $\Delta_t$ mà không va chạm với vật cản.
 
 \begin{equation}
@@ -316,7 +324,7 @@ Thuật toán phải đảm robot có thể di chuyển tự do trong khoảng t
     \label{fig:BB-avoidance}
 \end{figure}
 
-\figurename{\ref{fig:BB-avoidance}} mô tả robot di chuyển từ vị trí A tới đích G với quỹ đạo được tính toán theo đường màu đỏ. Tuy nhiên, trên quá trình di chuyển gặp vẩn cản. Tại vị trí gặp vật cản robot thực hiện quay mình để tránh vật cản, sau đó phần điều hướng trong robot lại tính lại đường đi tới đích (đường màu xanh).
+\figurename{ \ref{fig:BB-avoidance}} mô tả robot di chuyển từ vị trí A tới đích G với quỹ đạo được tính toán theo đường màu đỏ. Tuy nhiên, trên quá trình di chuyển gặp vẩn cản. Tại vị trí gặp vật cản robot thực hiện quay mình để tránh vật cản, sau đó phần điều hướng trong robot lại tính lại đường đi tới đích (đường màu xanh).
 
 \subsection{Phối hợp phân mức điều khiển}
 Robot có nhiều chương trình khác nhau có thể tác động đến việc di chuyển của nó. Ví dụ trong phần lớn thời gian robot di chuyển dưới sự điều khiển của chương trình \codeword{navigation}, khi cần điều khiển bằng tay, robot lại chạy dưới sự điều khiển của chương trình \codeword{teleop}, khi gặp vật cản được phát hiện bởi cảm biến sonar, robot phản ứng lại. Như trường hợp đơn giản vừa rồi có tới ba tiến trình cùng đồng thời điều khiển robot.
@@ -328,7 +336,7 @@ Robot có nhiều chương trình khác nhau có thể tác động đến việ
     \label{fig:phanquyen-goc}
 \end{figure}
 
-\figurename{\ref{fig:phanquyen-goc}} thể hiện các node và topic điều khiển robot Dashgo D1. Trong đó, topic \codeword{/cmd_vel} nhận thông tin điều khiển di chuyển chân đế từ nhiều topic khác nhau. Sau đó thông qua trình quản lý \codeword{nodelet_manager} để chạy chương trình làm mịn tốc độ, chống giật cho robot. \codeword{/smoother_cmd_vel} được topic \codeword{/dashgo_driver} nhận và thực hiện các tính toán điều khiển tới vòng quay của động cơ để di chuyển.
+\figurename{ \ref{fig:phanquyen-goc}} thể hiện các node và topic điều khiển robot Dashgo D1. Trong đó, topic \codeword{/cmd_vel} nhận thông tin điều khiển di chuyển chân đế từ nhiều topic khác nhau. Sau đó thông qua trình quản lý \codeword{nodelet_manager} để chạy chương trình làm mịn tốc độ, chống giật cho robot. \codeword{/smoother_cmd_vel} được topic \codeword{/dashgo_driver} nhận và thực hiện các tính toán điều khiển tới vòng quay của động cơ để di chuyển.
 Ta thấy có \codeword{/sonar} được liên kết trực tiếp với \codeword{/dashgo_driver}, ở robot này, dữ liệu từ các cảm biến siêu âm được driver điều khiển chân đế đọc trực tiếp, sau đó xử lý các tình huống và tính toán số vòng quay của động cơ để thực hiện điều khiển chân đế trong trường hợp khẩn cấp.
 
 \subsection{Phương pháp phối hợp phân mức điều khiển}
@@ -352,7 +360,8 @@ Chúng ta sẽ sử dụng \codeword{cmd_vel_mux} của \codeword{nodelet} để
 % - Đánh giá kết quả (Hiệu quả hay không, vì sao)
 %---
 
-% \subsection{Đánh giá độ chính xác cảm biến khoảng cách hồng ngoại}
+\subsection{Đánh giá độ chính xác cảm biến khoảng cách hồng ngoại}
+\label{sub:DanhgiaCBIR}
 %------------------------------------------
 % \subsubsection*{Mục tiêu}
 
