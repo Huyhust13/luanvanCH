@@ -9,6 +9,7 @@
 \usepackage{wrapfig} % gói lệnh vẽ chèn hình vào giữa văn bản
 \usepackage{array}  % gói lệnh kẻ bảng với kích thước cố định
 \usepackage{tabu}
+\usepackage{tabularx} % in the preamble
 \usepackage{xcolor}
 \usepackage{enumerate} % gói lệnh danh sách
 \usepackage[unicode]{hyperref} % gói lệnh tạo liên kết
@@ -87,8 +88,8 @@
 \addcontentsline{toc}{chapter}{MỤC LỤC}
 \listoffigures % chèn danh sách hình
 \addcontentsline{toc}{chapter}{DANH SÁCH HÌNH VẼ}
-% \listoftables % chèn danh sách bảng biểu
-% \addcontentsline{toc}{chapter}{DANH SÁCH BẢNG}
+\listoftables % chèn danh sách bảng biểu
+\addcontentsline{toc}{chapter}{DANH SÁCH BẢNG}
 
 \mainmatter
 \fancyhead[LO]{\leftmark}
