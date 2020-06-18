@@ -5,7 +5,7 @@
 %------------------
 
 % Nhắc lại vấn đề ở phần cuối chương 1
-Công nghệ SLAM là công nghệ cốt lõi trong robot tự hành thông minh. Tuy nhiên, với SLAM 2D, robot chỉ có thể tạo được bản đồ và di chuyển, tránh vật cản khi có thông tin về vật cản đó trên một mặt phẳng mà LIDAR quét được. Trong thực tế, môi trường hoạt động của chúng có nhiều loại vật thể có hình dạng, kích thước và chiều cao khác nhau.
+Công nghệ SLAM là công nghệ cốt lõi trong robot tự hành thông minh, hiện nay công nghệ SLAM 2D chiếm phần lớn trong các ứng dụng do tính đơn giản, giá thành hợp lý. Tuy nhiên, với SLAM 2D, robot chỉ có thể tạo được bản đồ và di chuyển, tránh vật cản khi có thông tin về vật cản đó trên một mặt phẳng mà LIDAR quét được. Trong thực tế, môi trường hoạt động của chúng có nhiều loại vật thể có hình dạng, kích thước và chiều cao khác nhau.
 
 Để giải quyết vấn đề này, có một số phương pháp như:
 \begin{itemize}
@@ -14,7 +14,8 @@ Công nghệ SLAM là công nghệ cốt lõi trong robot tự hành thông minh
     \item Ứng dụng visual-based SLAM (\cite{Chen2000, Mittal2019})
 \end{itemize}
 
-Trong khuôn khổ luận văn này \cite{Burgard2010}, để đảm bảo robot có thể hoạt động được real-time và tích hợp trên hệ thống sẵn có, tác giả sử dụng phương pháp tích hợp thêm một tầng cảm biến khoảng cách hồng ngoại để phối hợp với Lidar và cảm biến siêu âm có sẵn trên robot để hỗ trợ và tăng cường tránh vật cản cho robot. Thực hiện một số nhiệm vụ như sau:
+Các phương pháp trên có nhược điểm là chi phí thiết bị cao, chi phí tính toán lớn do robot phải xử lý lượng lớn dữ liệu đầu vào. Trong luận văn này , để đảm bảo robot có thể hoạt động được theo thời gian thực và tích hợp trên hệ thống sẵn có, tác giả sử dụng phương pháp tích hợp thêm một tầng cảm biến khoảng cách hồng ngoại để phối hợp với Lidar và cảm biến siêu âm có sẵn trên robot để hỗ trợ và tăng cường tránh vật cản cho robot. Tác giả thực hiện một số nhiệm vụ như sau:
+
 \begin{itemize}
     \item Thiết kế mạch lấy dữ liệu cảm biến
     \item Lập trình lấy dữ liệu và xử lý dữ liệu từ các cảm biến khoảng cách hồng ngoại
@@ -30,7 +31,7 @@ Trong khuôn khổ luận văn này \cite{Burgard2010}, để đảm bảo robot
 % - Ứng dụng hệ điều hành ROS
 % - Các bài toán điều khiển trên rb
 
-Luận văn này được thực hiện dựa trên nền tảng robot di động EAI Dashgo D1. Trong \figurename{ \ref{fig:dashgoD1}} là một nền tảng robot di động thông minh được sản xuất phục vụ nghiên cứu về robot tự hành và Hình \ref{fig:airhustbot} là robot đang trong quá trình phát triển thành robot dịch vụ thông minh.
+Luận văn này được thực hiện trên nền tảng robot di động EAI Dashgo D1 \figurename{ \ref{fig:dashgoD1}} là một nền tảng robot di động thông minh được sản xuất phục vụ nghiên cứu về robot tự hành và Hình \ref{fig:airhustbot} là robot đang trong quá trình phát triển thành robot dịch vụ thông minh.
 
 % \subsection{Phần cứng}
 
@@ -52,7 +53,6 @@ Luận văn này được thực hiện dựa trên nền tảng robot di độn
     \caption{Nền tảng robot di động}
     \label{fig:platformRobto}
 \end{figure}
-
 
 Robot có cấu tạo gồm 3 phần chính: Phần chân đế thực hiện chức năng di chuyển, phần cảm biến và phần điều khiển trung tâm.
 
@@ -385,7 +385,7 @@ Robot có nhiều chương trình khác nhau có thể tác động đến việ
 \figurename{ \ref{fig:phanquyen-goc}} thể hiện các node và topic điều khiển robot Dashgo D1. Trong đó, topic \codeword{/cmd_vel} nhận thông tin điều khiển di chuyển chân đế từ nhiều topic khác nhau. Sau đó thông qua trình quản lý \codeword{nodelet_manager} để chạy chương trình làm mịn tốc độ, chống giật cho robot. \codeword{/smoother_cmd_vel} được topic \codeword{/dashgo_driver} nhận và thực hiện các tính toán điều khiển tới vòng quay của động cơ để di chuyển.
 Ta thấy có \codeword{/sonar} được liên kết trực tiếp với \codeword{/dashgo_driver}, ở robot này, dữ liệu từ các cảm biến siêu âm được driver điều khiển chân đế đọc trực tiếp, sau đó xử lý các tình huống và tính toán số vòng quay của động cơ để thực hiện điều khiển chân đế trong trường hợp khẩn cấp.
 
-\subsection{Phương pháp phối hợp phân mức điều khiển}
+% \subsection{Phương pháp phối hợp phân mức điều khiển}
 
 \begin{figure}[htbp]
     \centering
@@ -395,9 +395,8 @@ Ta thấy có \codeword{/sonar} được liên kết trực tiếp với \codewo
 \end{figure}
 
 Có một vài phương pháp để phối hợp phân quyền điều khiển cho robot. Khi chúng ta có nhiều thuật toán, nhiều chương trình cùng điều khiển tới một hoạt động nào đó.
-
 % ROS có định nghĩa \codeword{nodelet}\footnote{\url{http://wiki.ros.org/nodelet}}.
-Chúng ta sẽ sử dụng \codeword{cmd_vel_mux} của \codeword{nodelet} để thực hiện phân quyền điều khiển cho robot để dễ dàng tích hợp tín hiệu điều khiển từ cảm biến an toàn IR (Hình \ref{fig:phanquen-dexuat})
+Trong luận văn này, tác giả sử dụng \codeword{cmd_vel_mux} của \codeword{nodelet} để thực hiện phân quyền điều khiển cho robot để dễ dàng tích hợp tín hiệu điều khiển từ cảm biến an toàn IR (Hình \ref{fig:phanquen-dexuat})
 
 %=======================================
 % \section{Đánh giá hệ thống tránh vật cản}}
