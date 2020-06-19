@@ -272,7 +272,7 @@ Mối quan hệ giữa điện áp ra và khoảng cách của module cảm bi�
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\linewidth]{figures/ir_safety_controller-dataProcessing.png}
-    \caption{Work-flow xử lý dữ liệu cảm biến}
+    \caption{sơ đồ xử lý dữ liệu cảm biến}
     \label{fig:workflow-dataProcessing}
 \end{figure}
 
@@ -370,7 +370,7 @@ Thuật toán phải đảm robot có thể di chuyển tự do trong khoảng t
     \label{fig:BB-avoidance}
 \end{figure}
 
-\figurename{ \ref{fig:BB-avoidance}} mô tả robot di chuyển từ vị trí A tới đích G với quỹ đạo được tính toán theo đường màu đỏ. Tuy nhiên, trên quá trình di chuyển gặp vật cản. Tại vị trí gặp vật cản robot thực hiện quay mình để tránh vật cản, sau đó phần điều hướng trong robot lại tính lại đường đi tới đích (đường màu xanh).
+\figurename{ \ref{fig:BB-avoidance}} mô tả robot di chuyển từ vị trí A tới đích G với quỹ đạo được tính toán theo đường màu đỏ. Tuy nhiên, trên quá trình di chuyển, tại vị trí gặp vật cản robot thực hiện quay mình để tránh vật cản, sau đó phần điều hướng trong robot lại tính lại đường đi tới đích (đường màu xanh).
 
 \subsection{Phối hợp phân mức điều khiển}
 Robot có nhiều chương trình khác nhau có thể tác động đến việc di chuyển của nó. Ví dụ trong phần lớn thời gian robot di chuyển dưới sự điều khiển của chương trình \codeword{navigation}, khi cần điều khiển bằng tay, robot lại chạy dưới sự điều khiển của chương trình \codeword{teleop}, khi gặp vật cản được phát hiện bởi cảm biến sonar, robot phản ứng lại. Như trường hợp đơn giản vừa rồi có tới ba tiến trình cùng đồng thời điều khiển robot.
@@ -410,7 +410,7 @@ Trong luận văn này, tác giả sử dụng \codeword{cmd_vel_mux} của \cod
 
 \subsection{Kết quả của luận văn}
 
-Sau quá trình nghiên cứu và làm việc dưới sự hướng dẫn của TS. Nguyễn Xuân Hạ, tác giả đã có một số kết quả như sau:
+Sau quá trình nghiên cứu và làm việc, tác giả đã có một số kết quả như sau:
 \begin{itemize}
     \item Làm chủ hệ thống điều khiển robot, tạo bản đồ và di chuyển trong bản đồ.
     \item Phát triển hệ thống phần cứng robot. Hình \ref{fig:RB-multi-sensor-layer} là kết quả sau khi lắp hệ thống lên robot, robot có thể phát hiện và tránh vật cản bằng 3 tầng cảm biến siêu âm, lidar và hồng ngoại.
@@ -439,10 +439,11 @@ Thực hiện đánh giá độ chính xác của cảm biến khoảng cách h�
 \end{figure}
 
 \begin{table}[htbp]
-    \begin{tabular}{|m{1.5cm}|m{1.2cm}|m{1.2cm}|m{1.2cm}|m{1.2cm}|m{1.2cm}|m{1.2cm}|m{1.2cm}|m{1.2cm}|}
+    \begin{tabular}{|m{1.5cm}|m{1.2cm}|m{1.2cm}|m{1.2cm}|m{1.2cm}|m{1.2cm}|m{1.2cm}|m{1.2cm}|m{1.4cm}|}
         \hline
         Cần đo     & 0.1      & 0.2      & 0.3      & 0.4      & 0.5      & 0.6      & 0.7      & 0.8      \\ \hline
         Trung bình & 0.1051   & 0.2009   & 0.3100   & 0.4068   & 0.5157   & 0.6086   & 0.7146       & 0.7229 \\ \hline
+        Sai số & 0.0051 & 0.0009 &   0.0100 & 0.0068 &   0.0157 & 0.0086 &   0.0146 & -0.0771 \\ \hline
         \% sai số  & 5.14\% & 	0.44\% &	3.34\% &	1.69\% &	3.14\% &	1.43\% &	2.08\% &	9.63\% \\
         \hline
     \end{tabular}
@@ -515,7 +516,7 @@ Tác giả áp dụng bộ lọc trung bình cộng theo Công thức \ref{equa:
     \label{fig:rb_withoutIR}
 \end{figure}
 
-Tác giả đã phát triển hệ thống cảm biến hồng ngoại, phát hiện và tránh được vật cản. Đồng thời phối hợp với hai tầng cảm biến sẵn có trên robot là cảm biến LIDAR và cảm biến tránh vật cản bằng siêu âm. Khi xuất hiện vật cản, robot sẽ tránh theo giải thuật được mô tả tại Mục \ref{sec:caitienhethongtranhvatcan} và đồng thời đánh dấu vật cản vào bản đồ cục bộ để giúp robot tạo đường đi mới mà không lặp lại đường cũ.
+Tác giả đã phát triển hệ thống cảm biến hồng ngoại, phát hiện và tránh được vật cản. Đồng thời phối hợp với hai tầng cảm biến sẵn có trên robot là cảm biến LIDAR và cảm biến tránh vật cản bằng siêu âm. Khi xuất hiện vật cản, robot sẽ tránh theo giải thuật được mô tả tại mục \ref{sec:caitienhethongtranhvatcan} và đồng thời đánh dấu vật cản vào bản đồ cục bộ để giúp robot tạo đường đi mới mà không lặp lại đường cũ.
 
 Hình \ref{fig:scenario_ir_detectedObstacle} thể hiện một trường hợp mà robot đối diện với vật cản có hình dạng biến đối theo chiều cao. Với hệ thống tránh vật cản chỉ có lidar, robot chỉ có thể phát hiện được phần thân dưới rất bé của đối tượng như Hình \ref{fig:rb_withoutIR} chỉ phát hiện thấy một chấm tròn. Tuy nhiên, với hệ thống mới mà tác giả đề xuất, robot có thể phát hiện được phần biên dạng phía trên của đối tượng và đánh dấu là vật cản trong bản đồ Hình \ref{fig:rb_withIR_ObstacleDetected}. Do đó, khi cho robot di chuyển tới vị trí phía sau đối tượng, robot tạo đường đi tránh vật cản và di chuyển vòng qua nó như trong Hình \ref{fig:rb_withIR_ObstacleDetected}b.
 
