@@ -64,7 +64,7 @@ Robot có cấu tạo gồm 3 phần chính: Phần chân đế thực hiện ch
 \end{figure}
 
 \subsection{Phần chân đế}
-Phần chân đế có cấu tạo gồm hai bánh chủ động và 2 bánh xe bị động (\figurename{ \ref{fig:dashgoBase}}). Động cơ có gắn encoder độ chính xác cao để phản hồi vị trí. Phần chân đế được điều khiển bởi mạch điều khiển được mở rộng từ mạch arduino kết hợp với các module điều khiển bánh xe. Hoạt động nhờ nguồn điện 12V từ acquy với thời gian sạc đầy khoảng 4 tiếng.
+Phần chân đế có cấu tạo gồm hai bánh chủ động và 2 bánh xe bị động (\figurename{ \ref{fig:dashgoBase}}). Động cơ có gắn encoder độ chính xác cao để phản hồi vị trí. Phần chân đế được điều khiển bởi mạch điều khiển được mở rộng từ mạch arduino kết hợp với các module điều khiển bánh xe. Hoạt động của robot nhờ nguồn điện 12V từ acquy với thời gian sạc đầy khoảng 4 tiếng.
 
 \subsection{Phần cảm biến}
 Robot được trang bị bốn cảm biến siêu âm và một cảm biến LIDAR. Bốn cảm biến siêu âm sử dụng cho mục đích tránh vật cản. Nguyên lý hoạt động của cảm biến siêu âm như sau:
@@ -75,7 +75,7 @@ Robot được trang bị bốn cảm biến siêu âm và một cảm biến LI
 \end{itemize}
 Cảm biến siêu âm có các ưu điểm như không bị ảnh hưởng bởi màu sắc của vật, hoạt động tốt trong môi trường tối, tiêu tốn ít năng lượng và dễ dàng kết nối với các vi điều khiển. Tuy nhiên nó cũng có các điểm hạn chế như giới hạn khoảng cách đo được, độ phân giải và tần số đo thấp do đó nó không phù hợp với các ứng dụng có vật đích di chuyển nhanh. Cảm biến siêu âm không hoạt động được với các bề mặt không bằng phẳng, các bề mặt hấp thụ âm thanh.
 
-Cảm biến LIDAR YDLIDAR G4 sử dụng tia laser sử dụng đạt tiêu chuẩn an toàn FDA Class 1 \footnote{Tiêu chuẩn Laser FDA Class 1: Được xem là không gây nguy hiểm. Mức độ nguy hiểm tăng khi nhìn qua kính hội tụ quang học như kính lúp, kính hiển vi. Theo \url{www.fda.gov}}.
+Cảm biến YDLIDAR G4 sử dụng tia laser sử dụng đạt tiêu chuẩn an toàn FDA Class 1 \footnote{Tiêu chuẩn Laser FDA Class 1: Được xem là không gây nguy hiểm. Mức độ nguy hiểm tăng khi nhìn qua kính hội tụ quang học như kính lúp, kính hiển vi. Theo \url{www.fda.gov}}.
 Cảm biến tích hợp một động cơ để quay quét mắt laser ${360}^{o}$ với tần số quét từ 5-12Hz. Đo khoảng cách bằng laser với giải đo từ 0.10 - 16m với tần số lấy mẫu có thể đạt 9000Hz.
 Cảm biến này được sử dụng cho việc tạo bản đồ, điều hướng và tránh vật cản.
 
@@ -91,8 +91,7 @@ Cảm biến này được sử dụng cho việc tạo bản đồ, điều hư
     \label{fig:dashgo-architecture}
 \end{figure}
 
-Robot sử dụng mạch Raspberry Pi 3 làm bộ điều khiển trung tâm. Chạy hệ điều hành robot ROS Kinetic trên nền tảng Ubuntu MATE 16.04. Để thực hiện các chức năng cơ bản như Định vị, Tạo bản đồ, Di chuyển tới vị trí xác định trong bản đồ, tránh vật cản trong quá trình di chuyển phải cài đặt gói chương trình dashgo được cung cấp bởi nhà sản xuất.
-
+Robot sử dụng mạch Raspberry Pi 3 làm bộ điều khiển trung tâm. Chạy hệ điều hành robot ROS Kinetic trên nền tảng Ubuntu MATE 16.04. Để thực hiện các chức năng cơ bản như định vị, tạo bản đồ, di chuyển tới vị trí xác định trong bản đồ, tránh vật cản trong quá trình di chuyển, robot cần phải được cài đặt gói chương trình dashgo được cung cấp bởi nhà sản xuất.
 \figurename{ \ref{fig:dashgo-architecture}} mô tả kiến trúc phần mềm trên Dashgo D1. Trong đó:
 \begin{itemize}
     \item \codeword{dashgo_description} là gói chứa các mô tả của robot, được dùng trong hiển thị Rviz và mô phỏng robot trong Gazebo.
@@ -199,11 +198,9 @@ Tuy nhiên bên cạnh đó cũng có một số hạn chế như sau:
 % - Áp dụng giải thuật phát hiện và tránh vật cản
 % - Phối hợp các tầng cảm biến và phân quyền điều khiển robot
 
-\subsection{Đặt vấn đề}
+% \subsection{Đặt vấn đề}
 
-Từ các hạn chế của robot hiện tại và với mục tiêu phát triển thành robot dịch vụ, hoạt động hiệu quả trong môi trường biến động, tác giả đề xuất phương án bổ sung thêm một tầng cảm biến để phát hiện và tránh vật cản. Hệ thống này sử dụng một số cảm biến khoảng cách hồng ngoại, chi phí thiết bị và chi tính toán thấp để dễ dàng tích hợp được vào robot, phối hợp cùng với hai tầng cảm biến có sẵn nhưng vẫn đảm bảo robot hoạt động ổn định theo thời gian thực. Robot có thể phát hiện và tránh được đa dạng vật cản hơn. Dựa trên các kết quả tham khảo ở \ref{sec:tranhVatCan_ref} tác giả đề xuất một mô hình giải thuật mới.
-
-% Từ các hạn chế của robot hiện tại, tác giả đề xuất bổ sung một hệ thống cảm biến mới. Dựa trên các kết quả tham khảo ở \ref{sec:tranhVatCan_ref} tác giả đề xuất một mô hình giải thuật mới với mục tiêu có thể tránh được vật cản ở nhiều tầng hơn, đa dạng hơn nhưng vẫn đảm bảo robot hoạt động real-time.
+Từ các hạn chế của robot hiện tại và với mục tiêu robot hoạt động hiệu quả trong môi trường biến động, tác giả đề xuất phương án bổ sung thêm một tầng cảm biến để phát hiện và tránh vật cản. Hệ thống này sử dụng một số cảm biến khoảng cách hồng ngoại, chi phí thiết bị và chi tính toán thấp để dễ dàng tích hợp được vào robot, phối hợp cùng với hai tầng cảm biến có sẵn nhưng vẫn đảm bảo robot hoạt động ổn định theo thời gian thực. Robot có thể phát hiện và tránh được đa dạng vật cản hơn. Dựa trên các kết quả tham khảo ở \ref{sec:tranhVatCan_ref} tác giả đề xuất một mô hình giải thuật mới.
 
 \subsection{Phần cứng}
 
@@ -219,13 +216,13 @@ Từ các hạn chế của robot hiện tại và với mục tiêu phát tri�
 %     \label{fig:components}
 % \end{figure}
 
-Phần cứng gồm một hệ thống cảm biến hồng ngoại IR Sharp GP2Y0A21YK0F và mạch Arduino Mega 2560 (\figurename{ \ref{fig:workflow-dataProcessing}}).
+Hệ thống gồm một số cảm biến hồng ngoại IR Sharp GP2Y0A21YK0F và mạch Arduino Mega 2560. Vị trí các cảm biến được bố trí như \figurename{ \ref{fig:IR_layout}}.
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.7\linewidth]{figures/IR_layout.png}
 	\caption{Sơ đồ bố trí cảm biến}
-	\label{fig:IR_layout.png}
+	\label{fig:IR_layout}
 \end{figure}
 
 \begin{figure}[htbp]
@@ -235,12 +232,9 @@ Phần cứng gồm một hệ thống cảm biến hồng ngoại IR Sharp GP2Y
     \label{fig:dead-reckoning}
 \end{figure}
 
-Hệ thống bao gồm 10 cảm biến khoảng cách hồng ngoại được bố trí như \figurename{ \ref{fig:IR_layout.png}}.
-%  Có 7 cảm biến ở phía trước robot và 3 cảm biến ở phía sau robot.
 Trong quá trình di chuyển, robot có thể tiến và lùi vì vậy cần phải đặt cảm biến ở cả trước và phía sau robot.
 Robot sử dụng hai bánh dẫn động chính và di chuyển trên mặt phẳng, do vậy chuyển động của robot được quy về hai thông số vận tốc dài $v$ và vận tốc góc $\omega$ theo phương pháp ước tính trạng thái robot dead-reckoning Hình \ref{fig:dead-reckoning} \cite{pyo2017ros}.
-Do đó tác giả đề xuất phương án mới đặt cảm biến dày hơn ở khu vực chính giữa và thưa ra hai bên như \figurename{ \ref{fig:IR_layout.png}}.
-
+Do đó tác giả đề xuất phương án mới đặt cảm biến dày hơn ở khu vực chính giữa và thưa ra hai bên như \figurename{ \ref{fig:IR_layout}}.
 
 \subsection{Xử lý dữ liệu cảm biến}
 
@@ -277,7 +271,6 @@ Mối quan hệ giữa điện áp ra và khoảng cách của module cảm bi�
 \end{figure}
 
 Mạch Arduino Mega sẽ đọc tín hiệu điện trả về từ các cảm biến IR mỗi khi có lệnh yêu cầu từ Raspberry Pi. Mỗi chân dữ liệu của cảm biến kết nối với chân Analog input trên mạch Arduino để đọc dữ liệu điện áp thông qua ADC 8 bit.
-
 Trên Raspberry Pi, {\tt node ir\_driver} sẽ nhận các dữ liệu ADC của các cảm biến từ Arduino. \figurename{ \ref{fig:irSharp-vol-distance}} cho ta mối liên hệ giữa điện áp và khoảng cách của cảm biến SHARP GP2Y0A21YK0F. Tuy nhiên, đây là đồ thị một đường cong không được biểu diễn bởi một hàm toán học cụ thể. Phương pháp được sử dụng là dùng thí nghiệm đo với giá trị điện áp và khoảng cách tương ứng. Sau đó nội suy kết quả thí nghiệm thành một hàm toán học gần đúng. Trong luận văn này, sử dụng công thức \ref{equa:ADC2Vol} và \ref{equa:Vol2Distance} \footnote{\url{https://github.com/guillaume-rico/SharpIR}} và kiểm nghiệm thấy kết quả khá chính xác (tại \ref{sub:DanhgiaCBIR})
 
 \begin{equation}
@@ -318,7 +311,8 @@ Sau đó dùng bộ lọc trung bình cộng để lấy trung bình cộng \ref
 
 Tác giả đề xuất sử dụng hai giải thuật để điều khiển robot tránh vật cản sử dụng tầng cảm biến hồng ngoại. Định nghĩa hai vùng phát hiện vật cản. Vùng B và vùng U như \figurename{ \ref{fig:arg-obstacle-area}}. Chúng ta đặt mức độ ưu tiên khác nhau cho từng vùng. Đặt cờ C1, C2 lần lượt thể hiện thuật toán phản ứng ở vùng B và vùng U.
 
-\textbf{Vùng khẩn cấp U} xác định bằng một đường tròn bán kính ${R}_{U}$ từ tâm của robot. Vùng này thể hiện vùng nguy hiểm, khi phát hiện có vật cản nằm trong vùng này nếu robot có lệnh di chuyển tiến hoặc lùi thì sẽ dừng lại, di chuyển robot lùi/tiến để tránh khỏi vật cản, đồng thời phát âm thanh để thông báo có vật cản cho đến khi không còn vật cản trong vùng này.
+\textbf{Vùng khẩn cấp U}:
+Vùng này thể hiện vùng nguy hiểm, được xác định bằng một đường tròn bán kính ${R}_{U}$ từ tâm của robot. Khi phát hiện có vật cản nằm trong vùng này nếu robot có lệnh di chuyển tiến hoặc lùi thì sẽ dừng lại, di chuyển robot lùi/tiến để tránh khỏi vật cản, đồng thời phát âm thanh để thông báo có vật cản cho đến khi không còn vật cản trong vùng này.
 \begin{figure}[]
     \centering
     \begin{tikzpicture}[node distance=2cm]
@@ -341,36 +335,36 @@ Tác giả đề xuất sử dụng hai giải thuật để điều khiển rob
         % \draw [arrow] (dec2) -- node[anchor=east] {Sai}(dec3);
         \draw [arrow] (dec1) -- node[anchor=east] {Đúng}(0,-3.5) -| (dec3);
     \end{tikzpicture}
-    \caption{Giải thuật với vùng khẩn cấp}
+    \caption{Sơ đồ giải thuật vùng khẩn cấp U}
     \label{flowchart-urgent}
 \end{figure}
 
-\textbf{Bong bóng phản ứng B}
-Trên cơ sở tham khảo \cite{Susnea2009} Thuật toán bong bóng phản ứng xác định một đường bao phía trước robot, đường bao này được làm mới sau mỗi chu kì ${\Delta}{t}$, kích thước của đường bao phụ thuộc vào trọng số tương ứng với mỗi vị trí cảm biến và phụ thuộc vào tốc độ di chuyển của robot.
-
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.6\linewidth]{figures/BB-argorithm.png}
-    \caption{Giải thuật tránh vật cản bằng bong bóng phản ứng}
+    \includegraphics[width=0.4\linewidth]{figures/BB-argorithm.png}
+    \caption{Hình dạng bong bóng phản ứng}
     \label{fig:BB-argorithm}
 \end{figure}
 
-Hình dạng bong bóng phản ứng như \figurename{ \ref{fig:BB-argorithm} cập nhật theo công thức \ref{equa:BB-update}. Trong đó $bb[i]$ là kích thước bong bóng tại vị trí cảm biến thứ i, $K_i$ là hệ số, $V_t$ là vận tốc dài của robot tại thời điểm t $\Delta_t$ là khoảng thời gian giữa 2 lần cập nhật.
-Thuật toán phải đảm robot có thể di chuyển tự do trong khoảng thời gian $\Delta_t$ mà không va chạm với vật cản.
+\begin{figure}[htbp]
+    \centering
+    \subfloat[]{\includegraphics[width=0.75\linewidth]{figures/IR_BB-avoidance.png}} \\
+    \subfloat[]{\includegraphics[width=0.5\linewidth]{figures/BB_chart.png}}
+    \caption{Giải thuật tránh vật cản bằng bong bóng phản ứng}
+    \label{fig:BB-avoidance}
+\end{figure}
+
+\textbf{Bong bóng phản ứng B}:
+Trên cơ sở tham khảo \cite{Susnea2009}, thuật toán bong bóng phản ứng xác định một đường bao phía trước robot, có hình dạng như trong Hình \ref{fig:BB-argorithm}, kích thước đường bao được làm mới sau mỗi chu kì ${\Delta}{t}$, phụ thuộc vào vị trí cảm biến và vận tốc di chuyển của robot theo công thức \ref{equa:BB-update}. Trong đó $bb[i]$ là kích thước bong bóng tại vị trí cảm biến thứ i, $K_i$ là hệ số, $V_t$ là vận tốc dài của robot tại thời điểm t, $\Delta_t$ là khoảng thời gian giữa 2 lần cập nhật.
+Kích thước đường bao là phạm vi đảm bảo robot có thể di chuyển tự do trong khoảng thời gian $\Delta_t$ mà không va chạm với vật cản.
 
 \begin{equation}
     bb[i] = K_i*V_t*\Delta_t
     \label{equa:BB-update}
 \end{equation}
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\linewidth]{figures/IR_BB-avoidance.png}
-    \caption{Giải thuật tránh vật cản bằng bong bóng động}
-    \label{fig:BB-avoidance}
-\end{figure}
-
-\figurename{ \ref{fig:BB-avoidance}} mô tả robot di chuyển từ vị trí A tới đích G với quỹ đạo được tính toán theo đường màu đỏ. Tuy nhiên, trên quá trình di chuyển, tại vị trí gặp vật cản robot thực hiện quay mình để tránh vật cản, sau đó phần điều hướng trong robot lại tính lại đường đi tới đích (đường màu xanh).
+\figurename{ \ref{fig:BB-avoidance}}a mô tả robot di chuyển từ vị trí A tới đích G với quỹ đạo được tính toán dự kiến theo đường nét đứt. Tuy nhiên, trên quá trình di chuyển, đến vị trí B, robot phát hiện thấy vật cản. Giá trị đo được của cảm biến và giá trị bong bóng phản ứng tại điểm B được mô tả trong biểu đồ Hình \ref{fig:BB-avoidance}b.
+% trí gặp vật cản robot thực hiện quay mình để tránh vật cản, sau đó phần điều hướng trong robot lại tính lại đường đi tới đích (đường màu xanh).
 
 \subsection{Phối hợp phân mức điều khiển}
 Robot có nhiều chương trình khác nhau có thể tác động đến việc di chuyển của nó. Ví dụ trong phần lớn thời gian robot di chuyển dưới sự điều khiển của chương trình \codeword{navigation}, khi cần điều khiển bằng tay, robot lại chạy dưới sự điều khiển của chương trình \codeword{teleop}, khi gặp vật cản được phát hiện bởi cảm biến sonar, robot phản ứng lại. Như trường hợp đơn giản vừa rồi có tới ba tiến trình cùng đồng thời điều khiển robot.
@@ -482,7 +476,7 @@ Thực hiện đánh giá độ chính xác của cảm biến khoảng cách h�
     \label{fig:chart-IR-N-errorbar}
 \end{figure}
 
-Tác giả áp dụng bộ lọc trung bình cộng theo Công thức \ref{equa:Med_filter} để giảm nhiễu và sai số trong kết quả đo. Tuy nhiên, trong thực tế, robot di chuyển theo thời gian thực, do đó số lần lấy mẫu cho một lần đo N bị giới hạn. Biểu đồ Hình \ref{chart:IR-eval-NumSample} đánh giá sai số lớn nhất với các giá trị N khác nhau. Hình \ref{fig:chart-IR-N-errorbar} thể hiện mức độ hội tụ của kết quả đo tương ứng với các giá trị N khác nhau. Qua đây chúng ta có thể thấy khi tăng N thì sai số trong phép đo càng giảm và giá trị đo càng hội tụ. Tuy nhiên, để đảm bảo robot cập nhật kết quả đo theo thời gian thực, tác giả chọn N = 10 tương ứng với tần số cập nhật kết quả đo là 2 lần/giây.
+Tác giả áp dụng bộ lọc trung bình cộng (công thức \ref{equa:Med_filter}) để giảm nhiễu và sai số trong kết quả đo. Tuy nhiên, trong thực tế, robot di chuyển theo thời gian thực, do đó số lần lấy mẫu cho một lần đo N bị giới hạn. Biểu đồ Hình \ref{chart:IR-eval-NumSample} đánh giá sai số lớn nhất với các giá trị N khác nhau. Hình \ref{fig:chart-IR-N-errorbar} thể hiện mức độ hội tụ của kết quả đo tương ứng với các giá trị N khác nhau. Qua đây chúng ta có thể thấy khi tăng N thì sai số trong phép đo càng giảm và giá trị đo càng hội tụ. Tuy nhiên, để đảm bảo robot cập nhật kết quả đo theo thời gian thực, tác giả chọn N = 10 tương ứng với tần số cập nhật kết quả đo là 2 lần/giây.
 
 %============================================================
 \subsection{Đánh giá giải thuật điều khiển tích hợp cảm biến}
