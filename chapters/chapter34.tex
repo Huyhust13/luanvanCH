@@ -80,7 +80,7 @@ Cảm biến tích hợp một động cơ để quay quét mắt laser ${360}^{
 Cảm biến này được sử dụng cho việc tạo bản đồ, điều hướng và tránh vật cản.
 
 
-\subsection{Hệ thống phần mềm}
+\subsection{Hệ thống phần mềm} \label{sub:software-architecture}
 %       - Cấu trúc phần mềm: Linux-> ROS-> Package -> Subpackage
 %       - Quy trình thực hiện một ứng dụng di chuyển tới các vị trí xác định trong văn phòng: Tạo bản đồ: gmapping -> Di chuyển trong bản đồ, dùng rviz (giống Hand-on)
 
@@ -139,14 +139,23 @@ $ cd dashgo_nav/maps
 $ rosrun map_server map_saver -f <Ten ban do>
 \end{lstlisting}
 
+\begin{figure}[htbp]
+    \centering
+    \subfloat[]{\includegraphics[width=0.75\linewidth]{figures/RB_mapping_start.jpg}}
+    \hspace{8pt}
+    \subfloat[]{\includegraphics[width=0.75\linewidth]{figures/RB_mapping_end.jpg}}
+    \caption[Robot đang tạo bảo đồ thể hiện trên Rviz]{Robot đang tạo bảo đồ thể hiện trên Rviz. Hình a thể hiện lúc bắt đầu tạo bản đồ, hình b là sau khi quét bản đồ xong.}
+    \label{fig:mapping}
+\end{figure}
+
 \textbf{Điều hướng:} Chương trình này sử dụng bản đồ đã được lưu, sử dụng thuật toán amcl để định vị và điều hướng trong bản đồ đã biết.
 \begin{lstlisting}
 $ roslaunch dashgo_nav navigation.launch
 \end{lstlisting}
 
-Bật Rviz:
+Bật Rviz để xem trên bản đồ và thực hiện một số thao tác điều khiển cũng như theo dõi robot:
 \begin{lstlisting}
-$ roslaunch dashgo_nav navigation.launch
+$ roslaunch dashgo_rviz view_navigation.launch
 \end{lstlisting}
 %TODO: Thêm hình ảnh rviz lúc di chuyển
 Trên giao diện Rviz, chúng ta sử dụng công cụ \codeword{2D Pose Estimate} để định vị lại vị trí của robot trong bản đồ bằng tay.
@@ -154,21 +163,15 @@ Bởi vì khi mới khởi tạo, robot chưa có đủ thông tin để tự đ
 
 \begin{figure}[htbp]
     \centering
-    \subfloat[]{\includegraphics[width=0.45\linewidth]{figures/RB_mapping.png}}
-    \subfloat[]{\includegraphics[width=0.45\linewidth]{figures/RB_mapping02.png}}
-    \caption{Robot đang tạo bảo đồ thể hiện trên Rviz}
-    \label{fig:mapping}
-\end{figure}
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.6\linewidth]{figures/RB_navigation.png}
+    \includegraphics[width=0.75\linewidth]{figures/RB_navi_in_map.jpg}
     \caption{Robot di chuyển tới đích trong bản đồ}
     \label{fig:navigation}
 \end{figure}
 
 Hình \ref{fig:mapping} thể hiện quá trình tạo bản đồ của robot.
 Hình \ref{fig:navigation} thể hiện robot đang di chuyển tới vị trí đích xác định trong bản đồ. Đường màu xanh lá là đường đi dự kiến được tính toán dựa trên bản đồ giá trị (costmap).
+Để di chuyển tới vị trí đích xác định trong bản đồ. Robot sẽ dựa vào bản đồ toàn cục để tính được một quỹ đạo di chuyển với chi phí di chuyển thấp nhất từ vị trí đang đứng tới vị trí đích.
+Đồng thời, một bản đồ địa phương là một ô lưới quanh robot. Trong bản đồ địa phương này, robot sẽ sử dụng tín hiệu từ các cảm biến để đánh dấu vật cản vào bản đồ để tránh vật cản đó.
 
 \subsection{Đánh giá hoạt động của robot}
 %FIXME: Đánh giá thêm
@@ -299,7 +302,7 @@ Sau khi tính được khoảng cách của các cảm biến sẽ {\tt publish}
 
 Sau đó dùng bộ lọc trung bình cộng để lấy trung bình cộng \ref{equa:Med_filter} của N lần đo để giảm tác động của nhiễu. Để đảm bảo hệ thống vừa hoạt động được theo thời gian thực và vừa đảm bảo độ chính xác, tin cậy, tác giả chọn N = 10 với tần số cập nhật 2 lần/giây (Chi tiết tại mục \ref{sub:DanhgiaCBIR})
 
-\subsection{Trình bày giải thuật}
+\subsection{Trình bày giải thuật} \label{sub:IR-algorithm}
 %TODO: Trình bày giải thuật điều khiển 2 mức: bubble boudary bên ngoài và vòng tròn nguy cấp bên trong. Tuy nhiên phần này chưa điều chỉnh thông số thuật toán nên
 
 \begin{figure}[htbp]
@@ -309,7 +312,7 @@ Sau đó dùng bộ lọc trung bình cộng để lấy trung bình cộng \ref
     \label{fig:arg-obstacle-area}
 \end{figure}
 
-Tác giả đề xuất sử dụng hai giải thuật để điều khiển robot tránh vật cản sử dụng tầng cảm biến hồng ngoại. Định nghĩa hai vùng phát hiện vật cản. Vùng B và vùng U như \figurename{ \ref{fig:arg-obstacle-area}}. Chúng ta đặt mức độ ưu tiên khác nhau cho từng vùng. Đặt cờ C1, C2 lần lượt thể hiện thuật toán phản ứng ở vùng B và vùng U.
+Tác giả đề xuất sử dụng phối hợp hai giải thuật để điều khiển robot tránh vật cản sử dụng tầng cảm biến hồng ngoại. Định nghĩa hai vùng phát hiện vật cản. Vùng B và vùng U như \figurename{ \ref{fig:arg-obstacle-area}}. Chúng ta đặt mức độ ưu tiên khác nhau cho từng vùng, với mức ưu tiên áp dụng giải thuật vùng U cao hơn vùng B. Chi tiết giải thuật được mô tả như sau:
 
 \textbf{Vùng khẩn cấp U}:
 Vùng này thể hiện vùng nguy hiểm, được xác định bằng một đường tròn bán kính ${R}_{U}$ từ tâm của robot. Khi phát hiện có vật cản nằm trong vùng này nếu robot có lệnh di chuyển tiến hoặc lùi thì sẽ dừng lại, di chuyển robot lùi/tiến để tránh khỏi vật cản, đồng thời phát âm thanh để thông báo có vật cản cho đến khi không còn vật cản trong vùng này.
@@ -363,16 +366,22 @@ Kích thước đường bao là phạm vi đảm bảo robot có thể di chuy�
     \label{equa:BB-update}
 \end{equation}
 
-\figurename{ \ref{fig:BB-avoidance}}a mô tả robot di chuyển từ vị trí A tới đích G với quỹ đạo được tính toán dự kiến theo đường nét đứt. Tuy nhiên, trên quá trình di chuyển, đến vị trí B, robot phát hiện thấy vật cản. Giá trị đo được của cảm biến và giá trị bong bóng phản ứng tại điểm B được mô tả trong biểu đồ Hình \ref{fig:BB-avoidance}b.
+\figurename{ \ref{fig:BB-avoidance}}a mô tả một trường hợp hoạt động của thuật toán tránh vật cản bằng thuật toán bong bóng phản ứng. Robot di chuyển từ vị trí A tới đích G với quỹ đạo được chương trình \codeword{slam_gmapping} tính toán theo đường nét đứt. Tuy nhiên, đến vị trí B, robot phát hiện thấy vật cản mà Lidar không phát hiện ra được. Giá trị đo được của cảm biến và giá trị bong bóng phản ứng tại điểm B được mô tả trong biểu đồ Hình \ref{fig:BB-avoidance}b. Có hai cảm biến tại vị trí góc -10 và -25 có khoảng cách đo được nhỏ hơn giá trị của bong bóng phản ứng, do đó đánh dấu 2 vị trí này có vật cản. Robot xác định có xuất hiện vật cản tại phía trước, bên phải, do đó, chân đế của robot được ra lệnh giảm vận tốc và đồng thời quay trái. Vì vị trí và hướng của robot lúc này đã lệch khỏi đường đi dự kiến ban đầu, do đó chương trình \codeword{slam_gmapping} tính toán lại quỹ đạo mới di chuyển tới đích, là đường nét liền màu xanh.
 % trí gặp vật cản robot thực hiện quay mình để tránh vật cản, sau đó phần điều hướng trong robot lại tính lại đường đi tới đích (đường màu xanh).
 
-\subsection{Phối hợp phân mức điều khiển}
-Robot có nhiều chương trình khác nhau có thể tác động đến việc di chuyển của nó. Ví dụ trong phần lớn thời gian robot di chuyển dưới sự điều khiển của chương trình \codeword{navigation}, khi cần điều khiển bằng tay, robot lại chạy dưới sự điều khiển của chương trình \codeword{teleop}, khi gặp vật cản được phát hiện bởi cảm biến sonar, robot phản ứng lại. Như trường hợp đơn giản vừa rồi có tới ba tiến trình cùng đồng thời điều khiển robot.
+\section{Phối hợp điều khiển robot}
+\subsection{Tích hợp vào bản đồ địa phương}
+
+Hệ thống điều khiển di chuyển cho robot bao gồm hai gói chương trình chính là \codeword{dashgo_driver} chứa các chương trình điều khiển chân đế di chuyển và \codeword{dashgo_nav} chứa các chương trình tạo bản đồ, tính toán quỹ đạo di chuyển... Chi tiết về điều khiển di chuyển robot được trình bày trong mục \ref{sub:software-architecture}.
+Trong phần này, sau khi phát triển xong hệ thống phát hiện và điều khiển tránh vật cản bằng cảm biến hồng ngoại, tác giả sẽ tích hợp vào trong hệ thống điều khiển robot. Các dữ liệu từ cảm biến hồng ngoại khi phát hiện vật sẽ được đánh dấu vào trong bản đồ giá trị địa phương. Đồng thời khi vật cản nằm trong vùng bong bóng phản ứng B hoặc vùng khẩn cấp U, chương trình điều khiển sẽ điều khiển theo thuật toán được trình bày trong \ref{sub:IR-algorithm}. Vì vậy, sau khi phản ứng với vật cản, trên bản đồ đã cập nhật vị trí của vật cản nên chương trinh tạo quỹ đạo mới sẽ đưa robot tránh khỏi vật cản được phát hiện bởi hệ thống cảm biến hồng ngoại.
+
+\subsection{Phân quyền điều khiển}
+Trong một vài trường hợp, có thể có nhiều chương trình, nhiều thuật toán được sử dụng để thực hiện cùng một tác vụ nào đó. Trong robot tự hành Dashgo D1, có nhiều chương trình khác nhau có thể tác động đến việc di chuyển của nó. Ví dụ trong phần lớn thời gian robot di chuyển dưới sự điều khiển của chương trình \codeword{slam_navigation}, khi có tín hiệu điều khiển bằng tay từ bàn phím, robot lại chạy dưới sự điều khiển của chương trình \codeword{teleop}, khi gặp vật cản được phát hiện bởi cảm biến sonar, robot phản ứng dừng lại hoặc quay trái/phải để tránh vật cản. Như trường hợp đơn giản vừa rồi có tới ba tiến trình cùng đồng thời điều khiển robot.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\linewidth]{figures/phanquyen-goc.png}
-    \caption{Các topic điều khiển robot}
+    \caption{Sơ đồ điều khiển chân để robot}
     \label{fig:phanquyen-goc}
 \end{figure}
 
@@ -483,36 +492,62 @@ Tác giả áp dụng bộ lọc trung bình cộng (công thức \ref{equa:Med_
 %------------------------------------------------------------
 % \subsubsection*{Phương pháp đánh giá}
 % \subsubsection*{Kết quả đạt được}
-
+% \subsubsection*{Robot phản ứng với vật cản tĩnh}
 
 Ưu điểm của hệ thống tránh vật cản bằng phối hợp nhiều tầng cảm biến là robot có thể di chuyển an toàn được trong các môi trường với đa dạng đối tượng hơn như bàn, ghế, các đối tượng mà bài toán định vị dẫn đường 2D chỉ với một tầng cảm biến có thể không đáp ứng được khi vật cản không nằm trong mặt phẳng quét của LIDAR.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\linewidth]{figures/RB_scenario_ir_detectingObstacle.png}
+    \includegraphics[width=0.75\linewidth]{figures/RB_scenario_ir_detectingObstacle.png}
     \caption{Robot với vật cản có biên dạng biến đổi theo chiều cao}
     \label{fig:scenario_ir_detectedObstacle}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
-    \subfloat[]{\includegraphics[width=0.75\linewidth]{figures/RB_withIR_ObstacleDetected.png}}
+    \subfloat[]{\includegraphics[width=0.75\linewidth]{figures/RB_navi_without_IR.jpg}}
     \hspace{8pt}
-    \subfloat[]{\includegraphics[width=0.75\linewidth]{figures/RB_withIR_navigation.png}}
-    \caption{Hệ thống cảm biến hồng ngoại phát hiện vật cản và đánh dấu vào bản đồ giá trị (costmap)}
-    \label{fig:rb_withIR_ObstacleDetected}
+    \subfloat[]{\includegraphics[width=0.75\linewidth]{figures/RB_navi_with_IR.jpg}}
+    \caption{Bản đồ thể robot phát hiện ghế xoay khi không có hệ thống cảm biến hồng ngoại (Hình a) và khi có hệ thống hồng ngoại (Hình b)}
+    \label{fig:rb_with_obstacle_in_rviz}
+\end{figure}
+
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=0.75\linewidth]{figures/RB_withoutIR_obstacleDetect.png}
+%     \caption{Trường hợp không kích hoạt lớp tránh vật cản bằng hồng ngoại}
+%     \label{fig:rb_withoutIR}
+% \end{figure}
+
+Hệ thống phát hiện và tránh được vật cản, đồng thời phối hợp với hai tầng cảm biến sẵn có trên robot là cảm biến LIDAR và cảm biến tránh vật cản bằng siêu âm. Khi xuất hiện vật cản, robot sẽ tránh theo giải thuật được mô tả tại mục \ref{sec:caitienhethongtranhvatcan} và đồng thời đánh dấu vật cản vào bản đồ cục bộ để giúp robot tạo đường đi mới mà không lặp lại đường cũ.
+
+Hình \ref{fig:scenario_ir_detectedObstacle} thể hiện một trường hợp robot đối diện với vật cản có hình dạng biến đối theo chiều cao, là ghế xoay. Đối với ghế xoay, tầng cảm biến Lidar của robot quét được vùng chỉ có trụ chống của ghế. Vì vậy với cảm biến Lidar, robot thấy ghế xoay chỉ là một vật thể rất nhỏ. Hình \ref{fig:rb_with_obstacle_in_rviz}a thể hiện trên bản đồ khi chỉ có tầng Lidar, ghế xoay được đánh dấu bằng một chấm nhỏ và khi di chuyển tới điểm đích phía trước thì robot sẽ va chạm với ghế. Khi có hệ thống cảm biến hồng ngoại tránh vật cản ở tầng cao của robot, robot sẽ phát hiện ra phía tựa lưng của ghế và đánh dấu vào bản đồ một diện tích chiếm dụng nhiều hơn (Hình \ref{fig:rb_with_obstacle_in_rviz}b). Do đó, khi cho di chuyển tới một điểm đích phía trước ghế, robot sẽ tạo đường đi tránh ra khỏi vùng được đánh dấu và không bị va chạm với ghế.
+
+Phần vật cản được đánh dấu vào bản đồ bởi cảm biến hồng ngoại không được ghi nhận vào bản đồ như một vật cố định mà được coi là một vật cản mới xuất hiện trong bản đồ. Trong Hình \ref{fig:rb_with_obstacle_in_rviz}b, chúng ta thấy đường đi toàn cục (\textit{Global Path}) đi qua phần bị đánh dấu màu xám, đây là đường đi được tính trên toàn cục dựa trên bản đồ. Tuy nhiên, đường đi thực tế của robot là theo đường đi cục bộ (\textit{Local Path}) được xác định dựa dựa trên bản đồ giá trị cục bộ (\textit{Local costmap})
+%Tuy nhiên, với hệ thống mới mà tác giả đề xuất, robot có thể phát hiện được phần biên dạng phía trên của đối tượng và đánh dấu là vật cản trong bản đồ Hình \ref{fig:rb_withIR_ObstacleDetected}. Do đó, khi cho robot di chuyển tới vị trí phía sau đối tượng, robot tạo đường đi tránh vật cản và di chuyển vòng qua nó như trong Hình \ref{fig:rb_withIR_ObstacleDetected}b.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{figures/RB_bb_urgent.png}
+    \caption{Vùng khẩn cấp U và bong bóng phản ứng B trong quá trình di chuyển của robot}
+    \label{fig:bb_urgent}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.75\linewidth]{figures/RB_withoutIR_obstacleDetect.png}
-    \caption{Trường hợp không kích hoạt lớp tránh vật cản bằng hồng ngoại}
-    \label{fig:rb_withoutIR}
+    \subfloat[]{\includegraphics[width=0.75\linewidth]{figures/RB_bb_detect_obstacle.jpg}}
+    \hspace{8pt}
+    \subfloat[]{\includegraphics[width=0.45\linewidth]{figures/RB_bb_detect_obstacle_reAct.jpg}}
+    \qquad
+    \subfloat[]{\includegraphics[width=0.45\linewidth]{figures/RB_bb_detect_obstacle_avoided.jpg}}
+    \caption{Robot phản ứng với vật cản động}
+    \label{fig:ir-detected-reaction}
 \end{figure}
 
-Tác giả đã phát triển hệ thống cảm biến hồng ngoại, phát hiện và tránh được vật cản. Đồng thời phối hợp với hai tầng cảm biến sẵn có trên robot là cảm biến LIDAR và cảm biến tránh vật cản bằng siêu âm. Khi xuất hiện vật cản, robot sẽ tránh theo giải thuật được mô tả tại mục \ref{sec:caitienhethongtranhvatcan} và đồng thời đánh dấu vật cản vào bản đồ cục bộ để giúp robot tạo đường đi mới mà không lặp lại đường cũ.
+Hình \ref{fig:bb_urgent} thể hiện giới hạn vùng khẩn cấp U và bong bóng phản ứng B trong quá trình di chuyển của robot. Trường hợp vật cản xuất hiện với tốc độ nhanh\footnote{Chưa có đánh giá nhanh như thế nào}. Trong hình \ref{fig:ir-detected-reaction}a, vật cản xuất hiện và hệ thống cảm biến hồng ngoại phát hiện có vật cản trong vùng bong bóng phản ứng ở phía trước, bên trái robot. Lúc này, chương trình điều khiển tránh vật cản bằng hệ cảm biến hồng ngoại giành lấy quyền điều khiển, thực hiện điều khiển robot giảm tốc độ, quay sang phải, đồng thời đánh dấu vật cản vào bản đồ giá trị địa phương cũng như tính toán quỹ đạo di chuyển mới cho robot. Sau quá trình đó, robot đổi hướng di chuyển và có quỹ đạo tránh được vật cản như trong Hình \ref{fig:ir-detected-reaction}c. Qua Hình \ref{fig:ir-detected-reaction} ta cũng thấy rằng giới hạn vùng bong bóng phản ứng thay đổi theo tốc độ của robot.
 
-Hình \ref{fig:scenario_ir_detectedObstacle} thể hiện một trường hợp mà robot đối diện với vật cản có hình dạng biến đối theo chiều cao. Với hệ thống tránh vật cản chỉ có lidar, robot chỉ có thể phát hiện được phần thân dưới rất bé của đối tượng như Hình \ref{fig:rb_withoutIR} chỉ phát hiện thấy một chấm tròn. Tuy nhiên, với hệ thống mới mà tác giả đề xuất, robot có thể phát hiện được phần biên dạng phía trên của đối tượng và đánh dấu là vật cản trong bản đồ Hình \ref{fig:rb_withIR_ObstacleDetected}. Do đó, khi cho robot di chuyển tới vị trí phía sau đối tượng, robot tạo đường đi tránh vật cản và di chuyển vòng qua nó như trong Hình \ref{fig:rb_withIR_ObstacleDetected}b.
+Tóm lại, trong phần này, tác giả mới đánh giá được định tính về việc phát hiện và phản ứng tránh vật cản bằng cách phối hợp thêm một tầng cảm biến hồng ngoại với một số kết quả đạt được như sau:
+Robot phát hiện được vật cản có hình dạng thay đổi theo chiều cao, vật cản ở tầng cao với chiều cao robot, đánh dấu vật cản vào bản đồ giá trị địa phương và phản ứng tránh vật cản từ vật cản tĩnh tới vật cản chuyển động vừa phải.
 
 Tuy nhiên, hệ thống còn có một số điểm hạn chế như:
 \begin{itemize}
@@ -533,15 +568,16 @@ Tuy nhiên, hệ thống còn có một số điểm hạn chế như:
 
 \section{Kết luận}
                 %------------------
-% Tóm tắt lại luận văn
+% Tóm tắt lại kết quả luận văn
 
-Như vậy, trong luận văn này, tác giả đã đề cập tới các vấn đề, bài toán trong robot tự hành và một số đóng góp của tác giả với một số kết quả chính như sau:
+Như vậy, sau khi làm xong luận văn này, đã đạt được một số kết quả như sau:
 \begin{itemize}
-    \item Giới thiệu Robot tự hành, ứng dụng và các bài toán
-    \item Đề xuất phương pháp nâng cao độ an toàn trong di chuyển của robot bằng cách thêm một tầng cảm biến khoảng cách hồng ngoại. Tham khảo và đề xuất giải thuật điều khiển robot với nhiều tầng cảm biến.
-    \item Thực hiện thí nghiệm và đánh giá hiệu quả mà phương pháp mang lại.
+    \item Làm chủ được hệ thống điều khiển robot tự hành thông minh bằng SLAM và ứng dụng hệ điều hành robot (ROS)
+    \item Đề xuất phương pháp mới giúp robot tránh vật cản đa dạng hơn
+    \item Đánh giá độ chính xác của cảm biến hồng ngoại, thấy rằng cảm biến hồng ngoại IR Sharp GP2Y0A21YK0F có tần số thấp, độ chính xác và ổn định ở mức vừa phải, làm hạn chế tốc độ di chuyển có thể tránh được vật cản của robot.
+    \item Đề xuất hai giải thuật tránh vật cản bằng hệ thống cảm biến hồng ngoại, phối hợp được với hệ thống điều khiển robot và hai hệ cảm biến có sẵn trên robot.
+    \item Đánh giá định tính hiệu quả tránh vật cản của robot sau khi có hệ thống tránh vật cản mới. Robot phản ứng như mong muốn của tác giả.
 \end{itemize}
-
 
 \section{Tầm nhìn}
 % Hướng nghiên cứu tiếp theo
