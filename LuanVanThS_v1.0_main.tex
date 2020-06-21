@@ -1,4 +1,4 @@
-\documentclass[a4paper,oneside]{book}
+\documentclass[a4paper,twoside]{book}
 \usepackage[utf8]{vietnam}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -62,17 +62,18 @@
  	showstringspaces=false,
  	inputencoding=utf8}
 
-\lhead{GVHD: TS. Nguyễn Xuân Hạ}
+% \lhead{GVHD: TS. Nguyễn Xuân Hạ}
 %\rhead{Luận văn Tốt nghiệp Hệ Cao học Cơ điện tử}
 
 %  \fancyhead[RO]{\rightmark}
-\cfoot{\thepage}
+% \cfoot{\thepage}
 
 \author{Nguyễn Văn Huy}
 
 
 % ============ BEGIN =================================
 \numberwithin{equation}{chapter} %đánh số theo chương
+\pagenumbering{gobble} % Trước trang đánh số không đánh số trang
 \begin{document}
 \input{chapter0/Bia.tex}
 
@@ -81,7 +82,7 @@
 \setcounter{page}{4} % Đặt vị trí bắt đầu đếm số trang
 \newpage
 
-%\input{chapter0/LoiMoDau}
+\input{chapter0/LoiMoDau}
 %\input{chapter0/DanhMucKyHieu}
 
 \tableofcontents % chèn mục  lục
@@ -98,6 +99,8 @@
 \lfoot{Học viên: Nguyễn Văn Huy 180009- Lớp CH2018B}
 \renewcommand{\headrulewidth}{2pt} % cho header
 \renewcommand{\footrulewidth}{2pt} % cho footer
+
+% \setcounter{page}{4} % Đặt vị trí bắt đầu đếm số trang
 
 %----Nội dung---------------------------------------
 \input{chapters/chapter12}
