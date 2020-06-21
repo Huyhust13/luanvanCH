@@ -349,13 +349,6 @@ Vùng này thể hiện vùng nguy hiểm, được xác định bằng một đ
     \label{fig:BB-argorithm}
 \end{figure}
 
-\begin{figure}[htbp]
-    \centering
-    \subfloat[]{\includegraphics[width=0.75\linewidth]{figures/IR_BB-avoidance.png}} \\
-    \subfloat[]{\includegraphics[width=0.5\linewidth]{figures/BB_chart.png}}
-    \caption{Giải thuật tránh vật cản bằng bong bóng phản ứng}
-    \label{fig:BB-avoidance}
-\end{figure}
 
 \textbf{Bong bóng phản ứng B}:
 Trên cơ sở tham khảo \cite{Susnea2009}, thuật toán bong bóng phản ứng xác định một đường bao phía trước robot, có hình dạng như trong Hình \ref{fig:BB-argorithm}, kích thước đường bao được làm mới sau mỗi chu kì ${\Delta}{t}$, phụ thuộc vào vị trí cảm biến và vận tốc di chuyển của robot theo công thức \ref{equa:BB-update}. Trong đó $bb[i]$ là kích thước bong bóng tại vị trí cảm biến thứ i, $K_i$ là hệ số, $V_t$ là vận tốc dài của robot tại thời điểm t, $\Delta_t$ là khoảng thời gian giữa 2 lần cập nhật.
@@ -365,6 +358,14 @@ Kích thước đường bao là phạm vi đảm bảo robot có thể di chuy�
     bb[i] = K_i*V_t*\Delta_t
     \label{equa:BB-update}
 \end{equation}
+
+\begin{figure}[htbp]
+    \centering
+    \subfloat[]{\includegraphics[width=0.75\linewidth]{figures/IR_BB-avoidance.png}} \\
+    \subfloat[]{\includegraphics[width=0.5\linewidth]{figures/BB_chart.png}}
+    \caption{Giải thuật tránh vật cản bằng bong bóng phản ứng}
+    \label{fig:BB-avoidance}
+\end{figure}
 
 \figurename{ \ref{fig:BB-avoidance}}a mô tả một trường hợp hoạt động của thuật toán tránh vật cản bằng thuật toán bong bóng phản ứng. Robot di chuyển từ vị trí A tới đích G với quỹ đạo được chương trình \codeword{slam_gmapping} tính toán theo đường nét đứt. Tuy nhiên, đến vị trí B, robot phát hiện thấy vật cản mà Lidar không phát hiện ra được. Giá trị đo được của cảm biến và giá trị bong bóng phản ứng tại điểm B được mô tả trong biểu đồ Hình \ref{fig:BB-avoidance}b. Có hai cảm biến tại vị trí góc -10 và -25 có khoảng cách đo được nhỏ hơn giá trị của bong bóng phản ứng, do đó đánh dấu 2 vị trí này có vật cản. Robot xác định có xuất hiện vật cản tại phía trước, bên phải, do đó, chân đế của robot được ra lệnh giảm vận tốc và đồng thời quay trái. Vì vị trí và hướng của robot lúc này đã lệch khỏi đường đi dự kiến ban đầu, do đó chương trình \codeword{slam_gmapping} tính toán lại quỹ đạo mới di chuyển tới đích, là đường nét liền màu xanh.
 % trí gặp vật cản robot thực hiện quay mình để tránh vật cản, sau đó phần điều hướng trong robot lại tính lại đường đi tới đích (đường màu xanh).
@@ -481,7 +482,7 @@ Thực hiện đánh giá độ chính xác của cảm biến khoảng cách h�
 \subfloat[][]{
     \includegraphics[width = 0.45 \linewidth]{figures/chart_IReval_N20.png}
     }
-    \caption{Sai số tương ứng với N lần lấy mẫu}
+    \caption[Sai số tương ứng với N lần lấy mẫu]{Sai số tương ứng với N lần lấy mẫu. Trục hoành thể hiện giá trị thực tế cần đo, trục tung thể hiện giá trị đo được trung bình}
     \label{fig:chart-IR-N-errorbar}
 \end{figure}
 
