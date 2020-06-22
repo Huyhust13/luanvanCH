@@ -258,13 +258,13 @@ Do đó tác giả đề xuất phương án mới đặt cảm biến dày hơn
         \label{fig:irSharp-vol-distance_2}
         \includegraphics[width=0.5\linewidth]{figures/irSharp-vol-distance_2.png}
     }
-    \caption{Mối liên hệ giữa khoảng cách và điện áp}
+    \caption{Mối liên hệ giữa khoảng cách và điện áp của cảm biến IR Sharp GP2Y0A21YK0F \cite{irdatasheet}}
     \label{fig:irSharp-vol-distance}
 \end{figure}
 
 Cảm biến khoảng cách hồng ngoại là loại cảm biến sử dụng ánh sáng hồng ngoại với một đầu phát và một đầu thu. Cơ chế hoạt động của cảm biến khoảng cách hồng ngoại như \figurename{ \ref{fig:sensor_ir_distance_principle}}. Trong đó, đề LED phát tia sáng hồng ngoại, khi gặp vật cản, tia sáng sẽ bị phản xạ lại, in lên tấm PSD tại các vị trí tương ứng với góc chiếu khác nhau, tạo điện áp khác nhau từ U1 đến U2 \footnote{\url{https://home.roboticlab.eu/en/examples/sensor/ir_distance}}.
 
-Mối quan hệ giữa điện áp ra và khoảng cách của module cảm biến khoảng cách hồng ngoại IR Sharp GP2Y0A21YK0F như \figurename{ \ref{fig:irSharp-vol-distance}} \footnote{\url{www.sparkfun.com/datasheets/Components/GP2Y0A21YK.pdf}}
+Mối quan hệ giữa điện áp ra và khoảng cách của module cảm biến khoảng cách hồng ngoại IR Sharp GP2Y0A21YK0F như \figurename{ \ref{fig:irSharp-vol-distance}}
 
 \begin{figure}[htbp]
     \centering
@@ -316,30 +316,36 @@ Tác giả đề xuất sử dụng phối hợp hai giải thuật để điề
 
 \textbf{Vùng khẩn cấp U}:
 Vùng này thể hiện vùng nguy hiểm, được xác định bằng một đường tròn bán kính ${R}_{U}$ từ tâm của robot. Khi phát hiện có vật cản nằm trong vùng này nếu robot có lệnh di chuyển tiến hoặc lùi thì sẽ dừng lại, di chuyển robot lùi/tiến để tránh khỏi vật cản, đồng thời phát âm thanh để thông báo có vật cản cho đến khi không còn vật cản trong vùng này.
-\begin{figure}[]
-    \centering
-    \begin{tikzpicture}[node distance=2cm]
-        % \node (start) [startstop] {Bắt đầu};
-        \node (in1) [io] {Lấy dữ liệu cảm biến ${IR}_{i}$};
-        \node (dec1) [decision, below of=in1] {${IR}_{i} < {R}_{U}$};
-        \node (dec2) [decision, below of=dec1, aspect=2, node distance=4cm, xshift = -3cm] {$i = [0..7]$ và $v > 0$};
-        \node (dec3) [decision, below of=dec1, aspect=2, node distance=4cm, xshift = 3cm] {$i = [8..10]$ và $v < 0$};
-        % \node (dec4) [decision,text width=3.5cm, aspect=1.5, below of=dec1, node distance=3cm, xshift=5.5cm] {$i = [8..10]$ và $i = [0..7]$ và $v \neq 0$};
-        \node (proc1) [process, below of=dec2, node distance=3cm,xshift = 0cm] {Lùi + Phát âm thanh};
-        \node (proc2) [process, below of=dec3, node distance=3cm,xshift = 0cm] {Tiến + Phát âm thanh};
+% \begin{figure}[]
+%     \centering
+%     \begin{tikzpicture}[node distance=2cm]
+%         % \node (start) [startstop] {Bắt đầu};
+%         \node (in1) [io] {Lấy dữ liệu cảm biến ${IR}_{i}$};
+%         \node (dec1) [decision, below of=in1] {${IR}_{i} < {R}_{U}$};
+%         \node (dec2) [decision, below of=dec1, aspect=2, node distance=4cm, xshift = -3cm] {$i = [0..7]$ và $v > 0$};
+%         \node (dec3) [decision, below of=dec1, aspect=2, node distance=4cm, xshift = 3cm] {$i = [8..10]$ và $v < 0$};
+%         % \node (dec4) [decision,text width=3.5cm, aspect=1.5, below of=dec1, node distance=3cm, xshift=5.5cm] {$i = [8..10]$ và $i = [0..7]$ và $v \neq 0$};
+%         \node (proc1) [process, below of=dec2, node distance=3cm,xshift = 0cm] {Lùi + Phát âm thanh};
+%         \node (proc2) [process, below of=dec3, node distance=3cm,xshift = 0cm] {Tiến + Phát âm thanh};
 
-        % \draw [arrow] (start) -- (in1);
-        \draw [arrow] (in1) --  (dec1);
-        \draw [arrow] (dec1) -- (0,-3.5) -| (dec2);
-        \draw [arrow] (dec2) -- node[anchor=east] {Đúng}(proc1);
-        \draw [arrow] (dec2) --++ (-3,0) |- node[anchor=east] {Sai} (in1);
-        \draw [arrow] (dec3) -- node[anchor=east] {Đúng}(proc2);
-        \draw [arrow] (dec3) --++ (3,0) |- node[anchor=west] {Sai} (in1);
-        % \draw [arrow] (dec2) -- node[anchor=east] {Sai}(dec3);
-        \draw [arrow] (dec1) -- node[anchor=east] {Đúng}(0,-3.5) -| (dec3);
-    \end{tikzpicture}
-    \caption{Sơ đồ giải thuật vùng khẩn cấp U}
-    \label{flowchart-urgent}
+%         % \draw [arrow] (start) -- (in1);
+%         \draw [arrow] (in1) --  (dec1);
+%         \draw [arrow] (dec1) -- (0,-3.5) -| (dec2);
+%         \draw [arrow] (dec2) -- node[anchor=east] {Đúng}(proc1);
+%         \draw [arrow] (dec2) --++ (-3,0) |- node[anchor=east] {Sai} (in1);
+%         \draw [arrow] (dec3) -- node[anchor=east] {Đúng}(proc2);
+%         \draw [arrow] (dec3) --++ (3,0) |- node[anchor=west] {Sai} (in1);
+%         % \draw [arrow] (dec2) -- node[anchor=east] {Sai}(dec3);
+%         \draw [arrow] (dec1) -- node[anchor=east] {Đúng}(0,-3.5) -| (dec3);
+%     \end{tikzpicture}
+%     \caption{Sơ đồ giải thuật vùng khẩn cấp U}
+%     \label{flowchart-urgent}
+% \end{figure}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width = 0.65\linewidth]{figures/Urgent_Alg.png}
+    \caption{Giải thuật vùng khẩn cấp U}
+    \label{fig:urgent_alg}
 \end{figure}
 
 \begin{figure}[htbp]
@@ -412,22 +418,22 @@ Trong luận văn này, tác giả sử dụng \codeword{cmd_vel_mux} của \cod
 % - Đánh giá kết quả (Hiệu quả hay không, vì sao)
 %---
 
-\subsection{Kết quả của luận văn}
+% \subsection{Kết quả của luận văn}
 
-Sau quá trình nghiên cứu và làm việc, tác giả đã có một số kết quả như sau:
-\begin{itemize}
-    \item Làm chủ hệ thống điều khiển robot, tạo bản đồ và di chuyển trong bản đồ.
-    \item Phát triển hệ thống phần cứng robot. Hình \ref{fig:RB-multi-sensor-layer} là kết quả sau khi lắp hệ thống lên robot, robot có thể phát hiện và tránh vật cản bằng 3 tầng cảm biến siêu âm, lidar và hồng ngoại.
-    \item Đề xuất và thử nghiệm hệ thống tránh vật cản bằng cảm biến đa tầng, bao gồm bố trí cảm biến, xử lý tín hiệu đo, giải thuật điều khiển.
-    \item Nghiên cứu xây dựng hệ thống điều khiển phân quyền nhiều mức ưu tiên cho robot.
-\end{itemize}
+% Sau quá trình nghiên cứu và làm việc, tác giả đã có một số kết quả như sau:
+% \begin{itemize}
+%     \item Làm chủ hệ thống điều khiển robot, tạo bản đồ và di chuyển trong bản đồ.
+%     \item Phát triển hệ thống phần cứng robot. Hình \ref{fig:RB-multi-sensor-layer} là kết quả sau khi lắp hệ thống lên robot, robot có thể phát hiện và tránh vật cản bằng 3 tầng cảm biến siêu âm, lidar và hồng ngoại.
+%     \item Đề xuất và thử nghiệm hệ thống tránh vật cản bằng cảm biến đa tầng, bao gồm bố trí cảm biến, xử lý tín hiệu đo, giải thuật điều khiển.
+%     \item Nghiên cứu xây dựng hệ thống điều khiển phân quyền nhiều mức ưu tiên cho robot.
+% \end{itemize}
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.75\linewidth]{figures/rb_Multi_Sensor_layer.png}
-    \caption{Ba tầng cảm biến phát hiện vật cản trên robot}
-    \label{fig:RB-multi-sensor-layer}
-\end{figure}
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=0.75\linewidth]{figures/rb_Multi_Sensor_layer.png}
+%     \caption{Ba tầng cảm biến phát hiện vật cản trên robot}
+%     \label{fig:RB-multi-sensor-layer}
+% \end{figure}
 
 \subsection{Đánh giá độ chính xác cảm biến khoảng cách hồng ngoại}
 \label{sub:DanhgiaCBIR}
@@ -482,7 +488,7 @@ Thực hiện đánh giá độ chính xác của cảm biến khoảng cách h�
 \subfloat[][]{
     \includegraphics[width = 0.45 \linewidth]{figures/chart_IReval_N20.png}
     }
-    \caption[Sai số tương ứng với N lần lấy mẫu]{Sai số tương ứng với N lần lấy mẫu. Trục hoành thể hiện giá trị thực tế cần đo, trục tung thể hiện giá trị đo được trung bình}
+    \caption[Sai số tương ứng với N lần lấy mẫu]{Sai số tương ứng với N lần lấy mẫu. Trục hoành thể hiện giá trị thực tế cần đo, trục tung thể hiện giá trị đo được trung bình (đơn vị: mét)}
     \label{fig:chart-IR-N-errorbar}
 \end{figure}
 
@@ -506,10 +512,10 @@ Tác giả áp dụng bộ lọc trung bình cộng (công thức \ref{equa:Med_
 
 \begin{figure}[htbp]
     \centering
-    \subfloat[]{\includegraphics[width=0.75\linewidth]{figures/RB_navi_without_IR.jpg}}
+    \subfloat[]{\includegraphics[width=\linewidth]{figures/RB_navi_without_IR.jpg}}
     \hspace{8pt}
-    \subfloat[]{\includegraphics[width=0.75\linewidth]{figures/RB_navi_with_IR.jpg}}
-    \caption{Bản đồ thể robot phát hiện ghế xoay khi không có hệ thống cảm biến hồng ngoại (Hình a) và khi có hệ thống hồng ngoại (Hình b)}
+    \subfloat[]{\includegraphics[width=\linewidth]{figures/RB_navi_with_IR.jpg}}
+    \caption{So sánh bản đồ giữa hai trường hợp: a) không có hệ thống IR; b) có hệ thống IR}
     \label{fig:rb_with_obstacle_in_rviz}
 \end{figure}
 
@@ -529,24 +535,25 @@ Phần vật cản được đánh dấu vào bản đồ bởi cảm biến h�
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.9\linewidth]{figures/RB_bb_urgent.png}
+    \includegraphics[width=\linewidth]{figures/RB_bb_urgent.png}
     \caption{Vùng khẩn cấp U và bong bóng phản ứng B trong quá trình di chuyển của robot}
     \label{fig:bb_urgent}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
-    \subfloat[]{\includegraphics[width=0.6\linewidth]{figures/RB_bb_detect_obstacle.jpg}}
+    \subfloat[]{\includegraphics[width=\linewidth]{figures/RB_bb-urgent-obstacle-avoid.PNG}}
     \hspace{8pt}
-    \subfloat[]{\includegraphics[width=0.6\linewidth]{figures/RB_bb_detect_obstacle_reAct.jpg}}
-    % \qquad
-    \hspace{8pt}
-    \subfloat[]{\includegraphics[width=0.6\linewidth]{figures/RB_bb_detect_obstacle_avoided.jpg}}
+    \subfloat[]{\includegraphics[width=\linewidth]{figures/RB_bb-urgent-obstacle-avoided.PNG}}
+    % % \qquad
+    % \hspace{8pt}
+    % \subfloat[]{\includegraphics[width=0.6\linewidth]{figures/RB_bb_detect_obstacle_avoided.jpg}}
+    % \includegraphics[width=\linewidth]{figures/RB_bb-urgent-obstacle-avoid.PNG}
     \caption{Robot phản ứng với vật cản động}
     \label{fig:ir-detected-reaction}
 \end{figure}
 
-Hình \ref{fig:bb_urgent} thể hiện giới hạn vùng khẩn cấp U và bong bóng phản ứng B trong quá trình di chuyển của robot. Trường hợp vật cản xuất hiện với tốc độ nhanh\footnote{Chưa có đánh giá nhanh như thế nào}. Trong hình \ref{fig:ir-detected-reaction}a, vật cản xuất hiện và hệ thống cảm biến hồng ngoại phát hiện có vật cản trong vùng bong bóng phản ứng ở phía trước, bên trái robot. Lúc này, chương trình điều khiển tránh vật cản bằng hệ cảm biến hồng ngoại giành lấy quyền điều khiển, thực hiện điều khiển robot giảm tốc độ, quay sang phải, đồng thời đánh dấu vật cản vào bản đồ giá trị địa phương cũng như tính toán quỹ đạo di chuyển mới cho robot. Sau quá trình đó, robot đổi hướng di chuyển và có quỹ đạo tránh được vật cản như trong Hình \ref{fig:ir-detected-reaction}c. Qua Hình \ref{fig:ir-detected-reaction} ta cũng thấy rằng giới hạn vùng bong bóng phản ứng thay đổi theo tốc độ của robot.
+Hình \ref{fig:bb_urgent} thể hiện giới hạn vùng khẩn cấp U và bong bóng phản ứng B trong quá trình di chuyển của robot. Trường hợp vật cản xuất hiện với tốc độ nhanh\footnote{Chưa có đánh giá định lượng}. Trong Hình \ref{fig:ir-detected-reaction}a, vật cản xuất hiện và hệ thống cảm biến hồng ngoại phát hiện có vật cản trong vùng bong bóng phản ứng ở phía trước, bên trái robot. Lúc này, chương trình điều khiển tránh vật cản bằng hệ cảm biến hồng ngoại giành lấy quyền điều khiển, thực hiện điều khiển robot giảm tốc độ, quay sang phải, đồng thời đánh dấu vật cản vào bản đồ giá trị địa phương cũng như tính toán quỹ đạo di chuyển mới cho robot. Hình \ref{fig:ir-detected-reaction}b thể hiện sau khi robot phản ứng tránh vật cản và bắt đầu di chuyển theo quỹ đạo mới tránh vật cản. So sánh hai hình trên ta cũng thấy biên dạng vùng bong bóng phản ứng khác nhau, thể hiện sự thay đổi theo vật tốc của bong bóng phản ứng.
 
 Tóm lại, trong phần này, tác giả mới đánh giá được định tính về việc phát hiện và phản ứng tránh vật cản bằng cách phối hợp thêm một tầng cảm biến hồng ngoại với một số kết quả đạt được như sau:
 Robot phát hiện được vật cản có hình dạng thay đổi theo chiều cao, vật cản ở tầng cao với chiều cao robot, đánh dấu vật cản vào bản đồ giá trị địa phương và phản ứng tránh vật cản từ vật cản tĩnh tới vật cản chuyển động vừa phải.
@@ -575,10 +582,10 @@ Tuy nhiên, hệ thống còn có một số điểm hạn chế như:
 Như vậy, sau khi làm xong luận văn này, đã đạt được một số kết quả như sau:
 \begin{itemize}
     \item Làm chủ được hệ thống điều khiển robot tự hành thông minh bằng SLAM và ứng dụng hệ điều hành robot (ROS)
-    \item Đề xuất phương pháp mới giúp robot tránh vật cản đa dạng hơn
-    \item Đánh giá độ chính xác của cảm biến hồng ngoại, thấy rằng cảm biến hồng ngoại IR Sharp GP2Y0A21YK0F có tần số thấp, độ chính xác và ổn định ở mức vừa phải, làm hạn chế tốc độ di chuyển có thể tránh được vật cản của robot.
-    \item Đề xuất hai giải thuật tránh vật cản bằng hệ thống cảm biến hồng ngoại, phối hợp được với hệ thống điều khiển robot và hai hệ cảm biến có sẵn trên robot.
-    \item Đánh giá định tính hiệu quả tránh vật cản của robot sau khi có hệ thống tránh vật cản mới. Robot phản ứng như mong muốn của tác giả.
+    \item Đề xuất phương pháp mới giúp robot phát hiện và tránh vật cản ở nhiều tầng khác nhau
+    \item Đánh giá độ chính xác của cảm biến hồng ngoại, thấy rằng cảm biến hồng ngoại IR Sharp GP2Y0A21YK0F có tần số thấp, độ chính xác trong khoảng 5\% ở khoảng cách 0.1-0.8m, làm hạn chế tốc độ di chuyển có thể tránh được vật cản của robot.
+    \item Phát triển và ứng dụng thành công giải thuật tránh vật cản bằng hệ thống cảm biến hồng ngoại, phối hợp được với hệ thống điều khiển robot và hai hệ cảm biến có sẵn trên robot.
+    \item Đánh giá định tính hiệu quả tránh vật cản của robot sau khi có hệ thống tránh vật cản mới bằng các thí nghiệm thực tế. Robot phản ứng tránh được vật cản tĩnh, vật cản động ở tầng cảm biến mới thêm vào. Tuy nhiên hệ thống ước lượng biên dạng vật cản chưa tốt dẫn đến một số trường hợp vẫn có khả năng va chạm.
 \end{itemize}
 
 \section{Tầm nhìn}
