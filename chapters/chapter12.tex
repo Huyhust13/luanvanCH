@@ -15,7 +15,7 @@ Người ta coi cánh tay robot là robot truyền thống, bởi vậy khi nói
 \begin{figure}[hpt]
   \centering
   \includegraphics[width=10cm]{figures/IndustrialRobot.jpg}
-  \caption{Robot công nghiệp [Nguồn: Internet]}
+  \caption[Robot công nghiệp]{Robot công nghiệp [Nguồn: Internet]}
   \label{fig:RBCongNghiep}
 \end{figure}
 
@@ -38,24 +38,24 @@ Bên cạnh đó, robot di động (mobile robot) truyền thống thực hiện
           \label{fig:rbMoi-d}
           \includegraphics[height=4.6cm]{figures/c1_harvestingRobot.jpg}}
 	\hspace{8pt}
-	\caption[]{Một số loại robot mới}
+	\caption[Một số loại robot mới]{Một số loại robot mới [Nguồn: Internet]}
 	\label{fig:rbMoi}
 \end{figure}
 
 Ngày nay, robot có xu hướng trở nên thông minh hơn và xuất hiện nhiều loại robot có ứng dụng ngoài phạm vi nhà máy như:
-robot giải trí (\figurename{ \ref{fig:rbMoi-a}} \footnote{\url{wowwee.com/chip}}),
-robot dịch vụ cá nhân (\figurename{ \ref{fig:rbMoi-b}} \footnote{\url{www.noithatmagazine.vn/amazon-dang-phat-trien-robot-quan-gia-648592.html}}) (như máy tính cá nhân), robot trong y tế (\figurename{ \ref{fig:rbMoi-c}} \footnote{\url{www.overlakehospital.org/robot}}); các loại robot tự động trong nông nghiệp như robot hái quả (\figurename{ \ref{fig:rbMoi-d}} \footnote{\href{www.freshplaza.com/article/175737/Mechanical-harvesting-robot-received-attention-at-Macfrut/}{www.freshplaza.com}}), phun thuốc trong nông nghiệp, robot thông minh tác hợp trong công nghiệp; robot đi tới các môi trường mà con người không tới được như trong lòng đất dưới nước, trên không, trong vũ trụ...
+robot giải trí (\figurename{ \ref{fig:rbMoi-a}}), robot dịch vụ cá nhân (\figurename{ \ref{fig:rbMoi-b}}) như máy tính cá nhân, robot trong y tế (\figurename{ \ref{fig:rbMoi-c}}); các loại robot tự động trong nông nghiệp như robot hái quả (\figurename{ \ref{fig:rbMoi-d}}), robot phun thuốc trong nông nghiệp, robot thông minh tác hợp trong công nghiệp; robot đi tới các môi trường mà con người không tới được như trong lòng đất dưới nước, trên không, trong vũ trụ.
+
+% robot giải trí (\figurename{ \ref{fig:rbMoi-a}} \footnote{\url{wowwee.com/chip}}),
+% robot dịch vụ cá nhân (\figurename{ \ref{fig:rbMoi-b}} \footnote{\url{www.noithatmagazine.vn/amazon-dang-phat-trien-robot-quan-gia-648592.html}}) (như máy tính cá nhân), robot trong y tế (\figurename{ \ref{fig:rbMoi-c}} \footnote{\url{www.overlakehospital.org/robot}}); các loại robot tự động trong nông nghiệp như robot hái quả (\figurename{ \ref{fig:rbMoi-d}} \footnote{\href{www.freshplaza.com/article/175737/Mechanical-harvesting-robot-received-attention-at-Macfrut/}{www.freshplaza.com}}), phun thuốc trong nông nghiệp, robot thông minh tác hợp trong công nghiệp; robot đi tới các môi trường mà con người không tới được như trong lòng đất dưới nước, trên không, trong vũ trụ...
 
 \begin{figure}[htp]
   \centering
   \includegraphics[width=12cm]{figures/c1_AutonomousRBModel.png}
-  \caption{Mô hình hệ thống robot tự hành}
+  \caption{Mô hình hệ thống robot tự hành \cite{Burgard2018}}
   \label{fig:MohinhRB}
 \end{figure}
 
-%Trong đó, hệ thống robot tự hành là một dạng robot điển hình cho thế hệ robot mới ngày nay và đang phát triển rất mạnh mẽ. Hệ thống robot tự hành là hệ thống hoạt động như mô hình \figurename{ \ref{fig:MohinhRB}}: Robot cảm nhận môi trường thông qua hệ thống cảm biến. Mô hình hóa môi trường sau đó thực hiện các hành động phản ứng lại với môi trường. Các hoạt động cảm nhận môi trường như đo khoảng cách bằng cảm biến siêu âm, hồng ngoại, lidar hay ứng dụng deep learning để nhận dạng đồ vật, người... Các hành động phản ứng có thể là xây dựng bản đồ, thực hiện di chuyển, thực hiện tránh vật, gắp vật...
-
-Robot tự hành thông minh là loại robot di động. Robot có thể cảm nhận môi trường thông qua hệ thống cảm biến, sử dụng các mô hình học máy để mô hình hóa môi trường. Từ đó, robot có thể thực hiện các hành động phản ứng lại với môi trường như di chuyển và một số hành động khác theo yêu cầu (\figurename{ \ref{fig:MohinhRB}} \footnote{\href{http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/00-intro.pdf}{Introduction to Mobile Robotics}}).
+Robot tự hành thông minh là một loại robot di động. Robot có thể cảm nhận môi trường thông qua hệ thống cảm biến, sử dụng các mô hình học máy để mô hình hóa môi trường. Từ đó, robot có thể thực hiện các hành động phản ứng lại với môi trường như di chuyển và một số hành động khác theo yêu cầu (\figurename{ \ref{fig:MohinhRB}}).
 
 % Có nên thêm phần giới thiệu các robot dựa trên robot tự hành:
 
@@ -63,25 +63,25 @@ Robot tự hành thông minh là loại robot di động. Robot có thể cảm 
 \label{sec:ungdung}
 %==============================================
 
-Với sự thông minh và linh hoạt của nó, robot tự hành thông minh có rất nhiều ứng dụng. Về cơ bản, nó là nền tảng di chuyển cho tất cả các loại robot di động thông minh ngày nay. Một số sản phẩm ứng dụng như:
+Với sự thông minh và linh hoạt, robot tự hành thông minh có rất nhiều ứng dụng. Về cơ bản, đây là nền tảng để di chuyển cho hầu hết các loại robot di động thông minh ngày nay. Sản phẩm ứng dụng của robot tự hành thông minh khá đa dạng như:
 
 \begin{itemize}
-  \item Các ứng dụng trong nhà như robot hút bụi thông minh, robot dịch vụ thông minh, robot vận chuyển trong các nhà máy, kho hàng\dots
-  \item Các ứng dụng ngoài trời như robot cắt cỏ, chăm sóc cây trồng...
-  \item Robot làm việc tại các không gian mà con người không tới được như robot thám hiểm dưới nước, trong lòng đất, trên không trung, trên vũ trụ...
-  \item Tại các khu vực nguy hiểm như khu vực nhiễm chất phóng xạ, chữa cháy, dò mìn...
-  \item Và đặc biệt robot giao hàng tự động, xe tự lái đang phát triển rất nhanh trong những năm gần đây
+  \item Ứng dụng trong nhà như robot hút bụi thông minh, robot dịch vụ thông minh, robot vận chuyển trong các nhà máy, kho hàng
+  \item Ứng dụng ngoài trời như robot cắt cỏ, robot chăm sóc cây trồng
+  \item Robot làm việc tại các không gian mà con người không tới được như robot thám hiểm dưới nước, trong lòng đất, trên không trung, trên vũ trụ
+  \item Và đặc biệt phát triển nhanh trong những năm gần đây là xe tự lái, robot giao hàng tự động.
 \end{itemize}
 
 \section{Các bài toán trên robot tự hành thông minh}
 % - Nêu qua concept về điều khiển robot, tạo bản đồ, định vị, path planning, điều hướng, tránh vật cản
 %=================================================
 
-Một số bài toán chính trong robot tự hành như sau (\cite{Wise}):
+Di chuyển là một khả năng bẩm sinh của động vật nói chung và con người nói riêng, chúng ta di chuyển rất dễ dàng. Tuy nhiên, đối với robot linh hoạt trong môi trường động không hề đơn giản, robot phải xử lý nhiều bài toán phức tạp.
+Dưới đây là một số bài toán chính trong robot tự hành thông minh (\cite{Wise}):
 
-\textbf{Cảm biến:} Robot tự hành thông minh cần một số loại cảm biến để có thể hiểu được môi trường, định vị và di chuyển tránh vật cản.
+\textbf{Xử lý tín hiệu cảm biến:} Robot tự hành thông minh cần một số loại cảm biến để có thể hiểu được môi trường, định vị và di chuyển tránh vật cản.
 
-Có rất nhiều loại cảm biến, để cảm nhận được đa dạng thông tin của môi trường. Có thể chia làm các nhóm như sau:
+Có rất nhiều loại cảm biến cho robt để cảm nhận được đa dạng thông tin của môi trường. Có thể chia làm các nhóm như sau:
 \begin{itemize}
 \item Cảm biến khoảng cách một chiều: Cảm biến khoảng cách hồng ngoại, siêu âm
 \item Cảm biến khoảng cách hai chiều: Lidar
@@ -92,13 +92,13 @@ Có rất nhiều loại cảm biến, để cảm nhận được đa dạng th
 \item Các loại camera 2D
 \end{itemize}
 
-\textbf{Odometry}: là bài toán sử dụng thông tin nhận được từ các cảm biến nhận biết sự di chuyển của robot để ước tính sự thay đổi vị trí của robot qua thời gian. Odometry được sử dụng trong hầu hết các robot tự hành.
+\textbf{Odometry}: Là bài toán sử dụng thông tin nhận được từ các cảm biến của robot để ước tính sự thay đổi vị trí của robot qua thời gian. Odometry được sử dụng trong hầu hết các robot tự hành.
 
 \textbf{Định vị}: Bài toán định vị giúp trả lời câu hỏi robot đang ở đâu, từ đó có cơ sở để thực hiện các tác vụ khác như tạo bản đồ, xác định hướng di chuyển.
 
 \textbf{Xây dựng bản đồ}: Dự trên dữ liệu từ các loại cảm biến, từ odometry và định vị robot, robot sử dụng các thuật toán để xây dựng bản đồ của môi trường.
 
-\textbf{Kế hoạch di chuyển và điều hướng robot}: Từ bài toán định vị và sau khi có bản đồ, để thực hiện nhiệm vụ đi từ vị trí hiện tại tới một vị trí đích xác định. Robot sẽ tính toán, lập kế hoạch di chuyển và điều khiển robot di chuyển tới đích.
+\textbf{Kế hoạch di chuyển và điều hướng robot}: Sau khi có bản đồ, để thực hiện nhiệm vụ đi từ vị trí hiện tại tới một vị trí đích xác định. Robot sẽ tính toán, lập kế hoạch di chuyển và điều khiển robot di chuyển tới đích.
 
 \textbf{Tránh vật cản}: Trong quá trình di chuyển, robot phát hiện được các vật cản (bao gồm cả tĩnh và động) và tránh vật cản, sau đó thiết lập lại quỹ đạo di chuyển tới đích.
 
@@ -113,22 +113,22 @@ Vấn đề xuyên suốt trong các bài toán của robot tự hành thông mi
 %================================================================
 
 Khả năng phát hiện và tránh vật cản theo thời gian thực là rất quan trọng trong robot tự hành. Do đó có rất nhiều nghiên cứu về giải pháp cho vấn đề này. Có nhiều loại cảm biến, nhiều giải thuật được sử dụng.
+Có các loại cảm biến sử dụng như cảm biến khoảng cách hồng ngoại, siêu âm với ứng dụng trên các thiết bị nhúng cấu hình thấp \cite{dongyue2013, Susnea2009}. Các phương pháp sử dụng cảm biến laser radar được trình bày trong \cite{Gao2019, Wu2015, Peng2015,Baras2019}.
 
-Các loại cảm biến sử dụng như cảm biến khoảng cách hồng ngoại, siêu âm với ứng dụng trên các thiết bị nhúng cấu hình thấp \cite{dongyue2013, Susnea2009}. Các phương pháp sử dụng cảm biến laser radar được trình bày trong \cite{Gao2019, Wu2015, Peng2015,Baras2019}.
-
-Các thuật toán phổ biến được dùng để phát hiện và tránh vật cản như Virtual Force Field (VFF - Trường lực ảo) \cite{Borenstein1989}, Vector Field Histogram (VFH - Biểu đồ trường lực) \cite{Borenstein1991}, Dynamic Window Approach (DWA - Cửa sổ tiếp cận động) \cite{Fox1997}\ldots
+Một số thuật toán phổ biến được dùng để phát hiện và tránh vật cản như Virtual Force Field (VFF - Trường lực ảo) \cite{Borenstein1989}, Vector Field Histogram (VFH - Biểu đồ trường lực) \cite{Borenstein1991}, Dynamic Window Approach (DWA - Cửa sổ tiếp cận động) \cite{Fox1997}\ldots
 
 Sau đây, các thuật toán sẽ được giới thiệu chi tiết.
 
 \subsection{Thuật toán Virtual Force Field (VFF)}
 %------------------------------------------------
 
-Được áp dụng cho điều khiển tránh vật cản trình bày trong \cite{Borenstein1988,Borenstein1989}. Ý tưởng của giải thuật này là tạo một ô lưới quanh robot. Khi có dữ liệu có vật cản từ cảm biến, ô tương ứng sẽ được đặt là bị chiếm dụng bởi vật cản với một tỉ số chiếm dụng (thể hiện cho sự không chắc chắn), nhiệm vụ của thuật toán là tính toán một lực để đưa robot xa khỏi ô bị chiếm dụng đó.
+Được áp dụng cho điều khiển tránh vật cản trình bày trong \cite{Borenstein1988,Borenstein1989}. Ý tưởng của giải thuật này là tạo một ô lưới quanh robot. Khi có dữ liệu có vật cản từ cảm biến, ô tương ứng sẽ được đặt là bị chiếm dụng bởi vật cản với một tỉ số chiếm dụng (thể hiện cho sự không chắc chắn), nhiệm vụ của thuật toán là tính toán một lực để đưa robot xa khỏi ô bị chiếm dụng đó theo công thức \ref{equa:Fij}
 
 
 \begin{equation}
   F(i,j) = \frac{{F}_{cr}C(i,j)}{{d}^{2}(i,j)}\left [\frac{{x}_{t}-{x}_{0}}{d(i,j)}\dot{x} + \frac{{y}_{t}-{y}_{0}}{d(i,j)}\dot{y}
   \right ]
+  \label{equa:Fij}
 \end{equation}
 Trong đó:
 
@@ -141,7 +141,7 @@ Trong đó:
   ${x}_{i}, {y}_{j}$ & Tọa độ của ô (i,j)
 \end{tabular}
 
-Lực ${F}_{r}$ đưa robot tránh khỏi các vật cản xuất hiện xung quanh robot là tổng của các lực tại mỗi ô lưới.
+Lực ${F}_{r}$ đưa robot tránh khỏi các vật cản xuất hiện xung quanh robot là tổng của các lực đưa robot tránh các ô bị chiếm dụng
 
 \begin{equation}
   {F}_{r} = \sum\limits_{i,j}{F(i,j)}
@@ -184,7 +184,7 @@ Từ đó tính được hướng di chuyển của robot để điều khiển 
   \item Phương pháp này có thể dễ dàng tích hợp nhiều loại cảm biến để bổ sung thông tin vào bản đồ ô lưới.
 \end{itemize}
 
-Tuy nhiên, theo \cite{Koren1991}, phương pháp này có một số điểm hạn chế như: Các trường hợp mắc bẫy do cực tiểu địa phương, không thể di chuyển qua giữa các vật cản gần nhau, lưỡng lự khi có vật cản, lưỡng lự trong lối đi hẹp
+Tuy nhiên theo \cite{Koren1991}, phương pháp này có một số điểm hạn chế như: có một số trường hợp mắc bẫy do cực tiểu địa phương, không thể di chuyển qua giữa các vật cản gần nhau, lưỡng lự khi có vật cản, lưỡng lự trong lối đi hẹp
 
 Do đó, phương pháp Vector Field Histogram cải thiện các hạn chế của phương pháp Vector Force Field
 
@@ -199,7 +199,7 @@ Do đó, phương pháp Vector Field Histogram cải thiện các hạn chế c�
   \label{fig:PolarHistogram}
 \end{figure}
 
-Phương pháp VFH được trình bày trong \cite{Borenstein1991}. Phương pháp này sử dụng một cấu trúc dữ liệu trung gian, được gọi là biểu đồ cực H (\textit{polar histogram}). H là một mảng 72 góc hình quạt (\figurename{ \ref{fig:PolarHistogram}}).
+Phương pháp VFH được trình bày chi tiết trong \cite{Borenstein1991}. Phương pháp này sử dụng một cấu trúc dữ liệu trung gian, được gọi là biểu đồ cực H (\textit{polar histogram}). H là một mảng 72 góc hình quạt (\figurename{ \ref{fig:PolarHistogram}}).
 
 Phương pháp này sử dụng kĩ thuật hai giai đoạn giảm dữ liệu và ba mức thể hiện dữ liệu:
 
@@ -216,9 +216,9 @@ Phương pháp này sử dụng kĩ thuật hai giai đoạn giảm dữ liệu 
   \label{fig:VFH}
 \end{figure}
 
-Phương pháp này có thể phát hiện được lối đi đủ cho robot đi qua giữa các vật cản.  Phương pháp VFF dễ bị ảnh hưởng bởi sai số của cảm biến, với phương pháp này, sử dụng làm mịn biểu đồ H đã giảm trọng số của các giá trị sai ngẫu nhiên của cảm biến, do đó phương pháp này mạnh hơn phương pháp VFF. Vẫn bị hiện tượng mắc bẫy khi vào các trường hợp "dead-end" (đường cụt) do sử dụng phương pháp cục bộ. Tốc độ di chuyển tối đa khi điều khiển robot bằng VFH bị giới hạn bởi tốc độ lấy mẫu của cảm biến.
+Phương pháp này có thể phát hiện được lối đi đủ cho robot đi qua giữa các vật cản. Phương pháp VFF dễ bị ảnh hưởng bởi sai số của cảm biến, với phương pháp này, sử dụng làm mịn biểu đồ H đã giảm trọng số của các giá trị sai ngẫu nhiên của cảm biến, do đó phương pháp này mạnh hơn phương pháp VFF. Vẫn bị hiện tượng mắc bẫy khi vào các trường hợp đường cụt (dead-end) do sử dụng phương pháp cục bộ. Tốc độ di chuyển tối đa khi điều khiển robot bằng VFH bị giới hạn bởi tốc độ lấy mẫu của cảm biến.
 
-Dựa trên phương pháp này, \cite{Ulrich1998} đã đề xuất phương pháp được gọi là VFH+ thực hiện 4 giai đoạn giảm dữ liệu từ bản đồ lưới chiếm dụng hai chiều xuống thành dữ liệu điều khiển hướng di chuyển của robot. Sử dụng một số cải tiến để giúp robot có thể di chuyển tốt hơn.
+Dựa trên phương pháp này, tác giả tài liệu \cite{Ulrich1998} đã đề xuất phương pháp được gọi là VFH+ thực hiện 4 giai đoạn giảm dữ liệu từ bản đồ lưới chiếm dụng hai chiều xuống thành dữ liệu điều khiển hướng di chuyển của robot. Sử dụng một số cải tiến để giúp robot có thể di chuyển tốt hơn.
 
 \subsection{Phương pháp "Bong bóng phản ứng" tránh vật cản}
 %---------------------------------------------------------
@@ -237,32 +237,46 @@ Dựa trên phương pháp này, \cite{Ulrich1998} đã đề xuất phương ph
   \label{fig:bubble-band}
 \end{figure}
 
-\begin{figure}
+
+Phương pháp này được đề xuất trong \cite{Quinlan1993}, phương pháp này định nghĩa một "bong bóng" bao quanh robot thể hiện không gian lớn nhất có thể di chuyển mà không gặp vật cản trong một khoảng thời gian. Hình dạng và kích thước của bong bóng được xác định đơn giản dựa trên hình dạng vật lý của đế robot và từ thông tin của cảm biến (như \figurename{ \ref{fig:bubble-band}}).
+
+\begin{figure}[htbp]
 	\centering
-	\subfloat[][]{
+	\subfloat[]{
           \label{fig:bb-computeAngle}
           \includegraphics[width=0.45\textwidth]{figures/computeReboundAngle.png}}
-        \subfloat[][]{
+  \subfloat[]{
           \label{fig:bb-reboudProcess}
-          \includegraphics[width=0.45\textwidth]{figures/rebound.png}}
-	\hspace{8pt}
+          \includegraphics[width=0.4\textwidth]{figures/rebound.png}}
 	\caption{Phương pháp bong bóng phản ứng động}
 	\label{fig:bubbleRebound}
 \end{figure}
 
-Phương pháp này được đề xuất trong \cite{Quinlan1993}, phương pháp này định nghĩa một "bong bóng" bao quanh robot thể hiện không gian lớn nhất có thể di chuyển mà không gặp vật cản. Hình dạng và kích thước của bong bóng được xác định đơn giản dựa trên hình dạng vật lý của đế robot và từ thông tin của cảm biến (như \figurename{ \ref{fig:bubble-band}}).
-
 Một phương pháp cải tiến được đề xuất trong \cite{Susnea2010}. Tác giả đã cải tiến hình dạng của bong bóng, không phải là hình dạng cố định như trong \cite{Quinlan1993} mà hình dạng và kích thước được điều chỉnh liên tục dựa vào tốc độ di chuyển của robot. Khi các cảm biến phát hiện vật cản nằm trong giới hạn của bong bóng phản ứng, một thuật toán được dùng để xác định hướng của vật cản so với hướng di chuyển của robot \figurename{ \ref{fig:bb-computeAngle}}. Một quá trình di chuyển của robot sử dụng phương pháp này được minh họa tại \figurename{ \ref{fig:bb-reboudProcess}}.
 
-Cũng theo tác giả trong tài liệu \cite{Susnea2010}, phương pháp này có ưu điểm là có thể triển khai trên các thiết bị giá thành thấp, chi phí tính toán thấp nhưng có thể hoạt động theo thời gian thực. Tuy nhiên, nó cũng có một số điểm hạn chế như quá trình di chuyển chưa mượt, robot khó xử lý khi gặp nhiều vật cản đồng thời \dots
+Cũng theo tác giả trong tài liệu \cite{Susnea2010}, phương pháp này có ưu điểm là có thể triển khai trên các thiết bị giá thành thấp, chi phí tính toán thấp nhưng có thể hoạt động theo thời gian thực. Tuy nhiên, nó cũng có một số điểm hạn chế như quá trình di chuyển chưa mượt, robot khó xử lý khi gặp nhiều vật cản đồng thời.
 
 \subsection{Tránh vật cản cho thiết bị tự hành bằng LIDAR và hệ thống nhúng}
   Tài liệu \cite{Baras2019} tác giả trình bày một mô hình robot tự hành di chuyển và tránh vật cản sử dụng RPLidar A2 và máy tính nhúng Raspberry Pi 3. Tóm tắt hệ thống như sau:
+
+  \begin{figure}[htbp]
+    \centering
+    \subfloat[]{\includegraphics[width=0.45\linewidth]{figures/refer_lidar-apply-obstacle-detect.png}}
+    \qquad
+    \subfloat[]{\includegraphics[width=0.45\linewidth]{figures/refer_lidar-apply.png}}
+    \caption[Xác định vị trí vật cản]{Xác định vị trí vật cản. Hình a thể hiện laser quét phát hiện vật cản. Hình b thể hiện phân vùng vị trí vật cản}
+    \label{fig:lidar-apply}
+  \end{figure}
+
   \begin{itemize}
     \item \textbf{Hệ thống định vị trong nhà:} Trong tài liệu này tác giả sử dụng phương pháp định vị IPS (Indoor Positioning System - Hệ thống định vị trong nhà), sử dụng hạ tầng Wi-Fi sẵn có. Nhiều trạm phát Wi-Fi được đặt trong không gian. Dựa vào cường độ tín hiệu Wi-Fi có thể tính được khoảng cách tới trạm phát Wi-Fi đó. Cần ít nhất 3 trạm phát sóng Wi-Fi để xác định được vị trí của robot.
-    \item \textbf{Phát hiện vật cản:} Module RPLidar A2 được sử dụng để phát hiện vật cản xung quanh robot. Dựa trên góc quét của Lidar, tác giả chia thành 4 vùng: Trước, Trái, Phải và Sau.
+    \item \textbf{Phát hiện vật cản:} Module RPLidar A2 được sử dụng để phát hiện vật cản xung quanh robot. Dựa trên góc quét của Lidar, tác giả chia thành 4 vùng: Trước, Trái, Phải và Sau (Hình \ref{fig:lidar-apply})
+
     \item \textbf{Tránh vật cản:} Hệ thống IPS dẫn robot đi từ vị trí hiện tại tới đích, trong quá trình di chuyển đó module RPLidar liên tục quét để phát hiện vật cản. Nếu vùng phía trước, trái và phải không có vật cản, robot sẽ di chuyển theo đường ngắn nhất để tới đích. Nếu phía có xuất hiện vật cản tại hướng nào đó, robot sẽ xem xét các hướng còn lại và quyết định đi theo hướng nào.
   \end{itemize}
+
+
+
   Tài liệu này đề xuất phương pháp định vị, dẫn đường và tránh vật cản rất đơn giản, có thể hiệu quả nhưng vẫn còn nhiều hạn chế. Chưa có bản đồ để có thể xác định kế hoạch di chuyển tối ưu nhất. Phần tránh vật cản có thể khiển robot dễ rơi vào các trạng thái không thể di chuyển do xuất hiện nhiều vật cản mà không quyết định được để len lỏi giữa chúng.
 
 \subsection*{Kết luận}
@@ -275,7 +289,7 @@ Tuy nhiên, các phương pháp trên có những hạn chế về định vị,
   \item Chỉ mới phát hiện và tránh vật cản trên một mặt phẳng bố trí cảm biến.
 \end{itemize}
 
-Trong luận văn này, tác giả sẽ ứng dụng nền tảng robot tự hành có sẵn. Với khả năng định vị, dẫn đường, tạo bản đồ trên nền tảng máy tính nhúng trên nền tảng hệ điều hành robot ROS và giải thuật SLAM. Từ đó, tác giả đề xuất phương pháp tăng độ an toàn trong quá trình di chuyển bằng cách thêm một tầng cảm biến tránh vật cản cho robot, xử lý phối hợp điều khiển robot.
+Trong luận văn này, tác giả sẽ ứng dụng nền tảng robot tự hành có sẵn. Với khả năng định vị, dẫn đường, tạo bản đồ trên nền tảng hệ điều hành robot ROS và giải thuật SLAM. Từ đó, tác giả đề xuất phương pháp tăng độ an toàn trong quá trình di chuyển bằng cách thêm một tầng cảm biến tránh vật cản cho robot, áp dụng thuật toán tránh vật cản và phối hợp nhiều tầng cảm biến điều khiển robot.
 
 \section{Nội dung nghiên cứu}
 % Chốt lại nội dung nghiên cứu gồm 2 nội dung:
@@ -283,12 +297,12 @@ Trong luận văn này, tác giả sẽ ứng dụng nền tảng robot tự hà
 % - Sử dụng Multi-sensor để tăng cường phát hiện và tránh vật cản cho robot
 % - Trình bày vắn tắt nội dung của các chương.
 %===========================================
-Nội dung nghiên cứu chính của luận văn gồm mấy phần như sau:
+Nội dung nghiên cứu chính của luận văn gồm ba phần như sau:
 
 \begin{itemize}
-  \item Ứng dụng hệ thống định vị, di chuyển và tạo bản đồ dựa trên giải thuật SLAM trên nền tảng hệ điều hành ROS trong robot tự hành Dashgo D1.
-  \item Tăng cường phát hiện và tránh vật cản cho robot bằng đa cảm biến. Đề xuất phương pháp lắp đặt cảm biến và giải thuật điều khiển, phân quyền điều khiển.
-  \item Đánh giá hiệu quả của hệ thống.
+  \item Nghiên cứu hệ thống định vị, di chuyển và tạo bản đồ dựa trên nền tảng hệ điều hành ROS và ứng dụng vào điều khiển robot tự hành Dashgo D1.
+  \item Tăng cường phát hiện và tránh vật cản cho robot bằng đa tầng cảm biến. Đề xuất phương pháp lắp đặt cảm biến và giải thuật điều khiển, phân quyền điều khiển robot
+  \item Thực hiện đánh giá hiệu quả của hệ thống.
 \end{itemize}
 
 Nội dung của luận văn như sau: Chương 1 khái quát tổng quan về robot tự hành, một số phương pháp điều khiển và tránh vật cản được sử dụng trong robot tự hành. Chương 2 tổng hợp một số cơ sở lý thuyết được sử dụng trong luận văn này, bao gồm bài toán về nhiễu và xác suất trong robot tự hành, hệ điều hành robot ROS, bài toán điều hướng robot, bài toán SLAM 2D. Chương 3 trình bày giải thuật và phương pháp triển khai để kiểm chứng hiệu quả của giải thuật tránh vật cản do tác giả đề xuất. Chương 4 là kết luận của tác giả về các vấn đề trong luận văn, từ đó đề xuất các hướng phát triển sau này.
@@ -296,15 +310,20 @@ Nội dung của luận văn như sau: Chương 1 khái quát tổng quan về r
 %%===========================
 \chapter{Cơ sở lý thuyết}
 \label{chap:1cslt}
-\section{Bài toán về nhiễu trong robot tự hành} \label{sec:2.1}
-\subsection{Sự không chắc chắn trong robot}
-Robotics là một ngành khoa học về nhận thức và thực thi thế giới vật lý thông qua các thiết bị điều khiển bởi máy tính. Các hệ thống robotics được đặt trong thế giới vật lý, quan sát thông tin môi trường thông qua các cảm biến, và thao tác thông qua các lực vật lý. Đặc biệt trong công nghệ robot tự hành, robot phải có khả năng đáp ứng rất lớn sự không chắc chắn tồn tại trong thế giới vật lý.
+\section{Bài toán về nhiễu trong robot tự hành \cite{thrun2005probabilistic}}
+\label{sec:2.1}
 
-Trước hết, môi trường của robot vốn dĩ đã không ổn định. Trong các môi trường có cấu trúc tốt, được thiết kế theo tiêu chuẩn như trong dây chuyền lắp ráp thì mức độ không chắc chắn thấp, trong khi đó các môi trường khác như môi trường trong nhà của robot dịch vụ, môi trường trên đường phố\dots thì có mức độ bất ổn định cao, có nhiều chuyển động. Với các robot hoạt động gần con người thì độ không chắc chắn rất cao.
+\subsection{Sự không chắc chắn trong robot}
+Robotics là một ngành khoa học về nhận thức và thực thi thế giới vật lý thông qua các thiết bị điều khiển bởi máy tính. Một số ví dụ thành công của hệ thống robotics như robot di động khám phá hành tinh, robot công nghiệp trong dây chuyền sản xuất, xe tự lái, cánh tay robot hỗ trợ bác sĩ phẫu thuật. Các hệ thống robotics được đặt trong thế giới vật lý, quan sát thông tin môi trường thông qua các cảm biến, và thao tác thông qua các lực vật lý.
+% Đặc biệt trong công nghệ robot tự hành, robot phải có khả năng đáp ứng rất lớn sự không chắc chắn tồn tại trong thế giới vật lý.
+
+Trong khi ngành robotics vẫn còn trong thời kì trứng nước, ý thưởng các thiêt bị thực thi thông minh mang tới khả năng to lớn để thay đổi thế giới. Sẽ rất tuyệt vời nếu tất cả xe hơi đều có thể tự lái an toàn và tránh được hoàn toàn tai nạn giao thông. Sẽ rất tuyệt vời nếu robot có thể tự nó hoạt động để làm sạch chất phóng xạ trong thảm họa hạt nhân thay cho con người. Sẽ rất tuyệt vời nếu nhà của chúng ta có các thiết bị hỗ trợ thông minh để quản lý sửa chữa, duy tu các đồ vật trong nhà. Để làm được những việc này, robot phải có khả năng đáp ứng độ không chắc chắn rất lớn trong thế giới vật lý. Có rất nhiều yếu tố tạo nên sự không chắc chắn trong robot.
+
+Trước hết, môi trường của robot vốn dĩ đã không ổn định. Trong các môi trường có cấu trúc tốt, được thiết kế theo tiêu chuẩn như trong dây chuyền lắp ráp thì mức độ không chắc chắn thấp, trong khi đó các môi trường khác như môi trường trong nhà của robot dịch vụ hay trên đường phố có mức độ không chắc chắn cao, có nhiều biến động. Với các robot hoạt động gần con người thì độ không chắc chắn rất cao.
 
 Robot sử dụng hệ thống cảm biến để cảm nhận, quan sát môi trường xung quanh. Tuy nhiên, cảm biến có các giới hạn quan sát của nó. Phạm vi và độ phân giải của một cảm biến phụ thuộc vào giới hạn vật lý. Ví dụ, các camera không thể nhìn xuyên tường, độ phân giải của camera cũng có giới hạn. Cảm biến rất khó tránh khỏi nhiễu, và các phép đo nhiễu không thể đoán trước được. Do đó nó giới hạn thông tin có thể trích xuất được từ cảm biến. Hoặc cảm biến có thể bị hỏng và việc phát hiện lỗi từ cảm biến vô cùng khó khó khăn.
 
-Robot được dẫn động bằng động cơ, ở một mức độ nhất định nó cũng không dự đoán được sai số. Độ không chắc chắn sinh ra do ảnh hưởng từ nhiễu điều khiển, mòn, hỏng và các lỗi cơ khí khác. Một vài cơ cấu chấp hành như cánh tay robot công nghiệp thường rất chính xác và độ tin cậy cao. Còn lại, như các robot di động giá thành thấp có thể rất dễ hỏng.
+Robot được dẫn động bằng động cơ, ở một mức độ nhất định nó cũng không dự đoán được sai số. Độ không chắc chắn sinh ra do ảnh hưởng từ nhiễu điều khiển, mòn bánh răng và các lỗi cơ khí khác. Một vài cơ cấu chấp hành như cánh tay robot công nghiệp thường rất chính xác và độ tin cậy cao. Còn lại, như các robot di động giá thành thấp có thể rất dễ hỏng.
 
 Nhiều nguyên nhân không chắc chắn có thể đến từ phần mềm của robot. Tất cả mô hình của thế giới vật lý đều gần đúng. Mô hình là trừu tượng hóa của thế giới thực, vì vậy, chúng ta chỉ có thể mô hình được một phần các quá trình vật lý cơ bản của robot và môi trường hoạt động của nó. Lỗi mô hình hóa dẫn đến sự không chắc chắn thường bị bỏ qua trong quá trình chế tạo robot, mặc dù thực tế là hầu hết các mô hình robot được sử dụng trong các hệ thống robot hiện đại khá thô sơ.
 
@@ -314,7 +333,7 @@ Mức độ không chắc chắn phụ thuộc vào lĩnh vực ứng dụng. Tr
 
 \subsection{Xác suất trong robotics} \label{subsec:probabilityinRobotics}
 
-Xác suất trong robot là tương đối mới với robot để giải quyết vấn đề trong quan sát và hành động của robot, đặc biệt là với robot tự hành. Ý tưởng chính trong bài toán xác suất trong robot là thể hiện sự không chắc chắn một cách rõ ràng bằng việc sử dụng lý thuyết tính toán xác suất. Nhưng thay vì dựa vào một "dự đoán tốt nhất" những gì có thể xảy ra, các thuật toán xác suất thể hiện thông tin bằng các phân bố xác suất qua toàn bộ không gian dự đoán. Như vậy, chúng có thể biểu diễn sự không chắc chắn và độ tin cậy trong toán học. Xác suất trong robot có thể chủ động lựa chọn để giảm sự không chắc chắn, do đó các thuật toán xác suất giảm độ phức tạp của sự không chắc chắn.
+Xác suất trong robot có liên quan tới cách tiếp cận mới để giải quyết vấn đề trong quan sát và hành động của robot, đặc biệt là với robot tự hành. Ý tưởng chính trong bài toán xác suất trong robot là thể hiện sự không chắc chắn một cách rõ ràng bằng việc sử dụng lý thuyết tính toán xác suất. Nhưng thay vì dựa vào một "dự đoán tốt nhất" thay cho những gì có thể xảy ra, các thuật toán xác suất thể hiện thông tin bằng các phân bố xác suất qua toàn bộ không gian dự đoán. Như vậy, chúng có thể biểu diễn sự không chắc chắn và độ tin cậy trong toán học. Xác suất trong robot có thể chủ động lựa chọn để giảm sự không chắc chắn, do đó các thuật toán xác suất giảm độ phức tạp của sự không chắc chắn.
 
 \begin{figure}[htbp]
   \centering
@@ -323,13 +342,13 @@ Xác suất trong robot là tương đối mới với robot để giải quyế
   \label{fig:markovLocalization}
 \end{figure}
 
-Ví dụ thứ nhất là bài toán định vị robot di động. Định vị robot là ước tính vị trí tương đối của robot trong một không gian tham chiếu. Bản đồ của môi trường được cho trước, robot cần có các dữ liệu của cảm biến để tự định vị trong bản đồ này. Ví dụ về định vị được minh họa trong Hình \ref{fig:markovLocalization}. Môi trường đã biết có ba cửa giống nhau, nhiệm vụ của robot là tìm xem chúng ở đâu, thông qua cảm biến và chuyển động.
+Ví dụ thứ nhất là bài toán định vị robot di động. Định vị robot là ước tính vị trí tương đối của robot trong một không gian. Bản đồ của môi trường được cho trước, robot cần có các dữ liệu của cảm biến để tự định vị trong bản đồ này. Ví dụ về định vị được minh họa trong Hình \ref{fig:markovLocalization}. Môi trường đã biết có ba cửa giống nhau, nhiệm vụ của robot là tìm xem chúng ở đâu, thông qua cảm biến và chuyển động.
 
 Vấn đề định vị cụ thể này được gọi là \textit{định vị toàn cục} (global localization). Trong định vị toàn cục, robot được đặt ở đâu đó trong một môi trường đã biết, nó phải tự định vị được vị trí của nó đang ở đâu. Mô hình xác suất thể hiện độ tin cậy tức thời của robot bằng một hàm phân bố xác suất trên toàn bộ không gian như trong \figurename{ \ref{fig:markovLocalization}}a. Biểu đồ này thể hiện phân bố đồng đều trên tất cả các vị trí. Bây giờ cho rằng robot nhận được dữ liệu đo đầu tiên từ cảm biến và theo dõi cánh cửa phía trước. Công cụ xác suất khai thác thông tin này để cập nhật vào độ tin cậy.
-\textbf{Độ tin cậy sau}
+Độ tin cậy sau đó
 % Cần sửa 'posterior belief% thể hiện trong
-thể hiện trong \figurename{ \ref{fig:markovLocalization}}b, tăng xác suất tại vị trí gần các cửa và giảm xác suất ở vị trí gần tường.
-Nhận thấy rằng phân bố này có ba chóp giống nhau, mỗi chóp tương ứng với một cửa. Do đó robot không biết được nó đang ở đâu.
+thể hiện trong \figurename{ \ref{fig:markovLocalization}}b, tăng xác suất tại vị trí gần các cửa và giảm xác suất ở vị trí khác.
+Ta thấy rằng phân bố này có ba chóp giống nhau, mỗi chóp tương ứng với một cửa. Do đó robot không biết được nó đang ở đâu.
 
 Bây giờ cho robot di chuyển, độ tin cậy đã được dịch chuyển theo hướng robot chuyển động (Thể hiện trong Hình \ref{fig:markovLocalization}c).
 %Nó cũng trải ra một khoảng rộng hơn, thể hiện mức độ không chắc chắn thể hiện bởi sự dịch chuyển của robot.
@@ -337,7 +356,7 @@ Sự dịch chuyển của robot làm cho xác suất phân bố trong một kho
 \figurename{ \ref{fig:markovLocalization}d miêu tả độ tin cậy sau khi theo dõi một cửa khác.
 Việc này dẫn đến thuật toán đặt phần lớn xác suất tại vị trí gần một cửa, và khi đó robot khá tự tin rằng nó đang ở đâu. Cuối cùng, \figurename{ \ref{fig:markovLocalization}}e thể hiện độ tin cậy của robot sau khi di chuyển một đoạn xa trong hành lang.
 
-Ví dụ này minh họa một vài vấn đề của mô hình xác suất. Nói theo xác suất, việc quan sát của robot là một vấn đề ước tính trạng thái, ví dụ trên sử dụng một thuật toán có tên là \textit{bộ lọc Bayes} cho hậu ước tính qua không gian của định vị robot. Sự thể hiện của thông tin là một hàm phân bố xác suất. Việc cập nhật hàm này thể hiện thông tin thu được thông qua các phép đo của cảm biến, hoặc thông tin bị mất qua quá trình xử lý trong không gian làm tăng độ không chắc chắn của robot.
+Ví dụ này minh họa một vài vấn đề của mô hình xác suất. Nói theo xác suất, việc quan sát của robot là một vấn đề ước tính trạng thái, ví dụ trên sử dụng một thuật toán có tên là \textit{bộ lọc Bayes} cho hậu ước tính qua không gian của định vị robot. Sử dụng một hàm phân bố xác suất để thể hiện thông tin. Việc cập nhật hàm phân bố này thể hiện thông tin thu được thông qua các phép đo của cảm biến, hoặc thông tin bị mất qua quá trình xử lý trong không gian làm tăng độ không chắc chắn của robot.
 
 \begin{figure}[htbp]
   \centering
@@ -346,12 +365,12 @@ Ví dụ này minh họa một vài vấn đề của mô hình xác suất. Nó
   \label{fig:coastalNavigation}
 \end{figure}
 
-Ví dụ thứ hai là một ví dụ trong vấn đề lập kế hoạch và điều khiển robot. Như đã nói các thuật toán xác suất có thể tính độ không chắc chắn tức thời của robot. Nhưng chúng cũng có thể đoán trước được độ không chắc chắn trong tương lai, và chọn một độ không chắc chắn để xem xét sự lựa chọn điều khiển. Một trong các thuật toán như vậy là \textit{coastal navitation}, ví dụ như trong \figurename{ \ref{fig:coastalNavigation}}. Hình này thể hiện một bản đồ 2-D của một tòa nhà. Hình phía trên so sánh đường đi ước tính và đường đi thực tế: Robot đi lệch là kết quả của sự không chắc chắn trong chuyển động của robot. Điểm thú vị ở đây là không phải toàn bộ quỹ đạo có mức độ không chắc chắn như nhau. Đường đi trong \figurename{ \ref{fig:coastalNavigation}}a đi qua một không gian mở, thiếu các đặc trưng để có thể giúp cho robot định vị.  \figurename{ \ref{fig:coastalNavigation}}b có quỹ đạo bám theo một góc rõ ràng, và sau đó ôm vào tường để giữ định vị. Không quá ngạc nhiên khi mức độ không chắc chắn sẽ giảm sau một quãng di chuyển, do đó điểm đến có độ chính xác cao hơn.
+Ví dụ thứ hai là một ví dụ trong vấn đề lập kế hoạch và điều khiển robot. Như đã nói các thuật toán xác suất có thể tính độ không chắc chắn tức thời của robot. Nhưng chúng cũng có thể đoán trước được độ không chắc chắn trong tương lai, và chọn một độ không chắc chắn để xem xét lựa chọn điều khiển. Một trong các thuật toán như vậy là \textit{coastal navitation}, ví dụ như trong \figurename{ \ref{fig:coastalNavigation}}. Hình này thể hiện một bản đồ 2-D của một tòa nhà. Hình phía trên so sánh đường đi ước tính và đường đi thực tế: robot đi lệch là kết quả của sự không chắc chắn trong chuyển động của robot. Điểm thú vị ở đây là không phải toàn bộ quỹ đạo có mức độ không chắc chắn như nhau. Đường đi trong \figurename{ \ref{fig:coastalNavigation}}a đi qua một không gian mở, thiếu các đặc trưng để có thể giúp cho robot định vị.  \figurename{ \ref{fig:coastalNavigation}}b có quỹ đạo bám theo một góc rõ ràng, và sau đó ôm vào tường để giữ định vị. Không quá ngạc nhiên khi mức độ không chắc chắn sẽ giảm sau một quãng di chuyển, do đó điểm đến có độ chính xác cao hơn.
 
 Ví dụ này minh họa một trong những cách để xem xét ảnh hưởng của sự không chắc chắn trong điều khiển robot. Rõ ràng robot sẽ ưu tiên lựa chọn cách đi thứ hai hơn, dù có sự không chắc chắn nhưng thuật toán xác suất giúp robot lựa chọn đường đi để nó có thể thu thập được nhiều thông tin, giúp giảm độ không chắc chắn và đạt được độ chính xác tốt hơn.
 
 % \subsection{Implications}
-Xác suất trong robotics kết hợp với dữ liệu cảm biến và khắc phục hạn chế của cả hai. Ý tưởng này không chỉ là vấn đề của điều khiển mức thấp, chúng có mặt tại mọi mức phần mềm robot từ thấp nhất tới cao nhất.
+Xác suất trong robotics kết hợp không rõ ràng giữa mô hình và dữ liệu cảm biến, vượt qua các giới hạn của cả hai cùng lúc. Ý tưởng này không chỉ là vấn đề của điều khiển mức thấp, chúng có mặt tại mọi mức phần mềm robot từ thấp nhất tới cao nhất.
 
 Trái ngược với các kĩ thuật lập trình truyền thống trong robot như các công cụ kế hoạch chuyển động dựa trên mô hình hay phản ứng dựa trên hành vi. Các cách tiếp cận theo xác suất có nhiều ưu điểm hơn với các giới hạn của cảm biến và mô hình hóa. Điều này giúp gần hơn với độ phức tạp của môi trường thế giới thực hơn là mô hình cũ. Trong thực tế, chắc chắn các thuật toán xác suất hiện nay chỉ mới biết các giải pháp với các vấn đề ước tính khó trong robotics như: vấn đề định vị, vấn đề xây dựng các bản đồ chính xác môi trường lớn.
 
@@ -359,7 +378,7 @@ So sánh với các công cụ robotics truyền thống dựa trên mô hình h
 
 Tuy nhiên, những ưu điểm này cũng đi liền với cái giá của nó. Hai hạn chế thường xuyên được nhắc tới đó là độ phức tạp tính toán và việc phải tính xấp xỉ. Các thuật toán xấp xỉ vốn đã kém hiệu quả hơn so với các thuật toán không xác suất. Do thuật toán này xem xét trên toàn bộ phân bố chứ không phải tại một lần đoán. Hầu hết các loại robot đều hoạt động liên tục yêu cầu các thuật toán này phải tính toán được theo thời gian thực. Một số bài toán có thể giải quyết bằng một số mô hình đơn giản (như Gaussians) nhưng một số bài toán khác yêu cầu phải có các mô hình phức tạp hơn.
 
-Việc phát triển của phần cứng máy tính ngày nay làm tăng số lượng phép tính trên một đơn vị giá. Điều này giúp cho lĩnh vực xác suất robot có hiệu quả hơn, thực hiện được các bài toán khó hơn. Tuy nhiên vẫn còn đó thách thức tính toán của lĩnh vực này. \cite{thrun2005probabilistic}
+Việc phát triển của phần cứng máy tính ngày nay làm tăng số lượng phép tính trên một đơn vị giá thành. Điều này giúp cho lĩnh vực xác suất robot có hiệu quả hơn, thực hiện được các bài toán khó hơn. Tuy nhiên vẫn còn đó thách thức tính toán của lĩnh vực này. \cite{thrun2005probabilistic}
 
 
 \section{Hệ điều hành robot ROS và các ứng dụng}
