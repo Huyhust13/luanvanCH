@@ -6,7 +6,6 @@
 
 % Nhắc lại vấn đề ở phần cuối chương 1
 Công nghệ SLAM là công nghệ cốt lõi trong robot tự hành thông minh, hiện nay công nghệ SLAM 2D chiếm phần lớn trong các ứng dụng do tính đơn giản, giá thành hợp lý. Tuy nhiên, với SLAM 2D, robot chỉ có thể tạo được bản đồ và di chuyển, tránh vật cản khi có thông tin về vật cản đó trên một mặt phẳng mà LIDAR quét được. Trong thực tế, môi trường hoạt động của chúng có nhiều loại vật thể có hình dạng, kích thước và chiều cao khác nhau.
-
 Để giải quyết vấn đề này, có một số phương pháp như:
 \begin{itemize}
     \item Thêm một số tầng cảm biến khác theo chiều cao thân robot như robot RHINO (\cite{Buhmann1995})
@@ -18,9 +17,9 @@ Các phương pháp trên có nhược điểm là chi phí thiết bị cao, ch
 
 \begin{itemize}
     \item Thiết kế mạch lấy dữ liệu cảm biến
-    \item Lập trình lấy dữ liệu và xử lý dữ liệu từ các cảm biến khoảng cách hồng ngoại
-    \item Đề xuất giải thuật điều khiển tránh vật cản bằng hệ thống cảm biến khoảng cách hồng ngoại.
-    \item Phối hợp để phân quyền điều khiển robot
+    \item Xử lý dữ liệu từ các cảm biến khoảng cách hồng ngoại
+    \item Ứng dụng và phát triển giải thuật điều khiển tránh vật cản bằng hệ thống cảm biến khoảng cách hồng ngoại.
+    \item Phối hợp phân quyền điều khiển robot
     \item Tích hợp tín hiệu từ cảm biến để cập  nhật dữ liệu vật cản vào bản đồ di chuyển của robot
     \item Đánh giá kết quả và hiệu quả của hệ thống
 \end{itemize}
@@ -130,7 +129,7 @@ $ roslaunch dashgo_rviz view_navigation.launch
 %TODO: đặt hình ảnh rviz vào đây.
 
 
-Sử dụng công cụ di chuyển robot bằng tay để thu thập thông tin tạo bản đồ của môi trường. Chúng ta có thể sử dụng bàn phím hoặc app để di chuyển robot. Cho robot di chuyển trong toàn bộ môi trường để thực hiện thu thập thông tin cho bản đồ và quan sát trực quan trên Rviz để quan sát bản đồ tạo được.
+Sử dụng công cụ di chuyển robot bằng tay để thu thập thông tin tạo bản đồ của môi trường. Chúng ta có thể sử dụng bàn phím hoặc app để điều khiển robot di chuyển. Cho robot di chuyển trong toàn bộ môi trường để thực hiện thu thập thông tin cho bản đồ và quan sát trực quan trên Rviz để quan sát bản đồ tạo được.
 \begin{lstlisting}
 $ rosrun dashgo_tools teleop_keyboard.py
 \end{lstlisting}
@@ -380,10 +379,6 @@ Kích thước đường bao là phạm vi đảm bảo robot có thể di chuy�
 % trí gặp vật cản robot thực hiện quay mình để tránh vật cản, sau đó phần điều hướng trong robot lại tính lại đường đi tới đích (đường màu xanh).
 
 \section{Phối hợp điều khiển robot}
-\subsection{Tích hợp vào bản đồ địa phương}
-
-Hệ thống điều khiển di chuyển cho robot bao gồm hai gói chương trình chính là \codeword{dashgo_driver} chứa các chương trình điều khiển chân đế di chuyển và \codeword{dashgo_nav} chứa các chương trình tạo bản đồ, tính toán quỹ đạo di chuyển... Chi tiết về điều khiển di chuyển robot được trình bày trong mục \ref{sub:software-architecture}.
-Trong phần này, sau khi phát triển xong hệ thống phát hiện và điều khiển tránh vật cản bằng cảm biến hồng ngoại, tác giả sẽ tích hợp vào trong hệ thống điều khiển robot. Các dữ liệu từ cảm biến hồng ngoại khi phát hiện vật sẽ được đánh dấu vào trong bản đồ giá trị địa phương. Đồng thời khi vật cản nằm trong vùng bong bóng phản ứng B hoặc vùng khẩn cấp U, chương trình điều khiển sẽ điều khiển theo thuật toán được trình bày trong \ref{sub:IR-algorithm}. Vì vậy, sau khi phản ứng với vật cản, trên bản đồ đã cập nhật vị trí của vật cản nên chương trinh tạo quỹ đạo mới sẽ đưa robot tránh khỏi vật cản được phát hiện bởi hệ thống cảm biến hồng ngoại.
 
 \subsection{Phân quyền điều khiển}
 Trong một vài trường hợp, có thể có nhiều chương trình, nhiều thuật toán được sử dụng để thực hiện cùng một tác vụ nào đó. Trong robot tự hành Dashgo D1, có nhiều chương trình khác nhau có thể tác động đến việc di chuyển của nó. Ví dụ trong phần lớn thời gian robot di chuyển dưới sự điều khiển của chương trình \codeword{slam_navigation}, khi có tín hiệu điều khiển bằng tay từ bàn phím, robot lại chạy dưới sự điều khiển của chương trình \codeword{teleop}, khi gặp vật cản được phát hiện bởi cảm biến sonar, robot phản ứng dừng lại hoặc quay trái/phải để tránh vật cản. Như trường hợp đơn giản vừa rồi có tới ba tiến trình cùng đồng thời điều khiển robot.
@@ -409,7 +404,29 @@ Ta thấy có \codeword{/sonar} được liên kết trực tiếp với \codewo
 
 Có một vài phương pháp để phối hợp phân quyền điều khiển cho robot. Khi chúng ta có nhiều thuật toán, nhiều chương trình cùng điều khiển tới một hoạt động nào đó.
 % ROS có định nghĩa \codeword{nodelet}\footnote{\url{http://wiki.ros.org/nodelet}}.
-Trong luận văn này, tác giả sử dụng \codeword{cmd_vel_mux} của \codeword{nodelet} để thực hiện phân quyền điều khiển cho robot để dễ dàng tích hợp tín hiệu điều khiển từ cảm biến an toàn IR (Hình \ref{fig:phanquen-dexuat})
+Trong luận văn này, tác giả sử dụng \codeword{cmd_vel_mux} của \codeword{nodelet} để thực hiện phân quyền điều khiển cho robot để phối hợp điều khiển từ hệ thống cảm biến an toàn IR vào hệ thống điều khiển robot. (Hình \ref{fig:phanquen-dexuat})
+
+\subsection{Tích hợp vào bản đồ địa phương}
+
+
+Hệ thống điều khiển di chuyển cho robot bao gồm hai gói chương trình chính là \codeword{dashgo_driver} chứa các chương trình điều khiển chân đế di chuyển và \codeword{dashgo_nav} chứa các chương trình tạo bản đồ, tính toán quỹ đạo di chuyển... Chi tiết về điều khiển di chuyển robot được trình bày trong mục \ref{sub:software-architecture}.
+% Trong phần này, sau khi phát triển xong hệ thống phát hiện và điều khiển tránh vật cản bằng cảm biến hồng ngoại, tác giả sẽ tích hợp vào trong hệ thống điều khiển robot.
+Trong phần này, tác giả đã tích hợp điều khiển tránh vật cản bằng cảm biến hồng ngoại phối hợp với hai tầng cảm biến có trên robot là Lidar và cảm biến siêu âm. Hệ thống sau khi tích hợp hồng ngoại hoạt động như sau: Có hai trường hợp có thể điều khiển robot tránh vật cản.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width = 0.75\linewidth]{figures/IR_BB-costmap.png}
+    \caption{Phối hợp điều khiển}
+    \label{fig:bb-vs-costmap}
+\end{figure}
+
+Trường hợp thứ nhất, các dữ liệu từ cảm biến hồng ngoại khi phát hiện vật sẽ được đánh dấu vào trong bản đồ giá trị địa phương. Bản đồ giá trị địa phương là một vùng bản đồ ô lưới hình vuông quanh robot, cập nhật giá trị của vật cản trong vùng này. Quỹ đạo địa phương sẽ liên tục được cập nhật theo bản đồ địa phương và điều khiển robot tránh vật cản. Tuy nhiên, việc cập nhật dữ liệu này thường tốn chi phí tính toán cao do đó nó phản ứng chậm. Vì vậy cần tới trường hợp thứ hai sau đây.
+
+Trường hợp thứ hai, khi vật cản nằm trong vùng bong bóng phản ứng B hoặc vùng khẩn cấp U, chương trình điều khiển sẽ điều khiển theo thuật toán được trình bày trong \ref{sub:IR-algorithm}. Tín hiệu điều khiển từ thuật toán này có mức độ ưu tiên cao hơn ở trường hợp thứ nhất và cũng phản ứng nhanh hơn. Vì vậy, khi một trong hai vùng này có xuất hiện vật cản, robot ngay lập tức phản ứng. Vòng lặp phản ứng được duy trì cho đến khi không còn vật cản xuất hiện trong một trong hai vùng này nữa.
+
+Khi vật cản không còn xuất hiện trong vùng bong bóng phản ứng B và vùng khẩn cấp U, chương trình sẽ trả quyền điều khiển lại cho trình điều khiển robot amcl. Tuy vậy, trên bản đồ đã cập nhật vị trí của vật cản nên chương trình tạo quỹ đạo mới sẽ đưa robot tránh khỏi vật cản được phát hiện bởi hệ thống cảm biến hồng ngoại và tiếp tục di chuyển tới đích.
+
+Hình \ref{fig:bb-vs-costmap} thể hiện trường hợp xuất hiện vật cản trong vùng bong bóng phản ứng và robot đánh dấu vật cản vào bản đồ giá trị địa phương. Bản đồ giá trị địa phương có hình vuông, thường có kích thước 2x2m. Khi robot di chuyển gặp vật cản, nếu tốc độ di chuyển chậm, trường hợp thứ nhất nêu trên sẽ đánh dấu vật cản và thay đổi quỹ đạo để tránh vật cản ngay. Tuy nhiên, nếu vận tốc tương đối giữa robot và vật cản lớn, trường hợp thứ nhất nêu trên không phản ứng kịp, khi đó sẽ dẫn tới trường hợp thứ hai. Do hạn chế về thời gian và điều kiện thí nghiệm, trong khuôn khổ của luận văn này tác giả chưa có đánh giá về giới hạn vận tốc này.
 
 %=======================================
 % \section{Đánh giá hệ thống tránh vật cản}}
@@ -582,13 +599,13 @@ Tuy nhiên, hệ thống còn có một số điểm hạn chế như:
                 %------------------
 % Tóm tắt lại kết quả luận văn
 
-Như vậy, sau khi làm xong luận văn này, đã đạt được một số kết quả như sau:
+Như vậy, sau luận văn này tác giả đã đạt được một số kết quả như sau:
 \begin{itemize}
     \item Làm chủ được hệ thống điều khiển robot tự hành thông minh bằng SLAM và ứng dụng hệ điều hành robot (ROS)
-    \item Đề xuất phương pháp mới giúp robot phát hiện và tránh vật cản ở nhiều tầng khác nhau
-    \item Đánh giá độ chính xác của cảm biến hồng ngoại, thấy rằng cảm biến hồng ngoại IR Sharp GP2Y0A21YK0F có tần số thấp, độ chính xác trong khoảng 5\% ở khoảng cách 0.1-0.8m, làm hạn chế tốc độ di chuyển có thể tránh được vật cản của robot.
+    % \item Đề xuất phương pháp mới giúp robot phát hiện và tránh vật cản ở nhiều tầng khác nhau
     \item Phát triển và ứng dụng thành công giải thuật tránh vật cản bằng hệ thống cảm biến hồng ngoại, phối hợp được với hệ thống điều khiển robot và hai hệ cảm biến có sẵn trên robot.
-    \item Đánh giá định tính hiệu quả tránh vật cản của robot sau khi có hệ thống tránh vật cản mới bằng các thí nghiệm thực tế. Robot phản ứng tránh được vật cản tĩnh, vật cản động ở tầng cảm biến mới thêm vào. Tuy nhiên hệ thống ước lượng biên dạng vật cản chưa tốt dẫn đến một số trường hợp vẫn có khả năng va chạm.
+    \item Đánh giá độ chính xác của cảm biến hồng ngoại, thấy rằng cảm biến hồng ngoại IR Sharp GP2Y0A21YK0F có tần số thấp, độ chính xác trong khoảng 5\% ở khoảng cách 0.1-0.8m, làm hạn chế tốc độ di chuyển có thể tránh được vật cản của robot.
+    \item Đánh giá định tính hiệu quả tránh vật cản của robot sau khi có hệ thống tránh vật cản mới bằng các thí nghiệm thực tế. Robot phản ứng tránh được vật cản tĩnh, vật cản động ở tầng cảm biến mới thêm vào. Tuy nhiên vẫn còn một số điểm hạn chế chưa làm được như: hệ thống ước lượng biên dạng vật cản chưa tốt dẫn đến một số trường hợp vẫn có khả năng va chạm, chưa có đánh giá định lượng về hiệu quả tránh vật cản của robot.
 \end{itemize}
 
 \section{Tầm nhìn}
