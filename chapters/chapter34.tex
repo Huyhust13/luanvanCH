@@ -13,7 +13,7 @@ Công nghệ SLAM là công nghệ cốt lõi trong robot tự hành thông minh
     \item Ứng dụng visual-based SLAM (\cite{Chen2000, Mittal2019})
 \end{itemize}
 
-Các phương pháp trên có nhược điểm là chi phí thiết bị cao, chi phí tính toán lớn do robot phải xử lý lượng lớn dữ liệu đầu vào. Trong luận văn này , để đảm bảo robot có thể hoạt động được theo thời gian thực và tích hợp trên hệ thống sẵn có, tác giả sử dụng phương pháp tích hợp thêm một tầng cảm biến khoảng cách hồng ngoại để phối hợp với Lidar và cảm biến siêu âm có sẵn trên robot để hỗ trợ và tăng cường tránh vật cản cho robot. Tác giả thực hiện một số nhiệm vụ như sau:
+Các phương pháp trên có nhược điểm là chi phí thiết bị cao, chi phí tính toán lớn và thuật toán phức tạp do robot phải xử lý lượng lớn dữ liệu đầu vào. Trong luận văn này, để đảm bảo robot có thể hoạt động được theo thời gian thực và tích hợp trên hệ thống sẵn có, tác giả sử dụng phương pháp tích hợp thêm một tầng cảm biến khoảng cách hồng ngoại để phối hợp với Lidar và cảm biến siêu âm có sẵn trên robot, hỗ trợ và tăng cường tránh vật cản cho robot. Tác giả thực hiện một số nhiệm vụ như sau:
 
 \begin{itemize}
     \item Thiết kế mạch lấy dữ liệu cảm biến
@@ -229,15 +229,15 @@ Hệ thống gồm một số cảm biến hồng ngoại IR Sharp GP2Y0A21YK0F 
 	\label{fig:IR_layout}
 \end{figure}
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.7\linewidth]{figures/dead-reckoning.png}
-    \caption{Dead reckoning \cite{pyo2017ros}}
-    \label{fig:dead-reckoning}
-\end{figure}
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=0.7\linewidth]{figures/dead-reckoning.png}
+%     \caption{Dead reckoning \cite{pyo2017ros}}
+%     \label{fig:dead-reckoning}
+% \end{figure}
 
 Trong quá trình di chuyển, robot có thể tiến và lùi vì vậy cần phải đặt cảm biến ở cả trước và phía sau robot.
-Robot sử dụng hai bánh dẫn động chính và di chuyển trên mặt phẳng, do vậy chuyển động của robot được quy về hai thông số vận tốc dài $v$ và vận tốc góc $\omega$ theo phương pháp ước tính trạng thái robot dead-reckoning Hình \ref{fig:dead-reckoning} \cite{pyo2017ros}.
+Robot sử dụng hai bánh dẫn động chính và di chuyển trên mặt phẳng, do vậy chuyển động của robot được quy về hai thông số vận tốc dài $v$ và vận tốc góc $\omega$ theo phương pháp ước tính trạng thái robot dead-reckoning Hình \ref{fig:mobile-rb-dead-reckoning} \cite{pyo2017ros}.
 Do đó tác giả đề xuất phương án mới đặt cảm biến dày hơn ở khu vực chính giữa và thưa ra hai bên như \figurename{ \ref{fig:IR_layout}}.
 
 \subsection{Xử lý dữ liệu cảm biến}
@@ -309,14 +309,14 @@ Sau đó dùng bộ lọc trung bình cộng để lấy trung bình cộng \ref
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\linewidth]{figures/arg_obstacle-detection-area.png}
+    \includegraphics[width=0.5\linewidth]{figures/arg_obstacle-detection-area1.png}
     \caption{Vùng xác định vật cản}
     \label{fig:arg-obstacle-area}
 \end{figure}
 
 Tác giả đề xuất sử dụng phối hợp hai giải thuật để điều khiển robot tránh vật cản sử dụng tầng cảm biến hồng ngoại. Định nghĩa hai vùng phát hiện vật cản. Vùng B và vùng U như \figurename{ \ref{fig:arg-obstacle-area}}. Chúng ta đặt mức độ ưu tiên khác nhau cho từng vùng, với mức ưu tiên áp dụng giải thuật vùng U cao hơn vùng B. Chi tiết giải thuật được mô tả như sau:
 
-\textbf{Vùng khẩn cấp U}:
+\textbf{Giải thuật vùng khẩn cấp U}:
 Vùng này thể hiện vùng nguy hiểm, được xác định bằng một đường tròn bán kính ${R}_{U}$ từ tâm của robot. Khi phát hiện có vật cản nằm trong vùng này nếu robot có lệnh di chuyển tiến hoặc lùi thì sẽ dừng lại, di chuyển robot lùi/tiến để tránh khỏi vật cản, đồng thời phát âm thanh để thông báo có vật cản cho đến khi không còn vật cản trong vùng này.
 % \begin{figure}[]
 %     \centering
@@ -352,14 +352,13 @@ Vùng này thể hiện vùng nguy hiểm, được xác định bằng một đ
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.4\linewidth]{figures/BB-argorithm.png}
+    \includegraphics[width=0.4\linewidth]{figures/BB-sharp.png}
     \caption{Hình dạng bong bóng phản ứng}
-    \label{fig:BB-argorithm}
+    \label{fig:BB-sharp}
 \end{figure}
 
-
-\textbf{Bong bóng phản ứng B}:
-Trên cơ sở tham khảo \cite{Susnea2009}, thuật toán bong bóng phản ứng xác định một đường bao phía trước robot, có hình dạng như trong Hình \ref{fig:BB-argorithm}, kích thước đường bao được làm mới sau mỗi chu kì ${\Delta}{t}$, phụ thuộc vào vị trí cảm biến và vận tốc di chuyển của robot theo công thức \ref{equa:BB-update}. Trong đó $bb[i]$ là kích thước bong bóng tại vị trí cảm biến thứ i, $K_i$ là hệ số, $V_t$ là vận tốc dài của robot tại thời điểm t, $\Delta_t$ là khoảng thời gian giữa 2 lần cập nhật.
+\textbf{Giải thuật bong bóng phản ứng B}:
+Trên cơ sở tham khảo \cite{Susnea2009}, thuật toán bong bóng phản ứng xác định một đường bao phía trước robot, có hình dạng như trong Hình \ref{fig:BB-sharp}, kích thước đường bao được làm mới sau mỗi chu kì ${\Delta}{t}$, phụ thuộc vào vị trí cảm biến và vận tốc di chuyển của robot theo công thức \ref{equa:BB-update}. Trong đó $bb[i]$ là kích thước bong bóng tại vị trí cảm biến thứ i, $K_i$ là hệ số, $V_t$ là vận tốc dài của robot tại thời điểm t, $\Delta_t$ là khoảng thời gian giữa 2 lần cập nhật.
 Kích thước đường bao là phạm vi đảm bảo robot có thể di chuyển tự do trong khoảng thời gian $\Delta_t$ mà không va chạm với vật cản.
 
 \begin{equation}
@@ -369,13 +368,14 @@ Kích thước đường bao là phạm vi đảm bảo robot có thể di chuy�
 
 \begin{figure}[htbp]
     \centering
+    \subfloat[]{\includegraphics[width=\linewidth]{figures/BB-arg.png}} \\
     \subfloat[]{\includegraphics[width=0.75\linewidth]{figures/IR_BB-avoidance.png}} \\
     \subfloat[]{\includegraphics[width=0.5\linewidth]{figures/BB_chart.png}}
     \caption{Giải thuật tránh vật cản bằng bong bóng phản ứng}
     \label{fig:BB-avoidance}
 \end{figure}
 
-\figurename{ \ref{fig:BB-avoidance}}a mô tả một trường hợp hoạt động của thuật toán tránh vật cản bằng thuật toán bong bóng phản ứng. Robot di chuyển từ vị trí A tới đích G với quỹ đạo được chương trình \codeword{slam_gmapping} tính toán theo đường nét đứt. Tuy nhiên, đến vị trí B, robot phát hiện thấy vật cản mà Lidar không phát hiện ra được. Giá trị đo được của cảm biến và giá trị bong bóng phản ứng tại điểm B được mô tả trong biểu đồ Hình \ref{fig:BB-avoidance}b. Có hai cảm biến tại vị trí góc -10 và -25 có khoảng cách đo được nhỏ hơn giá trị của bong bóng phản ứng, do đó đánh dấu 2 vị trí này có vật cản. Robot xác định có xuất hiện vật cản tại phía trước, bên phải, do đó, chân đế của robot được ra lệnh giảm vận tốc và đồng thời quay trái. Vì vị trí và hướng của robot lúc này đã lệch khỏi đường đi dự kiến ban đầu, do đó chương trình \codeword{slam_gmapping} tính toán lại quỹ đạo mới di chuyển tới đích, là đường nét liền màu xanh.
+\figurename{ \ref{fig:BB-avoidance}}a mô tả sơ đồ giải thuật tránh vật cản bằng thuật toán bong bóng phản ứng. \figurename{ \ref{fig:BB-avoidance}}b mô tả một trường hợp hoạt động của thuật toán. Robot di chuyển từ vị trí A tới đích G với quỹ đạo được chương trình \codeword{slam_gmapping} tính toán theo đường nét đứt. Tuy nhiên, đến vị trí B, robot phát hiện thấy vật cản mà Lidar không phát hiện ra được. Giá trị đo được của cảm biến và giá trị bong bóng phản ứng tại điểm B được mô tả trong biểu đồ Hình \ref{fig:BB-avoidance}c. Có hai cảm biến tại vị trí góc -10 và -25 có khoảng cách đo được nhỏ hơn giá trị của bong bóng phản ứng, do đó đánh dấu 2 vị trí này có vật cản. Robot xác định có xuất hiện vật cản tại phía trước, bên phải, do đó, chân đế của robot được ra lệnh giảm vận tốc và đồng thời quay trái. Vì vị trí và hướng của robot lúc này đã lệch khỏi đường đi dự kiến ban đầu, do đó chương trình \codeword{slam_gmapping} tính toán lại quỹ đạo mới di chuyển tới đích, là đường nét liền màu xanh.
 % trí gặp vật cản robot thực hiện quay mình để tránh vật cản, sau đó phần điều hướng trong robot lại tính lại đường đi tới đích (đường màu xanh).
 
 \section{Phối hợp điều khiển robot}
