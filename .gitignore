@@ -4,6 +4,7 @@
 *#
 *.aux
 *.lof
+*.lot
 *.out
 *.synctex.gz
 *.toc
